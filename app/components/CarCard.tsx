@@ -1,20 +1,22 @@
 "use client";
 
+import { Car } from "@/types/car";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CarCard({ car }: any) {
+export default function CarCard({ car }: { car: Car }){
   return (
     <div className="group rounded-3xl overflow-hidden bg-[#10141d] border border-white/10 hover:border-lime-400 transition duration-300">
 
       <div className="relative h-64">
 
         <Image
-          src={car.images[0]}
-          alt={car.model}
-          fill
-          className="object-cover group-hover:scale-105 transition duration-500"
-        />
+  src={`/cars/${car.image_folder}/1.jpg`}
+  alt={car.model}
+  fill
+  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+  className="object-cover group-hover:scale-105 transition duration-500"
+/>
 
         {car.status === "sold" && (
           <div className="absolute top-4 left-4 bg-red-600 text-white px-4 py-2 rounded-full font-bold">

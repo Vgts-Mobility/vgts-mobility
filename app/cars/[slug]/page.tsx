@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { cars } from "@/app/data/cars";
+import { supabase } from "@/lib/supabase";
 import CarDetails from "./CarDetails";
 
 type Props = {
@@ -11,9 +11,13 @@ type Props = {
 export default async function CarPage({ params }: Props) {
   const { slug } = await params;
 
-  const car = cars.find((c) => c.slug === slug);
+  const { data: car, error } = await supabase
+    .from("cars")
+    .select("*")
+    .eq("slug", slug)
+    .single();
 
-  if (!car) {
+  if (error || !car) {
     notFound();
   }
 
