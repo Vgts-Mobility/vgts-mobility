@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
@@ -8,6 +8,36 @@ import { Menu, X, Phone, MessageCircle } from "lucide-react";
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const logoPressTimer = useRef<NodeJS.Timeout | null>(null);
+const longPressTriggered = useRef(false);
+function startLogoPress() {
+  longPressTriggered.current = false;
+
+  logoPressTimer.current = setTimeout(() => {
+    longPressTriggered.current = true;
+
+    if (navigator.vibrate) {
+      navigator.vibrate(150);
+    }
+
+    window.location.href = "/admin/login";
+  }, 3000);
+}
+
+function cancelLogoPress() {
+  if (logoPressTimer.current) {
+    clearTimeout(logoPressTimer.current);
+    logoPressTimer.current = null;
+  }
+}
+
+function handleLogoClick(e: React.MouseEvent) {
+  if (longPressTriggered.current) {
+    e.preventDefault();
+    longPressTriggered.current = false;
+  }
+}
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,26 +61,35 @@ export default function Header() {
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
           {/* LOGO */}
 
-          <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/images/logo.jpg"
-              alt="VGTS Mobility"
-              width={48}
-              height={48}
-              className="h-12 w-auto rounded-full"
-              priority
-            />
+          <Link
+  href="/"
+  onClick={handleLogoClick}
+  onMouseDown={startLogoPress}
+  onMouseUp={cancelLogoPress}
+  onMouseLeave={cancelLogoPress}
+  onTouchStart={startLogoPress}
+  onTouchEnd={cancelLogoPress}
+  className="flex cursor-pointer items-center gap-3"
+>
+  <Image
+    src="/images/logo.jpg"
+    alt="VGTS Mobility"
+    width={48}
+    height={48}
+    className="h-12 w-auto rounded-full"
+    priority
+  />
 
-            <div>
-              <h2 className="text-xl font-black text-white">
-                VGTS <span className="text-lime-400">Mobility</span>
-              </h2>
+  <div>
+    <h2 className="text-xl font-black text-white">
+      VGTS <span className="text-lime-400">Mobility</span>
+    </h2>
 
-              <p className="text-xs text-white/60">
-                Premium vozy z Evropy
-              </p>
-            </div>
-          </Link>
+    <p className="text-xs text-white/60">
+      Premium vozy z Evropy
+    </p>
+  </div>
+</Link>
 
           {/* MENU */}
 
