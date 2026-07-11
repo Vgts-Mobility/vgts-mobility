@@ -55,7 +55,7 @@ export default function CarsTable({ cars }: Props) {
               </td>
 
               <td className="px-6 py-4 font-medium text-gray-900">
-                € {car.price.toLocaleString()}
+                {new Intl.NumberFormat("cs-CZ").format(car.price)} Kč
               </td>
 
               <td className="px-6 py-4 text-gray-700">

@@ -6,23 +6,25 @@ export async function uploadImages(
 ) {
   const uploaded: string[] = [];
 
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i];
+  for (const file of files) {
+    const extension =
+      file.name.split(".").pop()?.toLowerCase() || "jpg";
 
-    const extension = file.name.split(".").pop() ?? "jpg";
-
-    const fileName = `${i + 1}.${extension}`;
+    const fileName =
+      `${crypto.randomUUID()}.${extension}`;
 
     const path = `${folder}/${fileName}`;
 
     const { error } = await supabaseAdmin.storage
       .from("cars")
       .upload(path, file, {
-        upsert: true,
+        upsert: false,
         cacheControl: "3600",
       });
 
-    if (error) throw error;
+    if (error) {
+      throw error;
+    }
 
     uploaded.push(path);
   }

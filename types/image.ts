@@ -1,4 +1,1 @@
-export interface CarImage {
-  path: string;
-  main: boolean;
-}
+export type CarImage = string;

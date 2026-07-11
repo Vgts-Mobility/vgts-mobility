@@ -1,7 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { LogOut, CarFront, LayoutDashboard } from "lucide-react";
+import {
+  LogOut,
+  CarFront,
+  LayoutDashboard,
+  House,
+} from "lucide-react";
 import { logout } from "@/app/actions/auth";
 
 export default function AdminHeader() {
@@ -11,15 +16,15 @@ export default function AdminHeader() {
         <div className="flex items-center gap-8">
           <Link
             href="/admin"
-            className="text-lg font-bold text-text hover:text-primary transition"
+            className="text-lg font-bold text-text transition hover:text-primary"
           >
-            VGTS Admin
+            VGTS Mobility Admin
           </Link>
 
           <nav className="flex items-center gap-5 text-sm">
             <Link
               href="/admin"
-              className="flex items-center gap-2 text-text-muted hover:text-primary transition"
+              className="flex items-center gap-2 text-text-muted transition hover:text-primary"
             >
               <LayoutDashboard size={18} />
               Dashboard
@@ -27,11 +32,20 @@ export default function AdminHeader() {
 
             <Link
               href="/admin/cars"
-              className="flex items-center gap-2 text-text-muted hover:text-primary transition"
+              className="flex items-center gap-2 text-text-muted transition hover:text-primary"
             >
               <CarFront size={18} />
               Cars
             </Link>
+
+            <Link
+  href="/"
+  target="_blank"
+  className="flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-4 py-2 font-medium text-primary transition hover:bg-primary hover:text-white"
+>
+  <House size={18} />
+  Переглянути сайт
+</Link>
           </nav>
         </div>
 
