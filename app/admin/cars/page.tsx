@@ -1,42 +1,89 @@
 import Link from "next/link";
-import { supabase } from "@/lib/supabase";
+import { Plus } from "lucide-react";
+
 import CarsTable from "@/app/components/admin/CarsTable";
+import { getCars } from "@/lib/models/cars";
 
 export default async function AdminCarsPage() {
-  const { data: cars, error } = await supabase
-    .from("cars")
-    .select("*")
-    .order("created_at", { ascending: false });
-
-  if (error) {
-    return (
-      <div className="p-8">
-        <div className="rounded-lg bg-red-100 p-4 text-red-700">
-          {error.message}
-        </div>
-      </div>
-    );
-  }
+  const cars = await getCars();
 
   return (
-    <div className="p-8">
-      <div className="mb-8 flex items-center justify-between">
+    <div className="space-y-8">
+
+      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+
         <div>
-          <h1 className="text-3xl font-bold">Автомобілі</h1>
-          <p className="mt-1 text-gray-500">
-            Всього автомобілів: {cars?.length ?? 0}
+
+          <h1 className="text-4xl font-black text-white">
+            Automobily
+          </h1>
+
+          <p className="mt-2 text-text-muted">
+            Správa vozového parku VGTS Mobility
           </p>
+
         </div>
 
         <Link
           href="/admin/cars/new"
-          className="rounded-xl bg-black px-5 py-3 text-white transition hover:bg-gray-800"
+          className="inline-flex items-center gap-2 rounded-2xl bg-primary px-6 py-3 font-semibold text-white transition hover:opacity-90"
         >
-          + Додати автомобіль
+          <Plus size={20} />
+          Přidat vozidlo
         </Link>
+
       </div>
 
-      <CarsTable cars={cars ?? []} />
+      <div className="grid gap-5 md:grid-cols-3">
+
+        <div className="rounded-2xl border border-white/10 bg-surface p-6">
+
+          <div className="text-sm text-text-muted">
+            Celkem vozidel
+          </div>
+
+          <div className="mt-2 text-4xl font-black text-white">
+            {cars.length}
+          </div>
+
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-surface p-6">
+
+          <div className="text-sm text-text-muted">
+            Skladem
+          </div>
+
+          <div className="mt-2 text-4xl font-black text-lime-400">
+            {
+              cars.filter(
+                (c) => c.status === "В наявності"
+              ).length
+            }
+          </div>
+
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-surface p-6">
+
+          <div className="text-sm text-text-muted">
+            Prodáno
+          </div>
+
+          <div className="mt-2 text-4xl font-black text-red-400">
+            {
+              cars.filter(
+                (c) => c.status === "Продано"
+              ).length
+            }
+          </div>
+
+        </div>
+
+      </div>
+
+      <CarsTable cars={cars} />
+
     </div>
   );
 }

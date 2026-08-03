@@ -17,6 +17,7 @@ html {
 }
 
 body {
+  min-height: 100vh;
   background: var(--color-background);
   color: var(--color-text);
   overflow-x: hidden;
@@ -25,9 +26,28 @@ body {
 
 ::selection {
   background: var(--color-primary);
-  color: white;
+  color: #fff;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.swiper {
+  width: 100%;
+}
+
+.swiper-slide {
+  height: auto;
+}
+
+.swiper-wrapper {
+  align-items: stretch;
 }

@@ -10,13 +10,25 @@ export interface Car {
   price: number;
   mileage: number;
 
-  power: string;
   fuel: string;
+  power: string;
 
   battery: string | null;
   soh: string | null;
 
   color: string | null;
+  interior_color: string | null;
+
+  transmission: string | null;
+  drive: string | null;
+  body_type: string | null;
+
+  seats: number | null;
+  owners: number | null;
+
+  vin: string | null;
+
+  service_history: boolean | null;
 
   status: string | null;
 

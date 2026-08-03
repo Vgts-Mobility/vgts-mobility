@@ -1,16 +1,30 @@
-"use client";
-
 import { Car } from "@/types/car";
+
 import PhotoGrid from "./PhotoGrid";
-import UploadButton from "./UploadButton";
+import UploadForm from "./UploadForm";
+
+import { uploadImagesAction } from "@/app/actions/storage/upload-images";
+import { revalidatePath } from "next/cache";
 
 type Props = {
   car: Car;
 };
 
 export default function PhotoManager({ car }: Props) {
+  async function upload(formData: FormData) {
+    "use server";
+
+    await uploadImagesAction(
+      car.id,
+      car.image_folder,
+      formData
+    );
+
+    revalidatePath(`/admin/cars/${car.id}`);
+  }
+
   return (
-    <div className="space-y-6 rounded-2xl border border-white/10 bg-surface p-6">
+    <section className="space-y-6 rounded-2xl border border-white/10 bg-surface p-6">
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-bold text-white">
@@ -22,10 +36,10 @@ export default function PhotoManager({ car }: Props) {
           </p>
         </div>
 
-        <UploadButton />
+        <UploadForm action={upload} />
       </div>
 
       <PhotoGrid car={car} />
-    </div>
+    </section>
   );
 }

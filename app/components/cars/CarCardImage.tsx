@@ -10,7 +10,7 @@ export default function CarCardImage({ car }: Props) {
   const imageSrc =
     car.images && car.images.length > 0
       ? getPublicImage(car.images[0])
-      : `/cars/${car.image_folder}/1.jpg`;
+      : "/placeholder-car.jpg";
 
   return (
     <div className="relative h-72 overflow-hidden">
@@ -18,13 +18,14 @@ export default function CarCardImage({ car }: Props) {
         src={imageSrc}
         alt={`${car.brand} ${car.model}`}
         fill
-        sizes="(max-width:768px)100vw,(max-width:1280px)50vw,33vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
         className="object-cover transition duration-700 group-hover:scale-110"
+        priority={false}
       />
 
-      <div className="absolute inset-0 bg-linear-to-t from-[#05070d] via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#05070d] via-transparent to-transparent" />
 
-      {car.status === "sold" && (
+      {car.status === "Продано" && (
         <div className="absolute left-5 top-5 rounded-full bg-red-600 px-4 py-2 text-sm font-bold text-white shadow-lg">
           PRODÁNO
         </div>

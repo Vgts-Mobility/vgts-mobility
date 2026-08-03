@@ -4,28 +4,35 @@ type CreateCarData = {
   brand: string;
   model: string;
   slug: string;
+
   year: number;
   price: number;
   mileage: number;
+
   fuel: string;
   power: string;
+
   battery: string;
   color: string;
+
+  transmission: string;
+  drive: string;
+  body_type: string;
+  interior_color: string;
+
+  vin: string;
+
+  seats: number;
+  owners: number;
+
+  service_history: boolean;
+
   description: string;
+
+  features: string[];
 };
 
-type UpdateCarData = {
-  brand: string;
-  model: string;
-  slug: string;
-  year: number;
-  price: number;
-  mileage: number;
-  fuel: string;
-  power: string;
-  battery: string;
-  color: string;
-  description: string;
+type UpdateCarData = CreateCarData & {
   status: string;
 };
 
@@ -63,10 +70,11 @@ export async function createCar(data: CreateCarData) {
     .from("cars")
     .insert({
       ...data,
+
       status: "В наявності",
+
       image_folder: data.slug,
       images: [],
-      features: [],
     })
     .select()
     .single();
@@ -78,7 +86,10 @@ export async function createCar(data: CreateCarData) {
   return car;
 }
 
-export async function updateCar(id: string, data: UpdateCarData) {
+export async function updateCar(
+  id: string,
+  data: UpdateCarData
+) {
   const { error } = await supabaseAdmin
     .from("cars")
     .update({

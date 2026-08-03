@@ -3,13 +3,13 @@ import { supabase } from "@/lib/supabase";
 import CarDetails from "./CarDetails";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export default async function CarPage({ params }: Props) {
-  const { slug } = params;
+  const { slug } = await params;
 
   const { data: car, error } = await supabase
     .from("cars")

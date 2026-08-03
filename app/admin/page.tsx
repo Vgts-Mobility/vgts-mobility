@@ -5,6 +5,7 @@ import {
   CircleCheck,
   CircleX,
   Plus,
+  Crown,
 } from "lucide-react";
 
 import { getCars } from "@/lib/models/cars";
@@ -16,15 +17,15 @@ export default async function AdminPage() {
   const totalCars = cars.length;
 
   const availableCars = cars.filter(
-    (car) => car.status === "В наявності"
+    (car) => car.status?.trim().toLowerCase() === "в наявності"
   );
 
   const soldCars = cars.filter(
-    (car) => car.status === "Продано"
+    (car) => car.status?.trim().toLowerCase() === "продано"
   );
 
   const totalValue = availableCars.reduce(
-    (sum, car) => sum + car.price,
+    (sum, car) => sum + Number(car.price ?? 0),
     0
   );
 
@@ -34,12 +35,19 @@ export default async function AdminPage() {
     <div className="space-y-8">
       <div className="flex items-end justify-between">
         <div>
-          <h1 className="text-4xl font-bold text-white">
-            Dashboard
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-primary">
+            <Crown size={18} />
+            <span className="text-sm font-semibold">
+              VGTS Mobility Admin
+            </span>
+          </div>
+
+          <h1 className="text-5xl font-black tracking-tight text-white">
+            Вітаю, Бос 👋
           </h1>
 
-          <p className="mt-2 text-text-muted">
-            Ласкаво просимо до адмінки VGTS Mobility.
+          <p className="mt-3 text-lg text-text-muted">
+            Керуйте автопарком VGTS Mobility.
           </p>
         </div>
 
