@@ -13,7 +13,7 @@ export default async function CarsSection() {
     return (
       <section className="py-20 text-center text-red-500">
         <h2 className="text-2xl font-bold">
-          Supabase Error
+          Chyba při načítání vozidel
         </h2>
 
         <p className="mt-4">{error.message}</p>
@@ -24,10 +24,24 @@ export default async function CarsSection() {
   if (!cars || cars.length === 0) {
     return (
       <section className="py-20 text-center text-white">
-        Автомобілі не знайдені
+        Zatím nejsou k dispozici žádná vozidla.
       </section>
     );
   }
 
-  return <CarsSlider cars={cars} />;
+  const sortedCars = [...cars].sort((a, b) => {
+    const order: Record<string, number> = {
+      "В наявності": 0,
+      "Резерв": 1,
+      "В дорозі": 2,
+      "Продано": 3,
+    };
+
+    return (
+      (order[a.status ?? "Продано"] ?? 99) -
+      (order[b.status ?? "Продано"] ?? 99)
+    );
+  });
+
+  return <CarsSlider cars={sortedCars} />;
 }

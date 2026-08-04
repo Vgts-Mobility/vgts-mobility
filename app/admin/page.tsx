@@ -6,22 +6,33 @@ import {
   CircleX,
   Plus,
   Crown,
+  ClipboardList,
 } from "lucide-react";
 
 import { getCars } from "@/lib/models/cars";
 import { formatPrice } from "@/lib/utils/formatPrice";
+import { supabase } from "@/lib/supabase";
 
 export default async function AdminPage() {
   const cars = await getCars();
 
+  const { count: requestsCount } = await supabase
+    .from("requests")
+    .select("*", {
+      count: "exact",
+      head: true,
+    });
+
   const totalCars = cars.length;
 
   const availableCars = cars.filter(
-    (car) => car.status?.trim().toLowerCase() === "в наявності"
+    (car) =>
+      car.status?.trim().toLowerCase() === "в наявності"
   );
 
   const soldCars = cars.filter(
-    (car) => car.status?.trim().toLowerCase() === "продано"
+    (car) =>
+      car.status?.trim().toLowerCase() === "продано"
   );
 
   const totalValue = availableCars.reduce(
@@ -33,13 +44,18 @@ export default async function AdminPage() {
 
   return (
     <div className="space-y-8">
+
       <div className="flex items-end justify-between">
+
         <div>
+
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-primary">
             <Crown size={18} />
+
             <span className="text-sm font-semibold">
               VGTS Mobility Admin
             </span>
+
           </div>
 
           <h1 className="text-5xl font-black tracking-tight text-white">
@@ -49,6 +65,7 @@ export default async function AdminPage() {
           <p className="mt-3 text-lg text-text-muted">
             Керуйте автопарком VGTS Mobility.
           </p>
+
         </div>
 
         <Link
@@ -58,75 +75,119 @@ export default async function AdminPage() {
           <Plus size={20} />
           Додати автомобіль
         </Link>
+
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-5">
+
         <div className="rounded-2xl border border-white/10 bg-surface p-6">
+
           <div className="mb-4 flex items-center justify-between">
             <CarFront className="text-primary" />
+
             <span className="text-sm text-text-muted">
               Автомобілі
             </span>
+
           </div>
 
           <div className="text-4xl font-bold text-white">
             {totalCars}
           </div>
+
         </div>
 
         <div className="rounded-2xl border border-white/10 bg-surface p-6">
+
           <div className="mb-4 flex items-center justify-between">
             <CircleCheck className="text-green-400" />
+
             <span className="text-sm text-text-muted">
               В наявності
             </span>
+
           </div>
 
           <div className="text-4xl font-bold text-green-400">
             {availableCars.length}
           </div>
+
         </div>
 
         <div className="rounded-2xl border border-white/10 bg-surface p-6">
+
           <div className="mb-4 flex items-center justify-between">
             <CircleX className="text-red-400" />
+
             <span className="text-sm text-text-muted">
               Продано
             </span>
+
           </div>
 
           <div className="text-4xl font-bold text-red-400">
             {soldCars.length}
           </div>
+
         </div>
 
+        <Link
+          href="/admin/requests"
+          className="rounded-2xl border border-blue-500/20 bg-surface p-6 transition hover:border-blue-400"
+        >
+
+          <div className="mb-4 flex items-center justify-between">
+            <ClipboardList className="text-blue-400" />
+
+            <span className="text-sm text-text-muted">
+              Заявки
+            </span>
+
+          </div>
+
+          <div className="text-4xl font-bold text-blue-400">
+            {requestsCount ?? 0}
+          </div>
+
+        </Link>
+
         <div className="rounded-2xl border border-white/10 bg-surface p-6">
+
           <div className="mb-4 flex items-center justify-between">
             <CircleDollarSign className="text-yellow-400" />
+
             <span className="text-sm text-text-muted">
               Вартість складу
             </span>
+
           </div>
 
           <div className="text-2xl font-bold text-white">
             {formatPrice(totalValue)}
           </div>
+
         </div>
+
       </div>
 
       <div className="rounded-2xl border border-white/10 bg-surface p-6">
+
         <h2 className="mb-6 text-xl font-bold text-white">
           Останні автомобілі
         </h2>
 
         <div className="space-y-3">
+
           {recentCars.map((car) => (
+
             <Link
               key={car.id}
               href={`/admin/cars/${car.id}`}
               className="flex items-center justify-between rounded-xl border border-white/10 p-4 transition hover:border-primary"
             >
+
               <div>
+
                 <div className="font-semibold text-white">
                   {car.brand} {car.model}
                 </div>
@@ -134,9 +195,11 @@ export default async function AdminPage() {
                 <div className="text-sm text-text-muted">
                   {car.year}
                 </div>
+
               </div>
 
               <div className="text-right">
+
                 <div className="font-semibold text-white">
                   {formatPrice(car.price)}
                 </div>
@@ -144,11 +207,17 @@ export default async function AdminPage() {
                 <div className="text-sm text-text-muted">
                   {car.status}
                 </div>
+
               </div>
+
             </Link>
+
           ))}
+
         </div>
+
       </div>
+
     </div>
   );
 }
