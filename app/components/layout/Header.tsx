@@ -10,34 +10,35 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const logoPressTimer = useRef<NodeJS.Timeout | null>(null);
-const longPressTriggered = useRef(false);
-function startLogoPress() {
-  longPressTriggered.current = false;
+  const longPressTriggered = useRef(false);
 
-  logoPressTimer.current = setTimeout(() => {
-    longPressTriggered.current = true;
-
-    if (navigator.vibrate) {
-      navigator.vibrate(150);
-    }
-
-    window.location.href = "/admin/login";
-  }, 3000);
-}
-
-function cancelLogoPress() {
-  if (logoPressTimer.current) {
-    clearTimeout(logoPressTimer.current);
-    logoPressTimer.current = null;
-  }
-}
-
-function handleLogoClick(e: React.MouseEvent) {
-  if (longPressTriggered.current) {
-    e.preventDefault();
+  function startLogoPress() {
     longPressTriggered.current = false;
+
+    logoPressTimer.current = setTimeout(() => {
+      longPressTriggered.current = true;
+
+      if (navigator.vibrate) {
+        navigator.vibrate(150);
+      }
+
+      window.location.href = "/admin/login";
+    }, 3000);
   }
-}
+
+  function cancelLogoPress() {
+    if (logoPressTimer.current) {
+      clearTimeout(logoPressTimer.current);
+      logoPressTimer.current = null;
+    }
+  }
+
+  function handleLogoClick(e: React.MouseEvent) {
+    if (longPressTriggered.current) {
+      e.preventDefault();
+      longPressTriggered.current = false;
+    }
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,7 +47,8 @@ function handleLogoClick(e: React.MouseEvent) {
 
     window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () =>
+      window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -59,75 +61,83 @@ function handleLogoClick(e: React.MouseEvent) {
         }`}
       >
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
-          {/* LOGO */}
 
           <Link
-  href="/"
-  onClick={handleLogoClick}
-  onMouseDown={startLogoPress}
-  onMouseUp={cancelLogoPress}
-  onMouseLeave={cancelLogoPress}
-  onTouchStart={startLogoPress}
-  onTouchEnd={cancelLogoPress}
-  className="flex cursor-pointer items-center gap-3"
->
-  <Image
-    src="/images/logo.jpg"
-    alt="VGTS Mobility"
-    width={48}
-    height={48}
-    className="h-12 w-auto rounded-full"
-    priority
-  />
+            href="/"
+            onClick={handleLogoClick}
+            onMouseDown={startLogoPress}
+            onMouseUp={cancelLogoPress}
+            onMouseLeave={cancelLogoPress}
+            onTouchStart={startLogoPress}
+            onTouchEnd={cancelLogoPress}
+            className="flex cursor-pointer items-center gap-3"
+          >
+            <Image
+              src="/images/logo.jpg"
+              alt="VGTS Mobility"
+              width={48}
+              height={48}
+              className="h-12 w-auto rounded-full"
+              priority
+            />
 
-  <div>
-    <h2 className="text-xl font-black text-white">
-      VGTS <span className="text-lime-400">Mobility</span>
-    </h2>
+            <div>
+              <h2 className="text-xl font-black text-white">
+                VGTS{" "}
+                <span className="text-lime-400">
+                  Mobility
+                </span>
+              </h2>
 
-    <p className="text-xs text-white/60">
-      Premium vozy z Evropy
-    </p>
-  </div>
-</Link>
+              <p className="text-xs text-white/60">
+                Kvalitní auta
+              </p>
+            </div>
+          </Link>
 
-          {/* MENU */}
+          <nav className="hidden items-center gap-8 xl:flex">
 
-          <nav className="hidden items-center gap-10 lg:flex">
-            <a href="/" className="text-white/80 transition hover:text-lime-400">
+            <a
+              href="/"
+              className="text-white/80 transition hover:text-lime-400"
+            >
               Domů
             </a>
 
-            <a href="#cars" className="text-white/80 transition hover:text-lime-400">
+            <a
+              href="#cars"
+              className="text-white/80 transition hover:text-lime-400"
+            >
               Nabídka vozů
             </a>
 
-            <a href="#services" className="text-white/80 transition hover:text-lime-400">
+            <a
+              href="#services"
+              className="text-white/80 transition hover:text-lime-400"
+            >
               Jak to funguje
             </a>
 
-            <a href="#about" className="text-white/80 transition hover:text-lime-400">
+            <a
+              href="#about"
+              className="text-white/80 transition hover:text-lime-400"
+            >
               O nás
             </a>
 
-            <a href="#contact" className="text-white/80 transition hover:text-lime-400">
+            <a
+              href="#contact"
+              className="text-white/80 transition hover:text-lime-400"
+            >
               Kontakt
             </a>
+
           </nav>
 
-          {/* RIGHT */}
-
-          <div className="hidden items-center gap-8 lg:flex">
-            <a
-              href="https://wa.me/420703695936"
-              target="_blank"
-              className="flex items-center gap-2 rounded-full bg-lime-400 px-5 py-3 font-semibold text-black transition hover:scale-105"
-            >
-              <MessageCircle size={18} />
-              WhatsApp
-            </a>
+          <div className="hidden items-center gap-6 xl:flex">
 
             <div className="flex flex-col text-sm leading-6">
+
               <a
                 href="tel:+420703695936"
                 className="flex items-center gap-2 text-white transition hover:text-lime-400"
@@ -137,51 +147,72 @@ function handleLogoClick(e: React.MouseEvent) {
               </a>
 
               <a
-  href="tel:+420739974155"
-  className="flex items-center gap-2 text-white transition hover:text-lime-400"
->
-  <Phone size={16} />
-  +420 739 974 155
-</a>
-            </div>
-          </div>
+                href="tel:+420739974155"
+                className="flex items-center gap-2 text-white transition hover:text-lime-400"
+              >
+                <Phone size={16} />
+                +420 739 974 155
+              </a>
 
-          {/* MOBILE */}
+            </div>
+
+          </div>
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="text-white lg:hidden"
+            className="text-white xl:hidden"
           >
-            {mobileOpen ? <X size={30} /> : <Menu size={30} />}
+            {mobileOpen ? (
+              <X size={30} />
+            ) : (
+              <Menu size={30} />
+            )}
           </button>
+
         </div>
       </header>
 
-      {/* MOBILE MENU */}
-
       <div
-        className={`fixed inset-0 z-40 bg-[#05070d] transition-transform duration-300 lg:hidden ${
-          mobileOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 z-40 bg-[#05070d] transition-transform duration-300 xl:hidden ${
+          mobileOpen
+            ? "translate-x-0"
+            : "translate-x-full"
         }`}
       >
         <div className="flex flex-col gap-8 px-8 pt-28 text-2xl">
-          <a href="/" onClick={() => setMobileOpen(false)}>
+
+          <a
+            href="/"
+            onClick={() => setMobileOpen(false)}
+          >
             Domů
           </a>
 
-          <a href="#cars" onClick={() => setMobileOpen(false)}>
+          <a
+            href="#cars"
+            onClick={() => setMobileOpen(false)}
+          >
             Nabídka vozů
           </a>
 
-          <a href="#services" onClick={() => setMobileOpen(false)}>
+          <a
+            href="#services"
+            onClick={() => setMobileOpen(false)}
+          >
             Jak to funguje
           </a>
 
-          <a href="#about" onClick={() => setMobileOpen(false)}>
+          <a
+            href="#about"
+            onClick={() => setMobileOpen(false)}
+          >
             O nás
           </a>
 
-          <a href="#contact" onClick={() => setMobileOpen(false)}>
+          <a
+            href="#contact"
+            onClick={() => setMobileOpen(false)}
+          >
             Kontakt
           </a>
 
@@ -204,12 +235,13 @@ function handleLogoClick(e: React.MouseEvent) {
           </a>
 
           <a
-  href="tel:+420739974155"
-  className="flex items-center gap-3 text-white"
->
-  <Phone />
-  +420 739 974 155
-</a>
+            href="tel:+420739974155"
+            className="flex items-center gap-3 text-white"
+          >
+            <Phone />
+            +420 739 974 155
+          </a>
+
         </div>
       </div>
     </>
