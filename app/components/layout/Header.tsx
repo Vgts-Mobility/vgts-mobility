@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X, Phone, MessageCircle } from "lucide-react";
+import { Menu, X, MessageCircle } from "lucide-react";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -54,13 +54,15 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "border-b border-white/10 bg-[#05070d]/95 backdrop-blur-xl"
-            : "bg-transparent"
+            ? "border-b border-white/10 bg-[#05070d]/85 shadow-xl backdrop-blur-2xl"
+            : "bg-[#05070d]/35 backdrop-blur-xl"
         }`}
       >
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+        <div className="mx-auto flex h-20 max-w-7xl items-center px-8 lg:px-10">
+
+          {/* LOGO */}
 
           <Link
             href="/"
@@ -70,120 +72,105 @@ export default function Header() {
             onMouseLeave={cancelLogoPress}
             onTouchStart={startLogoPress}
             onTouchEnd={cancelLogoPress}
-            className="flex cursor-pointer items-center gap-3"
+            className="flex items-center gap-4"
           >
+
             <Image
               src="/images/logo.jpg"
               alt="VGTS Mobility"
-              width={48}
-              height={48}
-              className="h-12 w-auto rounded-full"
+              width={72}
+              height={72}
               priority
+              className="h-16 w-16 rounded-full object-cover shadow-lg"
             />
 
             <div>
-              <h2 className="text-xl font-black text-white">
+
+              <h2 className="text-3xl font-black tracking-wide text-white">
                 VGTS{" "}
                 <span className="text-lime-400">
                   Mobility
                 </span>
               </h2>
 
-              <p className="text-xs text-white/60">
-                Kvalitní auta
+              <p className="text-sm uppercase tracking-[4px] text-white/60">
+                Kvalitní vozy z Evropy
               </p>
+
             </div>
+
           </Link>
 
-          <nav className="hidden items-center gap-8 xl:flex">
+          {/* MENU */}
+
+          <nav className="ml-auto hidden items-center gap-12 xl:flex">
 
             <a
               href="/"
-              className="text-white/80 transition hover:text-lime-400"
+              className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
             >
               Domů
             </a>
 
             <a
               href="#cars"
-              className="text-white/80 transition hover:text-lime-400"
+              className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
             >
-              Nabídka vozů
+              Nabídka
             </a>
 
             <a
               href="#services"
-              className="text-white/80 transition hover:text-lime-400"
+              className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
             >
-              Jak to funguje
+              Dovoz
             </a>
 
             <a
               href="#about"
-              className="text-white/80 transition hover:text-lime-400"
+              className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
             >
               O nás
             </a>
 
             <a
               href="#contact"
-              className="text-white/80 transition hover:text-lime-400"
+              className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
             >
               Kontakt
             </a>
 
           </nav>
 
-          <div className="hidden items-center gap-6 xl:flex">
-
-            <div className="flex flex-col text-sm leading-6">
-
-              <a
-                href="tel:+420703695936"
-                className="flex items-center gap-2 text-white transition hover:text-lime-400"
-              >
-                <Phone size={16} />
-                +420 703 695 936
-              </a>
-
-              <a
-                href="tel:+420739974155"
-                className="flex items-center gap-2 text-white transition hover:text-lime-400"
-              >
-                <Phone size={16} />
-                +420 739 974 155
-              </a>
-
-            </div>
-
-          </div>
-
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="text-white xl:hidden"
+            className="ml-auto text-white xl:hidden"
           >
             {mobileOpen ? (
-              <X size={30} />
+              <X size={34} />
             ) : (
-              <Menu size={30} />
+              <Menu size={34} />
             )}
           </button>
 
         </div>
       </header>
+            {/* MOBILE MENU */}
 
       <div
-        className={`fixed inset-0 z-40 bg-[#05070d] transition-transform duration-300 xl:hidden ${
+        className={`fixed inset-0 z-40 bg-[#05070d]/95 backdrop-blur-2xl transition-transform duration-500 xl:hidden ${
           mobileOpen
             ? "translate-x-0"
             : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col gap-8 px-8 pt-28 text-2xl">
+
+        <div className="flex flex-col px-10 pt-32">
 
           <a
             href="/"
             onClick={() => setMobileOpen(false)}
+            className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
           >
             Domů
           </a>
@@ -191,20 +178,23 @@ export default function Header() {
           <a
             href="#cars"
             onClick={() => setMobileOpen(false)}
+            className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
           >
-            Nabídka vozů
+            Nabídka
           </a>
 
           <a
             href="#services"
             onClick={() => setMobileOpen(false)}
+            className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
           >
-            Jak to funguje
+            Dovoz
           </a>
 
           <a
             href="#about"
             onClick={() => setMobileOpen(false)}
+            className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
           >
             O nás
           </a>
@@ -212,38 +202,27 @@ export default function Header() {
           <a
             href="#contact"
             onClick={() => setMobileOpen(false)}
+            className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
           >
             Kontakt
           </a>
 
-          <hr className="border-white/10" />
+          <div className="mt-12">
 
-          <a
-            href="https://wa.me/420703695936"
-            className="flex items-center gap-3 text-lime-400"
-          >
-            <MessageCircle />
-            WhatsApp
-          </a>
+            <a
+              href="https://wa.me/420739974155"
+              className="flex items-center justify-center gap-3 rounded-2xl bg-lime-400 py-5 text-xl font-bold text-black transition hover:scale-[1.02]"
+            >
+              <MessageCircle size={24} />
+              WhatsApp
+            </a>
 
-          <a
-            href="tel:+420703695936"
-            className="flex items-center gap-3 text-white"
-          >
-            <Phone />
-            +420 703 695 936
-          </a>
-
-          <a
-            href="tel:+420739974155"
-            className="flex items-center gap-3 text-white"
-          >
-            <Phone />
-            +420 739 974 155
-          </a>
+          </div>
 
         </div>
+
       </div>
+
     </>
   );
 }

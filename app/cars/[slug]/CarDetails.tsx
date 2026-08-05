@@ -10,7 +10,6 @@ import {
   Gauge,
   Fuel,
   Zap,
-  Phone,
   MessageCircle,
   ChevronLeft,
   ChevronRight,
@@ -55,31 +54,44 @@ export default function CarDetails({
   return (
     <main className="min-h-screen bg-[#05070d] text-white">
 
-      <div className="mx-auto max-w-7xl px-6 py-10">
+      <div className="mx-auto max-w-7xl px-6 pt-5 pb-8">
 
-        <button
-          type="button"
-          onClick={() => router.back()}
-          className="mb-8 inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 transition hover:border-lime-400 hover:text-lime-400"
-        >
-          <ArrowLeft size={18} />
-          Zpět
-        </button>
+        <div className="mb-5 flex items-center gap-6">
 
-        {/* GALERIE */}
+  <button
+    type="button"
+    onClick={() => router.back()}
+    className="inline-flex items-center gap-2 rounded-2xl border border-lime-400/20 bg-[#10141d] px-5 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-x-1 hover:border-lime-400 hover:bg-lime-400 hover:text-black"
+  >
+    <ArrowLeft size={18} />
+    Zpět
+  </button>
 
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#10141d]">
+  <h1 className="text-5xl font-black leading-tight">
+    {car.brand} {car.model}
+  </h1>
 
-          {images.length > 0 && (
+</div>
+
+<div className="grid gap-6 xl:grid-cols-[1.9fr_360px] items-start">
+
+  {/* GALERIE */}
+
+ <div>
+
+  <div className="relative flex h-[520px] items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-[#10141d]">
+
+    {images.length > 0 && (
             <>
+
               <Image
-                src={images[current]}
-                alt={`${car.brand} ${car.model}`}
-                width={1600}
-                height={900}
-                priority
-                className="h-[560px] w-full object-cover"
-              />
+  src={images[current]}
+  alt={`${car.brand} ${car.model}`}
+  width={1600}
+  height={900}
+  priority
+  className="max-h-full max-w-full object-contain"
+/>
 
               <button
                 type="button"
@@ -96,6 +108,7 @@ export default function CarDetails({
               >
                 <ChevronRight size={28} />
               </button>
+
             </>
           )}
 
@@ -103,117 +116,123 @@ export default function CarDetails({
 
         {/* MINIATURY */}
 
-        <div className="mt-4 flex gap-3 overflow-x-auto pb-2">
+        <div className="mt-2 grid grid-cols-5 gap-2 md:grid-cols-6 lg:grid-cols-8">
 
           {images.map((image, index) => (
+
             <button
-              key={image}
-              type="button"
-              onClick={() => setCurrent(index)}
-              className={`overflow-hidden rounded-xl border-2 transition ${
-                current === index
-                  ? "border-lime-400"
-                  : "border-white/10"
-              }`}
-            >
-              <Image
-                src={image}
-                alt=""
-                width={180}
-                height={120}
-                className="h-24 w-40 object-cover"
-              />
-            </button>
+  key={image}
+  type="button"
+  onClick={() => setCurrent(index)}
+  className={`overflow-hidden rounded-xl border-2 transition ${
+    current === index
+      ? "border-lime-400"
+      : "border-white/10"
+  }`}
+>
+  <div className="flex aspect-video items-center justify-center bg-[#10141d]">
+    <Image
+      src={image}
+      alt=""
+      width={180}
+      height={120}
+      className="max-h-full max-w-full object-contain"
+    />
+  </div>
+</button>
+
           ))}
 
-        </div>
-
-        {/* INFO */}
-
-        <div className="mt-10 grid gap-8 xl:grid-cols-[1fr_auto]">
-
-          <div>
-
-            <h1 className="text-5xl font-black">
-              {car.brand} {car.model}
-            </h1>
-
-            <div className="mt-6 flex flex-wrap gap-8">
-
-              <QuickInfo
-                icon={<Calendar size={20} />}
-                label="Rok výroby"
-                value={String(car.year)}
-              />
-
-              <QuickInfo
-                icon={<Gauge size={20} />}
-                label="Najeto"
-                value={`${car.mileage.toLocaleString()} km`}
-              />
-
-              <QuickInfo
-                icon={<Fuel size={20} />}
-                label="Palivo"
-                value={car.fuel}
-              />
-
-              <QuickInfo
-                icon={<Zap size={20} />}
-                label="Výkon"
-                value={car.power}
-              />
-
-            </div>
-
-          </div>
-
-          <div className="rounded-3xl border border-lime-400/20 bg-[#10141d] p-8">
-
-            <div className="text-5xl font-black text-lime-400">
-              {car.price.toLocaleString()} Kč
-            </div>
-
-            <div className="mt-3 text-sm uppercase tracking-[4px] text-lime-400">
-              {statusMap[car.status ?? ""] ?? car.status}
-            </div>
-
-            <div className="mt-8 space-y-3">
-
-              <a
-                href="https://wa.me/420703695936"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 rounded-xl bg-lime-400 px-6 py-4 font-bold text-black transition hover:scale-[1.02]"
-              >
-                <MessageCircle size={22} />
-                WhatsApp
-              </a>
-
-              <a
-                href="tel:+420703695936"
-                className="flex items-center justify-center gap-2 rounded-xl border border-white/10 px-6 py-3 transition hover:border-lime-400"
-              >
-                <Phone size={18} />
-                +420 703 695 936
-              </a>
-
-              <a
-                href="tel:+420739974155"
-                className="flex items-center justify-center gap-2 rounded-xl border border-white/10 px-6 py-3 transition hover:border-lime-400"
-              >
-                <Phone size={18} />
-                +420 739 974 155
-              </a>
-
-            </div>
-
-          </div>
+         </div>
 
         </div>
 
+        <div>
+  {/* INFO */}
+
+  <div className="sticky top-28 w-full max-w-[380px] rounded-3xl border border-lime-400/20 bg-[#10141d] p-6">
+
+    <div className="text-[44px] font-black whitespace-nowrap text-lime-400">
+      {car.price.toLocaleString()} Kč
+    </div>
+
+    <div className="mt-3 text-sm uppercase tracking-[4px] text-lime-400">
+      {statusMap[car.status ?? ""] ?? car.status}
+    </div>
+
+    <div className="mt-8 space-y-3">
+
+      <a
+        href="https://wa.me/420703695936"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-4 rounded-xl bg-lime-400 px-5 py-4 text-black transition hover:scale-[1.02]"
+      >
+        <MessageCircle size={22} />
+
+        <div>
+          <div className="font-bold">Vadym</div>
+          <div className="text-sm opacity-80">
+            +420 703 695 936
+          </div>
+        </div>
+
+      </a>
+
+      <a
+        href="https://wa.me/420739974155"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-4 rounded-xl bg-lime-400 px-5 py-4 text-black transition hover:scale-[1.02]"
+      >
+        <MessageCircle size={22} />
+
+        <div>
+          <div className="font-bold">Taras</div>
+          <div className="text-sm opacity-80">
+            +420 739 974 155
+          </div>
+        </div>
+
+      </a>
+
+    </div>
+
+    <div className="mt-8 space-y-5">
+
+      <QuickInfo
+        icon={<Calendar size={20} />}
+        label="Rok výroby"
+        value={String(car.year)}
+      />
+
+      <QuickInfo
+        icon={<Gauge size={20} />}
+        label="Najeto"
+        value={`${car.mileage.toLocaleString()} km`}
+      />
+
+      <QuickInfo
+        icon={<Fuel size={20} />}
+        label="Palivo"
+        value={car.fuel}
+      />
+
+      <QuickInfo
+        icon={<Zap size={20} />}
+        label="Výkon"
+        value={car.power}
+      />
+
+    </div>
+
+  </div>
+
+</div>
+</div>
         {/* TECHNICKÉ ÚDAJE */}
-                <section className="mt-14">
+
+        <section className="mt-14">
 
           <h2 className="mb-6 text-3xl font-black">
             Technické údaje
@@ -264,8 +283,7 @@ export default function CarDetails({
           </div>
 
         </section>
-
-        {/* VÝBAVA */}
+                {/* VÝBAVA */}
 
         <section className="mt-14">
 
@@ -323,7 +341,6 @@ export default function CarDetails({
 
   );
 }
-
 function QuickInfo({
   icon,
   label,
