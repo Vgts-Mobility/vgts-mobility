@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#05070d] pt-12 pb-14 lg:pt-22 lg:pb-20">
+    <section className="relative overflow-hidden bg-[#05070d] pt-16 pb-12 lg:pt-24 lg:pb-20">
 
       {/* BACKGROUND */}
 
@@ -19,27 +19,23 @@ export default function Hero() {
 
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-6 px-6 lg:grid-cols-[0.95fr_1.25fr]">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 lg:grid-cols-[0.95fr_1.25fr] lg:px-8">
 
         {/* LEFT */}
 
         <div>
 
-          <div className="mb-5 font-semibold uppercase tracking-[7px] text-lime-400">
+          <div className="mb-5 text-xs font-semibold uppercase tracking-[6px] text-lime-400 sm:text-sm">
             ELEKTROMOBILY • DOVOZ • EVROPA
           </div>
 
-          <h1 className="text-[48px] font-black leading-[1.05] text-white xl:text-[60px]">
-
+          <h1 className="text-4xl font-black leading-tight text-white sm:text-5xl xl:text-[60px]">
             Najdeme elektromobil,
-
             <br />
-
             který bude opravdu váš.
-
           </h1>
 
-          <h2 className="mt-3 text-2xl font-bold">
+          <h2 className="mt-4 text-xl font-bold sm:text-2xl">
 
             <span className="text-lime-400">
               Budoucnost
@@ -55,7 +51,7 @@ export default function Hero() {
 
           </h2>
 
-          <p className="mt-6 max-w-lg text-base leading-7 text-gray-400">
+          <p className="mt-5 max-w-lg text-[15px] leading-7 text-gray-400 sm:text-base">
 
             Specializujeme se na dovoz kvalitních elektromobilů z celé Evropy.
 
@@ -65,29 +61,29 @@ export default function Hero() {
 
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
 
             <Link
               href="#cars"
-              className="rounded-full bg-lime-400 px-9 py-4 font-bold text-black transition duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(163,230,53,.45)]"
+              className="w-full rounded-full bg-lime-400 px-8 py-4 text-center font-bold text-black transition duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(163,230,53,.45)] sm:w-auto"
             >
               Prohlédnout nabídku
             </Link>
 
             <Link
               href="#request"
-              className="rounded-full border border-white/15 px-9 py-4 font-semibold text-white transition hover:border-lime-400"
+              className="w-full rounded-full border border-white/15 px-8 py-4 text-center font-semibold text-white transition hover:border-lime-400 sm:w-auto"
             >
               Poptat dovoz vozu
             </Link>
 
           </div>
 
-          <div className="mt-8 grid grid-cols-2 gap-5 lg:grid-cols-4">
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
 
             <div>
 
-              <div className="text-4xl font-black text-lime-400">
+              <div className="text-3xl font-black text-lime-400 sm:text-4xl">
                 EV
               </div>
 
@@ -99,7 +95,7 @@ export default function Hero() {
 
             <div>
 
-              <div className="text-4xl font-black text-sky-400">
+              <div className="text-3xl font-black text-sky-400 sm:text-4xl">
                 EU
               </div>
 
@@ -111,7 +107,7 @@ export default function Hero() {
 
             <div>
 
-              <div className="text-4xl font-black text-fuchsia-400">
+              <div className="text-3xl font-black text-fuchsia-400 sm:text-4xl">
                 100%
               </div>
 
@@ -123,7 +119,7 @@ export default function Hero() {
 
             <div>
 
-              <div className="text-4xl font-black text-white">
+              <div className="text-3xl font-black text-white sm:text-4xl">
                 ✔
               </div>
 
@@ -137,31 +133,32 @@ export default function Hero() {
 
         </div>
 
+        {/* RIGHT */}
                 {/* RIGHT */}
 
-        <div className="relative flex items-center justify-end">
+        <div className="relative mt-10 flex items-center justify-center lg:mt-0 lg:justify-end">
 
           {/* Glow */}
 
           <div className="absolute right-0 top-8 h-[700px] w-[700px] rounded-full bg-sky-500/15 blur-[180px]" />
 
-          <div className="absolute bottom-10 right-20 h-[260px] w-[260px] rounded-full bg-lime-400/20 blur-[120px]" />
+          <div className="absolute bottom-10 right-10 h-[220px] w-[220px] rounded-full bg-lime-400/20 blur-[120px]" />
 
-          <div className="absolute top-28 right-44 h-[220px] w-[220px] rounded-full bg-fuchsia-500/20 blur-[120px]" />
+          <div className="absolute top-24 right-32 h-[180px] w-[180px] rounded-full bg-fuchsia-500/20 blur-[120px]" />
 
-          {/* INFO CARD */}
+          {/* INFO */}
 
-          <div className="absolute left-8 top-2 z-30 rounded-3xl border border-white/10 bg-[#10141d]/90 px-6 py-5 backdrop-blur-xl">
+          <div className="absolute top-0 left-1/2 z-30 w-[90%] max-w-sm -translate-x-1/2 rounded-3xl border border-white/10 bg-[#10141d]/90 px-5 py-4 backdrop-blur-xl lg:left-8 lg:w-auto lg:-translate-x-0">
 
-  <div className="text-xs font-semibold uppercase tracking-[6px] text-lime-400">
-    KONCEPT VGTS MOBILITY
-  </div>
+            <div className="text-[11px] font-semibold uppercase tracking-[5px] text-lime-400">
+              KONCEPT VGTS MOBILITY
+            </div>
 
-  <h3 className="mt-2 text-3xl font-black text-white">
-    ŠKODA ENYAQ
-  </h3>
+            <h3 className="mt-2 text-2xl font-black text-white lg:text-3xl">
+              ŠKODA ENYAQ
+            </h3>
 
-</div>
+          </div>
 
           {/* CAR */}
 
@@ -174,15 +171,18 @@ export default function Hero() {
             className="
               relative
               z-20
+              mt-12
               w-full
-              max-w-[1350px]
-              translate-x-12
-              translate-y-10
+              max-w-[720px]
               object-contain
-              drop-shadow-[0_50px_80px_rgba(0,0,0,.45)]
+              drop-shadow-[0_45px_70px_rgba(0,0,0,.45)]
               transition-all
               duration-700
               hover:scale-[1.02]
+              lg:mt-0
+              lg:max-w-[1350px]
+              lg:translate-x-12
+              lg:translate-y-10
             "
           />
 

@@ -1,0 +1,9 @@
+{
+  "header": {
+    "home": "Home",
+    "cars": "Cars",
+    "import": "Import",
+    "about": "About",
+    "contact": "Contact"
+  }
+}

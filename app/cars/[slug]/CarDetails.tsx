@@ -13,18 +13,14 @@ import {
   MessageCircle,
   ChevronLeft,
   ChevronRight,
+  CheckCircle2,
+  CircleX,
+  Clock3,
+  Truck,
 } from "lucide-react";
 
 import { Car } from "@/types/car";
 import { getPublicImage } from "@/lib/storage/get-public-image";
-
-const statusMap: Record<string, string> = {
-  "В наявності": "Skladem",
-  "Продано": "Prodáno",
-  "Резерв": "Rezervováno",
-  "В дорозі": "Na cestě",
-};
-
 export default function CarDetails({
   car,
 }: {
@@ -96,7 +92,7 @@ export default function CarDetails({
               <button
                 type="button"
                 onClick={prev}
-                className="absolute left-5 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-4 text-white backdrop-blur transition hover:bg-lime-400 hover:text-black"
+                className="hidden md:block absolute left-5 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-4 text-white backdrop-blur transition hover:bg-lime-400 hover:text-black"
               >
                 <ChevronLeft size={28} />
               </button>
@@ -104,7 +100,7 @@ export default function CarDetails({
               <button
                 type="button"
                 onClick={next}
-                className="absolute right-5 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-4 text-white backdrop-blur transition hover:bg-lime-400 hover:text-black"
+                className="hidden md:block absolute right-5 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-4 text-white backdrop-blur transition hover:bg-lime-400 hover:text-black"
               >
                 <ChevronRight size={28} />
               </button>
@@ -148,7 +144,6 @@ export default function CarDetails({
         </div>
 
         <div>
-  {/* INFO */}
 
   <div className="sticky top-28 w-full max-w-[380px] rounded-3xl border border-lime-400/20 bg-[#10141d] p-6">
 
@@ -156,28 +151,39 @@ export default function CarDetails({
       {car.price.toLocaleString()} Kč
     </div>
 
-    <div className="mt-3 text-sm uppercase tracking-[4px] text-lime-400">
-      {statusMap[car.status ?? ""] ?? car.status}
+    <div className="mt-5">
+
+  {car.status === "В наявності" && (
+    <div className="inline-flex items-center gap-3 rounded-full border border-lime-400/40 bg-lime-400/15 px-6 py-3 text-lg font-bold uppercase tracking-[2px] text-lime-400 shadow-lg">
+      <CheckCircle2 size={22} />
+      Skladem
     </div>
+  )}
+
+  {car.status === "Продано" && (
+    <div className="inline-flex items-center gap-3 rounded-full border border-red-500/40 bg-red-500/15 px-6 py-3 text-lg font-bold uppercase tracking-[2px] text-red-400 shadow-lg">
+      <CircleX size={22} />
+      Prodáno
+    </div>
+  )}
+
+  {car.status === "Резерв" && (
+    <div className="inline-flex items-center gap-3 rounded-full border border-yellow-500/40 bg-yellow-500/15 px-6 py-3 text-lg font-bold uppercase tracking-[2px] text-yellow-300 shadow-lg">
+      <Clock3 size={22} />
+      Rezervováno
+    </div>
+  )}
+
+  {car.status === "В дорозі" && (
+    <div className="inline-flex items-center gap-3 rounded-full border border-sky-500/40 bg-sky-500/15 px-6 py-3 text-lg font-bold uppercase tracking-[2px] text-sky-300 shadow-lg">
+      <Truck size={22} />
+      Na cestě
+    </div>
+  )}
+
+</div>
 
     <div className="mt-8 space-y-3">
-
-      <a
-        href="https://wa.me/420703695936"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-4 rounded-xl bg-lime-400 px-5 py-4 text-black transition hover:scale-[1.02]"
-      >
-        <MessageCircle size={22} />
-
-        <div>
-          <div className="font-bold">Vadym</div>
-          <div className="text-sm opacity-80">
-            +420 703 695 936
-          </div>
-        </div>
-
-      </a>
 
       <a
         href="https://wa.me/420739974155"
@@ -188,10 +194,37 @@ export default function CarDetails({
         <MessageCircle size={22} />
 
         <div>
-          <div className="font-bold">Taras</div>
+
+          <div className="font-bold">
+            Taras
+          </div>
+
           <div className="text-sm opacity-80">
             +420 739 974 155
           </div>
+
+        </div>
+
+      </a>
+
+      <a
+        href="https://wa.me/420703695936"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-4 rounded-xl bg-lime-400 px-5 py-4 text-black transition hover:scale-[1.02]"
+      >
+        <MessageCircle size={22} />
+
+        <div>
+
+          <div className="font-bold">
+            Vadym
+          </div>
+
+          <div className="text-sm opacity-80">
+            +420 703 695 936
+          </div>
+
         </div>
 
       </a>
@@ -226,10 +259,11 @@ export default function CarDetails({
 
     </div>
 
-  </div>
+ </div> {/* sticky */}
 
-</div>
-</div>
+  </div> {/* pravý sloupec */}
+
+</div> {/* grid */}
         {/* TECHNICKÉ ÚDAJE */}
 
         <section className="mt-14">
@@ -299,9 +333,10 @@ export default function CarDetails({
 
                 <div
                   key={feature}
-                  className="rounded-xl border border-lime-400/20 bg-lime-400/10 px-4 py-3 text-sm font-medium text-lime-300"
+                  className="rounded-xl border border-white/10 bg-[#151922] px-4 py-3 text-sm font-medium text-white transition hover:border-lime-400/40 hover:bg-[#1a1f2a]"
                 >
-                  ✓ {feature}
+                 <span className="mr-2 text-lime-400">✓</span>
+{feature}
                 </div>
 
               ))}

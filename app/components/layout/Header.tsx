@@ -1,13 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { Globe } from "lucide-react";
 import Link from "next/link";
 import { Menu, X, MessageCircle } from "lucide-react";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const pathname = usePathname();
 
   const logoPressTimer = useRef<NodeJS.Timeout | null>(null);
   const longPressTriggered = useRef(false);
@@ -38,6 +42,22 @@ export default function Header() {
       e.preventDefault();
       longPressTriggered.current = false;
     }
+  }
+
+  function goToCars(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault();
+
+    if (pathname === "/") {
+      document
+        .getElementById("cars")
+        ?.scrollIntoView({
+          behavior: "smooth",
+        });
+    } else {
+      window.location.href = "/#cars";
+    }
+
+    setMobileOpen(false);
   }
 
   useEffect(() => {
@@ -113,7 +133,8 @@ export default function Header() {
             </a>
 
             <a
-              href="#cars"
+              href="/#cars"
+              onClick={goToCars}
               className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
             >
               Nabídka
@@ -141,7 +162,26 @@ export default function Header() {
             </a>
 
           </nav>
+          <div className="ml-10 hidden items-center gap-2 xl:flex">
 
+  <Globe
+    size={18}
+    className="mr-1 text-white/60"
+  />
+
+  <button className="flex items-center gap-2 rounded-full border border-lime-400 bg-lime-400/15 px-3 py-1.5 text-sm font-bold text-lime-400 transition hover:bg-lime-400 hover:text-black">
+      CZ
+  </button>
+
+  <button className="flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-sm font-bold text-white/70 transition hover:border-lime-400 hover:text-lime-400">
+      UA
+  </button>
+
+  <button className="flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-sm font-bold text-white/70 transition hover:border-lime-400 hover:text-lime-400">
+      EN
+  </button>
+
+</div>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="ml-auto text-white xl:hidden"
@@ -154,6 +194,7 @@ export default function Header() {
           </button>
 
         </div>
+
       </header>
             {/* MOBILE MENU */}
 
@@ -176,8 +217,8 @@ export default function Header() {
           </a>
 
           <a
-            href="#cars"
-            onClick={() => setMobileOpen(false)}
+            href="/#cars"
+            onClick={goToCars}
             className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
           >
             Nabídka

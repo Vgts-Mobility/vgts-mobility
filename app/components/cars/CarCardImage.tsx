@@ -13,27 +13,62 @@ export default function CarCardImage({ car }: Props) {
       : "/placeholder-car.jpg";
 
   return (
-    <div className="relative h-72 overflow-hidden">
+    <div className="group relative h-90 overflow-hidden">
+
       <Image
         src={imageSrc}
         alt={`${car.brand} ${car.model}`}
         fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-        className="object-cover transition duration-700 group-hover:scale-110"
         priority={false}
+        sizes="(max-width:768px)100vw,(max-width:1280px)50vw,33vw"
+        className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-[#05070d] via-transparent to-transparent" />
+      {/* Overlay */}
 
-      {car.status === "Продано" && (
-        <div className="absolute left-5 top-5 rounded-full bg-red-600 px-4 py-2 text-sm font-bold text-white shadow-lg">
-          PRODÁNO
+      <div className="absolute inset-0 bg-gradient-to-t from-[#05070d] via-[#05070d]/10 to-transparent" />
+
+      <div className="absolute inset-0 bg-black/0 transition duration-500 group-hover:bg-black/10" />
+
+      {/* STATUS */}
+
+      {car.status === "В наявності" && (
+        <div className="absolute left-5 top-5 rounded-full border border-lime-400/50 bg-[#0b1116]/90 px-4 py-2 text-sm font-bold uppercase tracking-wide text-lime-400 backdrop-blur-md shadow-xl">
+          Skladem
         </div>
       )}
 
-      <div className="absolute bottom-5 left-5 rounded-full bg-black/60 px-4 py-2 text-sm font-semibold text-white backdrop-blur">
+      {car.status === "Продано" && (
+        <div className="absolute left-5 top-5 rounded-full border border-red-500/50 bg-[#0b1116]/90 px-4 py-2 text-sm font-bold uppercase tracking-wide text-red-400 backdrop-blur-md shadow-xl">
+          Prodáno
+        </div>
+      )}
+
+      {car.status === "Резерв" && (
+        <div className="absolute left-5 top-5 rounded-full border border-yellow-500/50 bg-[#0b1116]/90 px-4 py-2 text-sm font-bold uppercase tracking-wide text-yellow-300 backdrop-blur-md shadow-xl">
+          Rezervováno
+        </div>
+      )}
+
+      {car.status === "В дорозі" && (
+        <div className="absolute left-5 top-5 rounded-full border border-sky-500/50 bg-[#0b1116]/90 px-4 py-2 text-sm font-bold uppercase tracking-wide text-sky-300 backdrop-blur-md shadow-xl">
+          Na cestě
+        </div>
+      )}
+
+      {/* YEAR + MILEAGE */}
+
+      <div className="absolute bottom-5 left-5 rounded-full border border-white/10 bg-[#0b1116]/90 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md shadow-xl">
         {car.year}
+
+        {car.mileage > 0 && (
+          <>
+            <span className="mx-2 text-lime-400">•</span>
+            {car.mileage.toLocaleString()} km
+          </>
+        )}
       </div>
+
     </div>
   );
 }

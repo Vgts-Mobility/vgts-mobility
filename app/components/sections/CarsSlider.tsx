@@ -26,32 +26,21 @@ export default function CarsSlider({ cars }: Props) {
 
         {/* HEADER */}
 
-        <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mb-10">
 
-          <div>
+          <p className="text-sm font-semibold uppercase tracking-[5px] text-lime-400">
+            AKTUÁLNÍ NABÍDKA
+          </p>
 
-            <p className="text-sm font-semibold uppercase tracking-[5px] text-lime-400">
-              AKTUÁLNÍ NABÍDKA
-            </p>
+          <h2 className="mt-3 text-4xl font-black text-white lg:text-5xl">
+            Vyberte si svůj vůz
+          </h2>
 
-            <h2 className="mt-3 text-4xl font-black text-white lg:text-5xl">
-              Prověřené vozy skladem
-            </h2>
-
-            <p className="mt-4 max-w-2xl text-gray-400">
-              Nabízíme pečlivě prověřené vozy připravené k okamžitému
-              odběru. Pokud nenajdete vůz podle svých představ,
-              rádi pro vás zajistíme individuální dovoz z celé Evropy.
-            </p>
-
-          </div>
-
-          <Link
-            href="/cars"
-            className="inline-flex items-center justify-center rounded-full border border-lime-400 px-6 py-3 font-semibold text-lime-400 transition hover:bg-lime-400 hover:text-black"
-          >
-            Zobrazit všechny vozy
-          </Link>
+          <p className="mt-4 max-w-2xl text-gray-400">
+            Prověřené vozy skladem nebo individuální dovoz z celé Evropy.
+            Každý automobil pečlivě kontrolujeme a pomůžeme vám vybrat
+            ten pravý.
+          </p>
 
         </div>
 
@@ -92,6 +81,24 @@ export default function CarsSlider({ cars }: Props) {
               </SwiperSlide>
             ))}
           </Swiper>
+
+          {/* BUTTON */}
+
+          <div className="mt-12 flex justify-center">
+
+            <Link
+              href="/cars"
+              className="group inline-flex items-center gap-3 rounded-full bg-lime-400 px-8 py-4 text-lg font-bold text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(163,230,53,.35)]"
+            >
+              Zobrazit všechny vozy
+
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+
+            </Link>
+
+          </div>
 
         </div>
 
