@@ -1,12 +1,17 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import {
   Phone,
   MessageCircle,
   Mail,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function Footer() {
+  const t = useTranslations("footer");
+
   return (
     <footer className="border-t border-white/10 bg-[#04060b]">
 
@@ -38,7 +43,7 @@ export default function Footer() {
                 </h2>
 
                 <p className="text-sm text-gray-500">
-                  Premium vozy z Evropy
+                  {t("tagline")}
                 </p>
 
               </div>
@@ -46,9 +51,7 @@ export default function Footer() {
             </div>
 
             <p className="mt-6 max-w-md leading-8 text-gray-400">
-              Dovážíme prověřené automobily z evropských aukcí,
-              kontrolujeme jejich historii a pomáháme zákazníkům
-              najít vůz přesně podle jejich požadavků.
+              {t("description")}
             </p>
 
             <a
@@ -66,30 +69,30 @@ export default function Footer() {
           <div>
 
             <h3 className="mb-6 text-xl font-bold text-white">
-              Navigace
+              {t("navigation.title")}
             </h3>
 
             <div className="flex flex-col gap-4">
 
               <Link
-                href="#cars"
+                href="/#cars"
                 className="text-gray-400 transition hover:text-lime-400"
               >
-                Aktuální nabídka
+                {t("navigation.cars")}
               </Link>
 
               <Link
-                href="#services"
+                href="/#services"
                 className="text-gray-400 transition hover:text-lime-400"
               >
-                Jak to funguje
+                {t("navigation.services")}
               </Link>
 
               <Link
-                href="#contact"
+                href="/#contact"
                 className="text-gray-400 transition hover:text-lime-400"
               >
-                Kontakt
+                {t("navigation.contact")}
               </Link>
 
             </div>
@@ -101,7 +104,7 @@ export default function Footer() {
           <div>
 
             <h3 className="mb-6 text-xl font-bold text-white">
-              Kontaktní osoby
+              {t("contacts.title")}
             </h3>
 
             <div className="space-y-6">
@@ -127,6 +130,7 @@ export default function Footer() {
                   <a
                     href="https://wa.me/420703695936"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-3 text-gray-400 transition hover:text-green-400"
                   >
                     <MessageCircle size={18} />
@@ -158,6 +162,7 @@ export default function Footer() {
                   <a
                     href="https://wa.me/420739974155"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-3 text-gray-400 transition hover:text-green-400"
                   >
                     <MessageCircle size={18} />
@@ -181,7 +186,7 @@ export default function Footer() {
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm text-gray-500 lg:flex-row">
 
           <p>
-            © 2026 VGTS Mobility s.r.o. Všechna práva vyhrazena.
+            {t("copyright")}
           </p>
 
           <p>

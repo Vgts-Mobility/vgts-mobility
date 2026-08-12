@@ -9,20 +9,24 @@ import {
   MessageCircle,
 } from "lucide-react";
 
-import { Car } from "@/types/car";
+import { useTranslations } from "next-intl";
 
-const statusMap: Record<string, string> = {
-  "В наявності": "Skladem",
-  "Продано": "Prodáno",
-  "Резерв": "Rezervováno",
-  "В дорозі": "Na cestě",
-};
+import { Car } from "@/types/car";
 
 export default function CarSidebar({
   car,
 }: {
   car: Car;
 }) {
+  const t = useTranslations("carDetails");
+
+  const statusMap: Record<string, string> = {
+    "В наявності": t("status.available"),
+    "Продано": t("status.sold"),
+    "Резерв": t("status.reserved"),
+    "В дорозі": t("status.inTransit"),
+  };
+
   return (
     <aside className="sticky top-28 h-fit rounded-3xl border border-lime-400/20 bg-[#10141d] p-8">
 
@@ -49,7 +53,7 @@ export default function CarSidebar({
           className="flex items-center justify-center gap-3 rounded-2xl bg-lime-400 px-6 py-4 font-bold text-black transition hover:scale-[1.02]"
         >
           <MessageCircle size={22} />
-          WhatsApp
+          {t("contact.whatsapp")}
         </a>
 
         <a
@@ -74,25 +78,25 @@ export default function CarSidebar({
 
         <QuickInfo
           icon={<Calendar size={20} />}
-          label="Rok výroby"
+          label={t("quickInfo.year")}
           value={String(car.year)}
         />
 
         <QuickInfo
           icon={<Gauge size={20} />}
-          label="Najeto"
+          label={t("quickInfo.mileage")}
           value={`${car.mileage.toLocaleString()} km`}
         />
 
         <QuickInfo
           icon={<Fuel size={20} />}
-          label="Palivo"
+          label={t("quickInfo.fuel")}
           value={car.fuel}
         />
 
         <QuickInfo
           icon={<Zap size={20} />}
-          label="Výkon"
+          label={t("quickInfo.power")}
           value={car.power}
         />
 

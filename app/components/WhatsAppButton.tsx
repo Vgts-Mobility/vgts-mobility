@@ -2,8 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { MessageCircle, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function WhatsAppButton() {
+  const t = useTranslations("whatsapp");
+
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -66,7 +69,7 @@ export default function WhatsAppButton() {
                 </div>
 
                 <div className="text-sm text-gray-400">
-                  Vyberte kontakt
+                  {t("chooseContact")}
                 </div>
 
               </div>
@@ -94,7 +97,7 @@ export default function WhatsAppButton() {
               </div>
 
               <div className="text-sm text-gray-400">
-                Prodej vozidel
+                {t("tarasRole")}
               </div>
 
             </div>
@@ -120,7 +123,7 @@ export default function WhatsAppButton() {
               </div>
 
               <div className="text-sm text-gray-400">
-                Dovoz vozidel
+                {t("vadymRole")}
               </div>
 
             </div>
@@ -159,7 +162,7 @@ export default function WhatsAppButton() {
           )}
 
           <span className="relative hidden whitespace-nowrap text-lg font-bold md:block">
-            {open ? "Zavřít" : "WhatsApp"}
+            {open ? t("close") : "WhatsApp"}
           </span>
 
         </button>

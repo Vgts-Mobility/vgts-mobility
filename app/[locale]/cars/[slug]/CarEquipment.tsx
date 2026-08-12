@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 type Props = {
   features?: string[] | null;
 };
@@ -7,11 +9,13 @@ type Props = {
 export default function CarEquipment({
   features,
 }: Props) {
+  const t = useTranslations("carDetails.equipment");
+
   return (
     <section className="mt-16">
 
       <h2 className="mb-8 text-3xl font-black">
-        Výbava
+        {t("title")}
       </h2>
 
       {features?.length ? (
@@ -72,7 +76,7 @@ export default function CarEquipment({
       ) : (
 
         <div className="rounded-3xl border border-white/10 bg-[#10141d] p-8 text-gray-400">
-          Výbava není uvedena.
+          {t("empty")}
         </div>
 
       )}

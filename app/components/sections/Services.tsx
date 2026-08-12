@@ -1,10 +1,16 @@
+"use client";
+
 import {
   Car,
   Search,
   ShieldCheck,
 } from "lucide-react";
 
+import { useTranslations } from "next-intl";
+
 export default function Services() {
+  const t = useTranslations("services");
+
   return (
     <section
       id="services"
@@ -15,17 +21,15 @@ export default function Services() {
         <div className="mb-16 text-center">
 
           <p className="uppercase tracking-[6px] text-lime-400">
-            Naše služby
+            {t("eyebrow")}
           </p>
 
           <h2 className="mt-4 text-4xl font-black text-white lg:text-5xl">
-            Postaráme se o celý proces.
+            {t("title")}
           </h2>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-400">
-            Ať hledáte konkrétní vůz nebo chcete vybírat
-            z naší nabídky, zajistíme vše od výběru až po
-            předání klíčů.
+            {t("description")}
           </p>
 
         </div>
@@ -46,13 +50,11 @@ export default function Services() {
             </div>
 
             <h3 className="text-2xl font-bold text-white">
-              Prodej prověřených vozů
+              {t("verifiedCars.title")}
             </h3>
 
             <p className="mt-5 leading-8 text-gray-400">
-              Nabízíme pouze automobily,
-              které jsme osobně prověřili
-              a pečlivě vybrali.
+              {t("verifiedCars.description")}
             </p>
 
           </div>
@@ -71,13 +73,11 @@ export default function Services() {
             </div>
 
             <h3 className="text-2xl font-bold text-white">
-              Individuální výběr vozu
+              {t("individualSelection.title")}
             </h3>
 
             <p className="mt-5 leading-8 text-gray-400">
-              Najdeme automobil podle
-              vašich požadavků na evropských
-              aukcích a prověříme jeho historii.
+              {t("individualSelection.description")}
             </p>
 
           </div>
@@ -96,13 +96,11 @@ export default function Services() {
             </div>
 
             <h3 className="text-2xl font-bold text-white">
-              Kompletní servis
+              {t("completeService.title")}
             </h3>
 
             <p className="mt-5 leading-8 text-gray-400">
-              Zajistíme dopravu,
-              registraci vozidla,
-              administrativu i předání vozu.
+              {t("completeService.description")}
             </p>
 
           </div>

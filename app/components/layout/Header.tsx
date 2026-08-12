@@ -1,17 +1,26 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { Globe } from "lucide-react";
-import Link from "next/link";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Globe, Menu, X, MessageCircle } from "lucide-react";
+
+import { useLocale, useTranslations } from "next-intl";
+
+import {
+  Link,
+  usePathname,
+  useRouter,
+} from "@/i18n/navigation";
 
 export default function Header() {
+  const t = useTranslations("header");
+
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const locale = useLocale();
   const pathname = usePathname();
+  const router = useRouter();
 
   const logoPressTimer = useRef<NodeJS.Timeout | null>(null);
   const longPressTriggered = useRef(false);
@@ -44,6 +53,14 @@ export default function Header() {
     }
   }
 
+  function changeLanguage(newLocale: "cs" | "uk" | "en") {
+    setMobileOpen(false);
+
+    router.replace(pathname, {
+      locale: newLocale,
+    });
+  }
+
   function goToCars(e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
 
@@ -54,7 +71,15 @@ export default function Header() {
           behavior: "smooth",
         });
     } else {
-      window.location.href = "/#cars";
+      router.push("/");
+
+      setTimeout(() => {
+        document
+          .getElementById("cars")
+          ?.scrollIntoView({
+            behavior: "smooth",
+          });
+      }, 100);
     }
 
     setMobileOpen(false);
@@ -94,7 +119,6 @@ export default function Header() {
             onTouchEnd={cancelLogoPress}
             className="flex items-center gap-4"
           >
-
             <Image
               src="/images/logo.jpg"
               alt="VGTS Mobility"
@@ -105,7 +129,6 @@ export default function Header() {
             />
 
             <div>
-
               <h2 className="text-3xl font-black tracking-wide text-white">
                 VGTS{" "}
                 <span className="text-lime-400">
@@ -114,75 +137,104 @@ export default function Header() {
               </h2>
 
               <p className="text-sm uppercase tracking-[4px] text-white/60">
-                Kvalitní vozy z Evropy
+                {t("tagline")}
               </p>
-
             </div>
-
           </Link>
 
-          {/* MENU */}
+          {/* DESKTOP MENU */}
 
           <nav className="ml-auto hidden items-center gap-12 xl:flex">
 
-            <a
+            <Link
               href="/"
               className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
             >
-              Domů
-            </a>
+              {t("home")}
+            </Link>
 
             <a
-              href="/#cars"
+              href="#cars"
               onClick={goToCars}
               className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
             >
-              Nabídka
+              {t("cars")}
             </a>
 
             <a
               href="#services"
               className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
             >
-              Dovoz
+              {t("import")}
             </a>
 
             <a
               href="#about"
               className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
             >
-              O nás
+              {t("about")}
             </a>
 
             <a
               href="#contact"
               className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
             >
-              Kontakt
+              {t("contact")}
             </a>
 
           </nav>
+
+          {/* LANGUAGE SWITCHER */}
+
           <div className="ml-10 hidden items-center gap-2 xl:flex">
 
-  <Globe
-    size={18}
-    className="mr-1 text-white/60"
-  />
+            <Globe
+              size={18}
+              className="mr-1 text-white/60"
+            />
 
-  <button className="flex items-center gap-2 rounded-full border border-lime-400 bg-lime-400/15 px-3 py-1.5 text-sm font-bold text-lime-400 transition hover:bg-lime-400 hover:text-black">
-      CZ
-  </button>
+            <button
+              type="button"
+              onClick={() => changeLanguage("cs")}
+              className={`rounded-full border px-3 py-1.5 text-sm font-bold transition ${
+                locale === "cs"
+                  ? "border-lime-400 bg-lime-400/15 text-lime-400"
+                  : "border-white/10 text-white/70 hover:border-lime-400 hover:text-lime-400"
+              }`}
+            >
+              CZ
+            </button>
 
-  <button className="flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-sm font-bold text-white/70 transition hover:border-lime-400 hover:text-lime-400">
-      UA
-  </button>
+            <button
+              type="button"
+              onClick={() => changeLanguage("uk")}
+              className={`rounded-full border px-3 py-1.5 text-sm font-bold transition ${
+                locale === "uk"
+                  ? "border-lime-400 bg-lime-400/15 text-lime-400"
+                  : "border-white/10 text-white/70 hover:border-lime-400 hover:text-lime-400"
+              }`}
+            >
+              UA
+            </button>
 
-  <button className="flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-sm font-bold text-white/70 transition hover:border-lime-400 hover:text-lime-400">
-      EN
-  </button>
+            <button
+              type="button"
+              onClick={() => changeLanguage("en")}
+              className={`rounded-full border px-3 py-1.5 text-sm font-bold transition ${
+                locale === "en"
+                  ? "border-lime-400 bg-lime-400/15 text-lime-400"
+                  : "border-white/10 text-white/70 hover:border-lime-400 hover:text-lime-400"
+              }`}
+            >
+              EN
+            </button>
 
-</div>
+          </div>
+
+          {/* MOBILE BUTTON */}
+
           <button
+            type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
             className="ml-auto text-white xl:hidden"
           >
@@ -194,9 +246,9 @@ export default function Header() {
           </button>
 
         </div>
-
       </header>
-            {/* MOBILE MENU */}
+
+      {/* MOBILE MENU */}
 
       <div
         className={`fixed inset-0 z-40 bg-[#05070d]/95 backdrop-blur-2xl transition-transform duration-500 xl:hidden ${
@@ -205,23 +257,22 @@ export default function Header() {
             : "translate-x-full"
         }`}
       >
-
         <div className="flex flex-col px-10 pt-32">
 
-          <a
+          <Link
             href="/"
             onClick={() => setMobileOpen(false)}
             className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
           >
-            Domů
-          </a>
+            {t("home")}
+          </Link>
 
           <a
-            href="/#cars"
+            href="#cars"
             onClick={goToCars}
             className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
           >
-            Nabídka
+            {t("cars")}
           </a>
 
           <a
@@ -229,7 +280,7 @@ export default function Header() {
             onClick={() => setMobileOpen(false)}
             className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
           >
-            Dovoz
+            {t("import")}
           </a>
 
           <a
@@ -237,7 +288,7 @@ export default function Header() {
             onClick={() => setMobileOpen(false)}
             className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
           >
-            O nás
+            {t("about")}
           </a>
 
           <a
@@ -245,25 +296,72 @@ export default function Header() {
             onClick={() => setMobileOpen(false)}
             className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
           >
-            Kontakt
+            {t("contact")}
           </a>
 
-          <div className="mt-12">
+          {/* MOBILE LANGUAGES */}
+
+          <div className="mt-8 flex items-center justify-center gap-3">
+
+            <Globe
+              size={20}
+              className="text-white/60"
+            />
+
+            <button
+              type="button"
+              onClick={() => changeLanguage("cs")}
+              className={`rounded-full border px-4 py-2 text-sm font-bold transition ${
+                locale === "cs"
+                  ? "border-lime-400 bg-lime-400/15 text-lime-400"
+                  : "border-white/10 text-white/70"
+              }`}
+            >
+              CZ
+            </button>
+
+            <button
+              type="button"
+              onClick={() => changeLanguage("uk")}
+              className={`rounded-full border px-4 py-2 text-sm font-bold transition ${
+                locale === "uk"
+                  ? "border-lime-400 bg-lime-400/15 text-lime-400"
+                  : "border-white/10 text-white/70"
+              }`}
+            >
+              UA
+            </button>
+
+            <button
+              type="button"
+              onClick={() => changeLanguage("en")}
+              className={`rounded-full border px-4 py-2 text-sm font-bold transition ${
+                locale === "en"
+                  ? "border-lime-400 bg-lime-400/15 text-lime-400"
+                  : "border-white/10 text-white/70"
+              }`}
+            >
+              EN
+            </button>
+
+          </div>
+
+          {/* WHATSAPP */}
+
+          <div className="mt-8">
 
             <a
               href="https://wa.me/420739974155"
               className="flex items-center justify-center gap-3 rounded-2xl bg-lime-400 py-5 text-xl font-bold text-black transition hover:scale-[1.02]"
             >
               <MessageCircle size={24} />
-              WhatsApp
+              {t("whatsapp")}
             </a>
 
           </div>
 
         </div>
-
       </div>
-
     </>
   );
 }

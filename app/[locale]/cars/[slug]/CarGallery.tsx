@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs } from "swiper/modules";
 import { useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
+import { useTranslations } from "next-intl";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -21,20 +22,24 @@ export default function CarGallery({
   title,
   onOpen,
 }: Props) {
+  const t = useTranslations("carDetails.gallery");
+
   const [thumbsSwiper, setThumbsSwiper] =
     useState<SwiperType | null>(null);
 
   if (!images.length) {
     return (
       <div className="flex aspect-[16/10] items-center justify-center rounded-3xl border border-white/10 bg-[#10141d] text-gray-500">
-        Žádné fotografie
+        {t("noPhotos")}
       </div>
     );
   }
 
   return (
     <div className="space-y-5">
+
       <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#10141d]">
+
         <Swiper
           modules={[Navigation, Thumbs]}
           navigation
@@ -49,6 +54,7 @@ export default function CarGallery({
         >
           {images.map((image, index) => (
             <SwiperSlide key={image}>
+
               <Image
                 src={image}
                 alt={title}
@@ -63,9 +69,11 @@ export default function CarGallery({
                   object-cover
                 "
               />
+
             </SwiperSlide>
           ))}
         </Swiper>
+
       </div>
 
       <Swiper
@@ -88,6 +96,7 @@ export default function CarGallery({
       >
         {images.map((image) => (
           <SwiperSlide key={image}>
+
             <Image
               src={image}
               alt=""
@@ -104,9 +113,11 @@ export default function CarGallery({
                 hover:border-lime-400
               "
             />
+
           </SwiperSlide>
         ))}
       </Swiper>
+
     </div>
   );
 }

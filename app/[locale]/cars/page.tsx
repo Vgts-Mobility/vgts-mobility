@@ -1,9 +1,12 @@
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 import { supabase } from "@/lib/supabase";
 import CarCard from "@/app/components/cars/CarCard";
 
 export default async function CarsPage() {
+  const t = useTranslations("cars");
+
   const { data: cars, error } = await supabase
     .from("cars")
     .select("*");
@@ -11,7 +14,7 @@ export default async function CarsPage() {
   if (error) {
     return (
       <div className="mx-auto max-w-7xl px-6 py-20 text-center text-red-500">
-        Chyba při načítání vozidel.
+        {t("loadError")}
       </div>
     );
   }
@@ -40,15 +43,15 @@ export default async function CarsPage() {
             href="/"
             className="text-lime-400 hover:underline"
           >
-            ← Zpět na hlavní stránku
+            ← {t("back")}
           </Link>
 
           <h1 className="mt-6 text-5xl font-black text-white">
-            Všechny vozy
+            {t("allCars")}
           </h1>
 
           <p className="mt-4 max-w-2xl text-gray-400">
-            Kompletní nabídka prověřených vozidel VGTS Mobility.
+            {t("fullDescription")}
           </p>
 
         </div>

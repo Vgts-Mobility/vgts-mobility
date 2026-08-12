@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function Hero() {
+  const t = useTranslations("hero");
+
   return (
     <section className="relative overflow-hidden bg-[#05070d] pt-16 pb-12 lg:pt-24 lg:pb-20">
 
@@ -26,39 +29,33 @@ export default function Hero() {
         <div>
 
           <div className="mb-5 text-xs font-semibold uppercase tracking-[6px] text-lime-400 sm:text-sm">
-            ELEKTROMOBILY • DOVOZ • EVROPA
+            {t("eyebrow")}
           </div>
 
           <h1 className="text-4xl font-black leading-tight text-white sm:text-5xl xl:text-[60px]">
-            Najdeme elektromobil,
+            {t("titleLine1")}
             <br />
-            který bude opravdu váš.
+            {t("titleLine2")}
           </h1>
 
           <h2 className="mt-4 text-xl font-bold sm:text-2xl">
 
             <span className="text-lime-400">
-              Budoucnost
+              {t("future")}
             </span>
 
             <span className="text-white">
-              {" "}je{" "}
+              {" "}{t("is")}{" "}
             </span>
 
             <span className="bg-gradient-to-r from-sky-400 via-cyan-400 to-fuchsia-500 bg-clip-text text-transparent">
-              elektrická.
+              {t("electric")}
             </span>
 
           </h2>
 
           <p className="mt-5 max-w-lg text-[15px] leading-7 text-gray-400 sm:text-base">
-
-            Specializujeme se na dovoz kvalitních elektromobilů z celé Evropy.
-
-            Najdeme, prověříme a připravíme vůz přesně podle vašich představ.
-
-            Pokud hledáte klasický automobil, rádi jej dovezeme také.
-
+            {t("description")}
           </p>
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -67,14 +64,14 @@ export default function Hero() {
               href="#cars"
               className="w-full rounded-full bg-lime-400 px-8 py-4 text-center font-bold text-black transition duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(163,230,53,.45)] sm:w-auto"
             >
-              Prohlédnout nabídku
+              {t("viewCars")}
             </Link>
 
             <Link
               href="#request"
               className="w-full rounded-full border border-white/15 px-8 py-4 text-center font-semibold text-white transition hover:border-lime-400 sm:w-auto"
             >
-              Poptat dovoz vozu
+              {t("requestImport")}
             </Link>
 
           </div>
@@ -82,51 +79,43 @@ export default function Hero() {
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
 
             <div>
-
               <div className="text-3xl font-black text-lime-400 sm:text-4xl">
                 EV
               </div>
 
               <div className="mt-1 text-sm text-gray-400">
-                specialisté
+                {t("evSpecialists")}
               </div>
-
             </div>
 
             <div>
-
               <div className="text-3xl font-black text-sky-400 sm:text-4xl">
                 EU
               </div>
 
               <div className="mt-1 text-sm text-gray-400">
-                dovoz vozů
+                {t("euImport")}
               </div>
-
             </div>
 
             <div>
-
               <div className="text-3xl font-black text-fuchsia-400 sm:text-4xl">
                 100%
               </div>
 
               <div className="mt-1 text-sm text-gray-400">
-                prověřená historie
+                {t("verifiedHistory")}
               </div>
-
             </div>
 
             <div>
-
               <div className="text-3xl font-black text-white sm:text-4xl">
                 ✔
               </div>
 
               <div className="mt-1 text-sm text-gray-400">
-                individuální přístup
+                {t("individualApproach")}
               </div>
-
             </div>
 
           </div>
@@ -134,7 +123,6 @@ export default function Hero() {
         </div>
 
         {/* RIGHT */}
-                {/* RIGHT */}
 
         <div className="relative mt-10 flex items-center justify-center lg:mt-0 lg:justify-end">
 
@@ -151,7 +139,7 @@ export default function Hero() {
           <div className="absolute top-0 left-1/2 z-30 w-[90%] max-w-sm -translate-x-1/2 rounded-3xl border border-white/10 bg-[#10141d]/90 px-5 py-4 backdrop-blur-xl lg:left-8 lg:w-auto lg:-translate-x-0">
 
             <div className="text-[11px] font-semibold uppercase tracking-[5px] text-lime-400">
-              KONCEPT VGTS MOBILITY
+              {t("concept")}
             </div>
 
             <h3 className="mt-2 text-2xl font-black text-white lg:text-3xl">

@@ -1,3 +1,7 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
 import { Car } from "@/types/car";
 
 type Props = {
@@ -5,11 +9,13 @@ type Props = {
 };
 
 export default function CarCardPrice({ car }: Props) {
+  const t = useTranslations("carCard");
+
   return (
     <div className="border-t border-white/10 bg-white/[0.02] p-6">
 
       <p className="text-xs font-medium uppercase tracking-[3px] text-gray-500">
-        Cena
+        {t("price")}
       </p>
 
       <h3

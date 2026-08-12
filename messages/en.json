@@ -3,7 +3,210 @@
     "home": "Home",
     "cars": "Cars",
     "import": "Import",
-    "about": "About",
-    "contact": "Contact"
+    "about": "About us",
+    "contact": "Contact",
+    "tagline": "Quality cars from Europe",
+    "whatsapp": "WhatsApp"
+  },
+
+  "hero": {
+    "eyebrow": "ELECTRIC CARS • IMPORT • EUROPE",
+    "titleLine1": "We will find the electric car,",
+    "titleLine2": "that will truly be yours.",
+    "future": "The future",
+    "is": "is",
+    "electric": "electric.",
+    "description": "We specialize in importing quality electric vehicles from across Europe. We find, inspect and prepare the car exactly according to your requirements. If you are looking for a conventional car, we will be happy to import it for you as well.",
+    "viewCars": "View our cars",
+    "requestImport": "Request a car",
+    "evSpecialists": "EV specialists",
+    "euImport": "EU imports",
+    "verifiedHistory": "verified history",
+    "individualApproach": "individual approach",
+    "concept": "VGTS MOBILITY CONCEPT"
+  },
+
+  "cars": {
+    "eyebrow": "CURRENT OFFER",
+    "title": "Choose your car",
+    "description": "Verified cars in stock or individual imports from across Europe. We carefully inspect every vehicle and help you choose the right one.",
+    "viewAll": "View all cars",
+    "loadError": "Error loading vehicles",
+    "empty": "There are currently no vehicles available."
+  },
+
+  "carCard": {
+    "status": {
+      "available": "Available",
+      "reserved": "Reserved",
+      "onTheWay": "In transit",
+      "sold": "Sold"
+    },
+    "year": "Year",
+    "mileage": "Mileage",
+    "fuel": "Fuel",
+    "power": "Power",
+    "price": "Price"
+  },
+
+  "services": {
+    "eyebrow": "OUR SERVICES",
+    "title": "We take care of the entire process.",
+    "description": "Whether you are looking for a specific vehicle or want to choose from our current offer, we take care of everything from selection to handing over the keys.",
+    "verifiedCars": {
+      "title": "Verified cars for sale",
+      "description": "We offer only vehicles that we have personally inspected and carefully selected."
+    },
+    "individualSelection": {
+      "title": "Individual car selection",
+      "description": "We find a vehicle according to your requirements at European auctions and verify its history."
+    },
+    "completeService": {
+      "title": "Complete service",
+      "description": "We arrange transportation, vehicle registration, administration and vehicle handover."
+    }
+  },
+
+  "request": {
+    "eyebrow": "INDIVIDUAL CAR IMPORT",
+    "title": "Looking for a specific car?",
+    "description": "Fill out the short form and we will find a verified car that matches your requirements.",
+    "button": "Request a car"
+  },
+
+  "requestModal": {
+    "success": "Thank you for your request.",
+    "close": "Close",
+    "title": "Car request",
+    "name": "Name",
+    "phone": "Phone",
+    "email": "E-mail",
+    "brand": "Brand",
+    "model": "Model",
+    "budget": "Budget (CZK)",
+    "yearFrom": "Minimum year",
+    "mileage": "Maximum mileage (km)",
+    "fuel": "Fuel",
+    "drive": "Drive",
+    "priority": "Priority",
+    "fuelOptions": {
+      "petrol": "Petrol",
+      "diesel": "Diesel",
+      "hybrid": "Hybrid",
+      "pluginHybrid": "Plug-in Hybrid",
+      "electric": "Electric"
+    },
+    "driveOptions": {
+      "front": "Front-wheel drive",
+      "rear": "Rear-wheel drive",
+      "awd": "All-wheel drive"
+    },
+    "priorityOptions": {
+      "price": "Lowest price",
+      "condition": "Best condition",
+      "mileage": "Lowest mileage"
+    },
+    "equipmentTitle": "Desired equipment",
+    "equipment": {
+      "panoramicRoof": "Panoramic roof",
+      "camera360": "360° camera",
+      "headUpDisplay": "Head-Up Display",
+      "appleCarPlay": "Apple CarPlay",
+      "androidAuto": "Android Auto",
+      "adaptiveCruise": "Adaptive cruise control",
+      "heatedSeats": "Heated seats",
+      "ventilatedSeats": "Ventilated seats",
+      "matrixLed": "Matrix LED",
+      "harmanKardon": "Harman Kardon",
+      "towBar": "Tow bar",
+      "heatPump": "Heat pump"
+    },
+    "notes": "Additional requirements...",
+    "sending": "Sending...",
+    "submit": "Submit request"
+  },
+
+  "contact": {
+    "eyebrow": "CONTACT",
+    "title": "Contact us",
+    "description": "Have questions or need help choosing a vehicle? We are available by phone, e-mail and WhatsApp.",
+    "whatsapp": "WhatsApp",
+    "email": "E-mail",
+    "location": "Prague, Czech Republic"
+  },
+
+  "whatsapp": {
+    "chooseContact": "Choose a contact",
+    "tarasRole": "Car sales",
+    "vadymRole": "Car import",
+    "close": "Close"
+  },
+
+  "footer": {
+    "tagline": "Premium cars from Europe",
+    "description": "We import verified vehicles from European auctions, check their history and help customers find a car that matches their requirements.",
+    "navigation": {
+      "title": "Navigation",
+      "cars": "Current offer",
+      "services": "How it works",
+      "contact": "Contact"
+    },
+    "contacts": {
+      "title": "Contact persons"
+    },
+    "copyright": "© 2026 VGTS Mobility s.r.o. All rights reserved."
+  },
+
+  "carDescription": {
+    "title": "Vehicle description",
+    "empty": "Vehicle description will be added."
+  },
+
+  "carDetails": {
+    "back": "Back",
+    "status": {
+      "available": "Available",
+      "sold": "Sold",
+      "reserved": "Reserved",
+      "inTransit": "In transit"
+    },
+    "quickInfo": {
+      "year": "Year",
+      "mileage": "Mileage",
+      "fuel": "Fuel",
+      "power": "Power"
+    },
+    "technicalData": {
+      "title": "Technical data",
+      "transmission": "Transmission",
+      "drive": "Drive",
+      "body": "Body type",
+      "color": "Color",
+      "battery": "Battery capacity",
+      "soh": "Battery SOH",
+      "vin": "VIN",
+      "seats": "Number of seats"
+    },
+    "equipment": {
+      "title": "Equipment",
+      "empty": "Equipment not specified."
+    },
+    "description": {
+      "title": "Vehicle description",
+      "empty": "Vehicle description will be added."
+    },
+    "values": {
+      "automatic": "Automatic",
+      "manual": "Manual",
+      "front": "Front-wheel drive",
+      "rear": "Rear-wheel drive",
+      "awd": "All-wheel drive"
+    },
+    "contact": {
+      "taras": "Taras",
+      "vadym": "Vadym",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp"
+    }
   }
 }

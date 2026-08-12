@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+
 import { Car } from "@/types/car";
 import { getPublicImage } from "@/lib/storage/get-public-image";
 
@@ -7,6 +11,8 @@ type Props = {
 };
 
 export default function CarCardImage({ car }: Props) {
+  const t = useTranslations("carCard");
+
   const imageSrc =
     car.images && car.images.length > 0
       ? getPublicImage(car.images[0])
@@ -32,27 +38,27 @@ export default function CarCardImage({ car }: Props) {
 
       {/* STATUS */}
 
-      {car.status === "В наявності" && (
+      {car.status === "В наявnosti" && (
         <div className="absolute left-5 top-5 rounded-full border border-lime-400/50 bg-[#0b1116]/90 px-4 py-2 text-sm font-bold uppercase tracking-wide text-lime-400 backdrop-blur-md shadow-xl">
-          Skladem
+          {t("status.available")}
         </div>
       )}
 
       {car.status === "Продано" && (
         <div className="absolute left-5 top-5 rounded-full border border-red-500/50 bg-[#0b1116]/90 px-4 py-2 text-sm font-bold uppercase tracking-wide text-red-400 backdrop-blur-md shadow-xl">
-          Prodáno
+          {t("status.sold")}
         </div>
       )}
 
       {car.status === "Резерв" && (
         <div className="absolute left-5 top-5 rounded-full border border-yellow-500/50 bg-[#0b1116]/90 px-4 py-2 text-sm font-bold uppercase tracking-wide text-yellow-300 backdrop-blur-md shadow-xl">
-          Rezervováno
+          {t("status.reserved")}
         </div>
       )}
 
       {car.status === "В дорозі" && (
         <div className="absolute left-5 top-5 rounded-full border border-sky-500/50 bg-[#0b1116]/90 px-4 py-2 text-sm font-bold uppercase tracking-wide text-sky-300 backdrop-blur-md shadow-xl">
-          Na cestě
+          {t("status.onTheWay")}
         </div>
       )}
 

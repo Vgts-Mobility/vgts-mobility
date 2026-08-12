@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 import { Car } from "@/types/car";
 
@@ -21,6 +21,7 @@ export default function CarCard({ car }: Props) {
       <article
         className="
           group
+          cursor-pointer
           overflow-hidden
           rounded-3xl
           border
@@ -32,7 +33,6 @@ export default function CarCard({ car }: Props) {
           hover:-translate-y-3
           hover:border-lime-400/60
           hover:shadow-[0_25px_60px_rgba(163,230,53,.22)]
-          cursor-pointer
         "
       >
         <CarCardImage car={car} />

@@ -4,6 +4,209 @@
     "cars": "Nabídka",
     "import": "Dovoz",
     "about": "O nás",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "tagline": "Kvalitní vozy z Evropy",
+    "whatsapp": "WhatsApp"
+  },
+
+  "hero": {
+    "eyebrow": "ELEKTROMOBILY • DOVOZ • EVROPA",
+    "titleLine1": "Najdeme elektromobil,",
+    "titleLine2": "který bude opravdu váš.",
+    "future": "Budoucnost",
+    "is": "je",
+    "electric": "elektrická.",
+    "description": "Specializujeme se na dovoz kvalitních elektromobilů z celé Evropy. Najdeme, prověříme a připravíme vůz přesně podle vašich představ. Pokud hledáte klasický automobil, rádi jej dovezeme také.",
+    "viewCars": "Prohlédnout nabídku",
+    "requestImport": "Poptat dovoz vozu",
+    "evSpecialists": "specialisté",
+    "euImport": "dovoz vozů",
+    "verifiedHistory": "prověřená historie",
+    "individualApproach": "individuální přístup",
+    "concept": "KONCEPT VGTS MOBILITY"
+  },
+
+  "cars": {
+    "eyebrow": "AKTUÁLNÍ NABÍDKA",
+    "title": "Vyberte si svůj vůz",
+    "description": "Prověřené vozy skladem nebo individuální dovoz z celé Evropy. Každý automobil pečlivě kontrolujeme a pomůžeme vám vybrat ten pravý.",
+    "viewAll": "Zobrazit všechny vozy",
+    "loadError": "Chyba při načítání vozidel",
+    "empty": "Zatím nejsou k dispozici žádná vozidla."
+  },
+
+  "carCard": {
+    "status": {
+      "available": "Skladem",
+      "reserved": "Rezervováno",
+      "onTheWay": "Na cestě",
+      "sold": "Prodáno"
+    },
+    "year": "Rok",
+    "mileage": "Najeto",
+    "fuel": "Palivo",
+    "power": "Výkon",
+    "price": "Cena"
+  },
+
+  "services": {
+    "eyebrow": "NAŠE SLUŽBY",
+    "title": "Postaráme se o celý proces.",
+    "description": "Ať hledáte konkrétní vůz nebo chcete vybírat z naší nabídky, zajistíme vše od výběru až po předání klíčů.",
+    "verifiedCars": {
+      "title": "Prodej prověřených vozů",
+      "description": "Nabízíme pouze automobily, které jsme osobně prověřili a pečlivě vybrali."
+    },
+    "individualSelection": {
+      "title": "Individuální výběr vozu",
+      "description": "Najdeme automobil podle vašich požadavků na evropských aukcích a prověříme jeho historii."
+    },
+    "completeService": {
+      "title": "Kompletní servis",
+      "description": "Zajistíme dopravu, registraci vozidla, administrativu i předání vozu."
+    }
+  },
+
+  "request": {
+    "eyebrow": "INDIVIDUÁLNÍ DOVOZ VOZŮ",
+    "title": "Hledáte konkrétní vůz?",
+    "description": "Vyplňte krátký formulář a najdeme pro vás prověřený vůz přesně podle vašich požadavků.",
+    "button": "Nezávazně poptat vůz"
+  },
+
+  "requestModal": {
+    "success": "Děkujeme za vaši poptávku.",
+    "close": "Zavřít",
+    "title": "Poptávka na vůz",
+    "name": "Jméno",
+    "phone": "Telefon",
+    "email": "E-mail",
+    "brand": "Značka",
+    "model": "Model",
+    "budget": "Rozpočet (Kč)",
+    "yearFrom": "Min. rok výroby",
+    "mileage": "Max. nájezd (km)",
+    "fuel": "Palivo",
+    "drive": "Pohon",
+    "priority": "Priorita",
+    "fuelOptions": {
+      "petrol": "Benzín",
+      "diesel": "Diesel",
+      "hybrid": "Hybrid",
+      "pluginHybrid": "Plug-in Hybrid",
+      "electric": "Elektro"
+    },
+    "driveOptions": {
+      "front": "Přední",
+      "rear": "Zadní",
+      "awd": "4x4"
+    },
+    "priorityOptions": {
+      "price": "Nejnižší cena",
+      "condition": "Nejlepší stav",
+      "mileage": "Nejnižší nájezd"
+    },
+    "equipmentTitle": "Požadovaná výbava",
+    "equipment": {
+      "panoramicRoof": "Panoramatická střecha",
+      "camera360": "360° kamera",
+      "headUpDisplay": "Head-Up Display",
+      "appleCarPlay": "Apple CarPlay",
+      "androidAuto": "Android Auto",
+      "adaptiveCruise": "Adaptivní tempomat",
+      "heatedSeats": "Vyhřívaná sedadla",
+      "ventilatedSeats": "Ventilovaná sedadla",
+      "matrixLed": "Matrix LED",
+      "harmanKardon": "Harman Kardon",
+      "towBar": "Tažné zařízení",
+      "heatPump": "Tepelné čerpadlo"
+    },
+    "notes": "Další požadavky...",
+    "sending": "Odesílání...",
+    "submit": "Odeslat poptávku"
+  },
+
+  "contact": {
+    "eyebrow": "KONTAKT",
+    "title": "Kontaktujte nás",
+    "description": "Máte dotazy nebo potřebujete poradit s výběrem vozu? Jsme vám k dispozici telefonicky, e-mailem i přes WhatsApp.",
+    "whatsapp": "WhatsApp",
+    "email": "E-mail",
+    "location": "Praha, Česká republika"
+  },
+
+  "whatsapp": {
+    "chooseContact": "Vyberte kontakt",
+    "tarasRole": "Prodej vozidel",
+    "vadymRole": "Dovoz vozidel",
+    "close": "Zavřít"
+  },
+
+  "footer": {
+    "tagline": "Prémiové vozy z Evropy",
+    "description": "Dovážíme prověřené automobily z evropských aukcí, kontrolujeme jejich historii a pomáháme zákazníkům najít vůz přesně podle jejich požadavků.",
+    "navigation": {
+      "title": "Navigace",
+      "cars": "Aktuální nabídka",
+      "services": "Jak to funguje",
+      "contact": "Kontakt"
+    },
+    "contacts": {
+      "title": "Kontaktní osoby"
+    },
+    "copyright": "© 2026 VGTS Mobility s.r.o. Všechna práva vyhrazena."
+  },
+
+  "carDescription": {
+    "title": "Popis vozu",
+    "empty": "Popis vozidla bude doplněn."
+  },
+
+  "carDetails": {
+    "back": "Zpět",
+    "status": {
+      "available": "Skladem",
+      "sold": "Prodáno",
+      "reserved": "Rezervováno",
+      "inTransit": "Na cestě"
+    },
+    "quickInfo": {
+      "year": "Rok výroby",
+      "mileage": "Najeto",
+      "fuel": "Palivo",
+      "power": "Výkon"
+    },
+    "technicalData": {
+      "title": "Technické údaje",
+      "transmission": "Převodovka",
+      "drive": "Pohon",
+      "body": "Karoserie",
+      "color": "Barva",
+      "battery": "Kapacita baterie",
+      "soh": "SOH baterie",
+      "vin": "VIN",
+      "seats": "Počet míst"
+    },
+    "equipment": {
+      "title": "Výbava",
+      "empty": "Výbava není uvedena."
+    },
+    "description": {
+      "title": "Popis vozu",
+      "empty": "Popis vozidla bude doplněn."
+    },
+    "values": {
+      "automatic": "Automatická",
+      "manual": "Manuální",
+      "front": "Přední",
+      "rear": "Zadní",
+      "awd": "4x4"
+    },
+    "contact": {
+      "taras": "Taras",
+      "vadym": "Vadym",
+      "phone": "Telefon",
+      "whatsapp": "WhatsApp"
+    }
   }
 }

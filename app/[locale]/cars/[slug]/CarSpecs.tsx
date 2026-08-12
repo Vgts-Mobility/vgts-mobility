@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { Car } from "@/types/car";
 
 export default function CarSpecs({
@@ -7,52 +9,60 @@ export default function CarSpecs({
 }: {
   car: Car;
 }) {
+  const t = useTranslations("carDetails");
+
   return (
     <section className="mt-16">
 
       <h2 className="mb-8 text-3xl font-black">
-        Technické údaje
+        {t("technicalData.title")}
       </h2>
 
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
 
         <SpecCard
-          title="Převodovka"
-          value={translateTransmission(car.transmission)}
+          title={t("technicalData.transmission")}
+          value={translateTransmission(
+            car.transmission,
+            t
+          )}
         />
 
         <SpecCard
-          title="Pohon"
-          value={translateDrive(car.drive)}
+          title={t("technicalData.drive")}
+          value={translateDrive(
+            car.drive,
+            t
+          )}
         />
 
         <SpecCard
-          title="Karoserie"
+          title={t("technicalData.body")}
           value={car.body_type}
         />
 
         <SpecCard
-          title="Barva"
+          title={t("technicalData.color")}
           value={car.color}
         />
 
         <SpecCard
-          title="Kapacita baterie"
+          title={t("technicalData.battery")}
           value={car.battery}
         />
 
         <SpecCard
-          title="SOH baterie"
+          title={t("technicalData.soh")}
           value={car.soh}
         />
 
         <SpecCard
-          title="VIN"
+          title={t("technicalData.vin")}
           value={car.vin}
         />
 
         <SpecCard
-          title="Počet míst"
+          title={t("technicalData.seats")}
           value={car.seats?.toString()}
         />
 
@@ -93,14 +103,15 @@ function SpecCard({
 }
 
 function translateTransmission(
-  value?: string | null
+  value: string | null | undefined,
+  t: ReturnType<typeof useTranslations<"carDetails">>
 ) {
   switch (value) {
     case "Автомат":
-      return "Automatická";
+      return t("values.automatic");
 
     case "Механіка":
-      return "Manuální";
+      return t("values.manual");
 
     default:
       return value;
@@ -108,17 +119,18 @@ function translateTransmission(
 }
 
 function translateDrive(
-  value?: string | null
+  value: string | null | undefined,
+  t: ReturnType<typeof useTranslations<"carDetails">>
 ) {
   switch (value) {
     case "Передній":
-      return "Přední";
+      return t("values.front");
 
     case "Задній":
-      return "Zadní";
+      return t("values.rear");
 
     case "Повний":
-      return "4x4";
+      return t("values.awd");
 
     default:
       return value;

@@ -1,7 +1,10 @@
 import { supabase } from "@/lib/supabase";
 import CarsSlider from "./CarsSlider";
+import { getTranslations } from "next-intl/server";
 
 export default async function CarsSection() {
+  const t = await getTranslations("cars");
+
   const { data: cars, error } = await supabase
     .from("cars")
     .select("*")
@@ -13,7 +16,7 @@ export default async function CarsSection() {
     return (
       <section className="py-20 text-center text-red-500">
         <h2 className="text-2xl font-bold">
-          Chyba při načítání vozidel
+          {t("loadError")}
         </h2>
 
         <p className="mt-4">{error.message}</p>
@@ -24,7 +27,7 @@ export default async function CarsSection() {
   if (!cars || cars.length === 0) {
     return (
       <section className="py-20 text-center text-white">
-        Zatím nejsou k dispozici žádná vozidla.
+        {t("empty")}
       </section>
     );
   }

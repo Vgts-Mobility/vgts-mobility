@@ -1,3 +1,5 @@
+"use client";
+
 import { Car } from "@/types/car";
 import {
   Calendar,
@@ -8,42 +10,48 @@ import {
   XCircle,
   Clock3,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type Props = {
   car: Car;
 };
 
-const statusMap: Record<
-  string,
-  {
-    label: string;
-    color: string;
-    icon: React.ReactNode;
-  }
-> = {
-  "В наявності": {
-    label: "Skladem",
-    color: "bg-lime-400/15 text-lime-300 border-lime-400/30",
-    icon: <CheckCircle2 size={15} />,
-  },
-  "Резерв": {
-    label: "Rezervováno",
-    color: "bg-yellow-400/15 text-yellow-300 border-yellow-400/30",
-    icon: <Clock3 size={15} />,
-  },
-  "В дорозі": {
-    label: "Na cestě",
-    color: "bg-blue-400/15 text-blue-300 border-blue-400/30",
-    icon: <Clock3 size={15} />,
-  },
-  "Продано": {
-    label: "Prodáno",
-    color: "bg-red-400/15 text-red-300 border-red-400/30",
-    icon: <XCircle size={15} />,
-  },
-};
-
 export default function CarCardInfo({ car }: Props) {
+  const t = useTranslations("carCard");
+
+  const statusMap: Record<
+    string,
+    {
+      label: string;
+      color: string;
+      icon: React.ReactNode;
+    }
+  > = {
+    "В наявності": {
+      label: t("status.available"),
+      color: "bg-lime-400/15 text-lime-300 border-lime-400/30",
+      icon: <CheckCircle2 size={15} />,
+    },
+
+    "Резерв": {
+      label: t("status.reserved"),
+      color: "bg-yellow-400/15 text-yellow-300 border-yellow-400/30",
+      icon: <Clock3 size={15} />,
+    },
+
+    "В дорозі": {
+      label: t("status.onTheWay"),
+      color: "bg-blue-400/15 text-blue-300 border-blue-400/30",
+      icon: <Clock3 size={15} />,
+    },
+
+    "Продано": {
+      label: t("status.sold"),
+      color: "bg-red-400/15 text-red-300 border-red-400/30",
+      icon: <XCircle size={15} />,
+    },
+  };
+
   const status =
     statusMap[car.status ?? ""] ?? {
       label: car.status ?? "",
@@ -86,7 +94,7 @@ export default function CarCardInfo({ car }: Props) {
           <div>
 
             <div className="text-xs uppercase tracking-wide text-gray-500">
-              Rok
+              {t("year")}
             </div>
 
             <div className="font-semibold text-white">
@@ -106,7 +114,7 @@ export default function CarCardInfo({ car }: Props) {
           <div>
 
             <div className="text-xs uppercase tracking-wide text-gray-500">
-              Najeto
+              {t("mileage")}
             </div>
 
             <div className="font-semibold text-white">
@@ -126,7 +134,7 @@ export default function CarCardInfo({ car }: Props) {
           <div>
 
             <div className="text-xs uppercase tracking-wide text-gray-500">
-              Palivo
+              {t("fuel")}
             </div>
 
             <div className="font-semibold text-white">
@@ -146,7 +154,7 @@ export default function CarCardInfo({ car }: Props) {
           <div>
 
             <div className="text-xs uppercase tracking-wide text-gray-500">
-              Výkon
+              {t("power")}
             </div>
 
             <div className="font-semibold text-white">

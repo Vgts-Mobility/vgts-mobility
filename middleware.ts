@@ -1,39 +1,60 @@
-import { createServerClient } from '@supabase/ssr'
-import { NextResponse, type NextRequest } from 'next/server'
+import createMiddleware from "next-intl/middleware";
+import { NextResponse, type NextRequest } from "next/server";
+
+import { createServerClient } from "@supabase/ssr";
+import { routing } from "@/i18n/routing";
+
+const intlMiddleware = createMiddleware(routing);
 
 export async function middleware(req: NextRequest) {
-  const res = NextResponse.next()
+  const pathname = req.nextUrl.pathname;
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return req.cookies.getAll()
+  // ADMIN — залишаємо без мовних префіксів
+  if (pathname.startsWith("/admin")) {
+    const res = NextResponse.next();
+
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      {
+        cookies: {
+          getAll() {
+            return req.cookies.getAll();
+          },
+
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value, options }) => {
+              res.cookies.set(name, value, options);
+            });
+          },
         },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) =>
-            res.cookies.set(name, value, options)
-          )
-        },
-      },
+      }
+    );
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (
+      !user &&
+      pathname !== "/admin/login"
+    ) {
+      return NextResponse.redirect(
+        new URL("/admin/login", req.url)
+      );
     }
-  )
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  const isAdminRoute = req.nextUrl.pathname.startsWith('/admin')
-
-  if (isAdminRoute && !user && req.nextUrl.pathname !== '/admin/login') {
-    return NextResponse.redirect(new URL('/admin/login', req.url))
+    return res;
   }
 
-  return res
+  // PUBLIC SITE — next-intl
+  return intlMiddleware(req);
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
-}
+  matcher: [
+    "/",
+    "/(cs|uk|en)/:path*",
+    "/((?!api|_next|.*\\..*).*)",
+  ],
+};
