@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs } from "swiper/modules";
 import { useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
-import { useTranslations } from "next-intl";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -22,15 +21,13 @@ export default function CarGallery({
   title,
   onOpen,
 }: Props) {
-  const t = useTranslations("carDetails.gallery");
-
   const [thumbsSwiper, setThumbsSwiper] =
     useState<SwiperType | null>(null);
 
   if (!images.length) {
     return (
       <div className="flex aspect-[16/10] items-center justify-center rounded-3xl border border-white/10 bg-[#10141d] text-gray-500">
-        {t("noPhotos")}
+        Žádné fotografie
       </div>
     );
   }
@@ -38,26 +35,34 @@ export default function CarGallery({
   return (
     <div className="space-y-5">
 
-      <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#10141d]">
+      {/* MAIN GALLERY */}
 
+      <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#10141d]">
         <Swiper
           modules={[Navigation, Thumbs]}
           navigation
           thumbs={{
             swiper:
-              thumbsSwiper &&
-              !thumbsSwiper.destroyed
+              thumbsSwiper && !thumbsSwiper.destroyed
                 ? thumbsSwiper
                 : null,
           }}
+          spaceBetween={0}
+          slidesPerView={1}
+          allowTouchMove={true}
+          simulateTouch={true}
+          touchRatio={1}
+          touchAngle={45}
+          threshold={5}
+          resistance={true}
+          resistanceRatio={0.85}
           className="car-gallery"
         >
           {images.map((image, index) => (
             <SwiperSlide key={image}>
-
               <Image
                 src={image}
-                alt={title}
+                alt={`${title} - foto ${index + 1}`}
                 width={1600}
                 height={1000}
                 priority={index === 0}
@@ -66,15 +71,17 @@ export default function CarGallery({
                   aspect-[16/10]
                   w-full
                   cursor-zoom-in
+                  select-none
                   object-cover
                 "
+                draggable={false}
               />
-
             </SwiperSlide>
           ))}
         </Swiper>
-
       </div>
+
+      {/* THUMBNAILS */}
 
       <Swiper
         modules={[Thumbs]}
@@ -94,17 +101,17 @@ export default function CarGallery({
           },
         }}
       >
-        {images.map((image) => (
+        {images.map((image, index) => (
           <SwiperSlide key={image}>
-
             <Image
               src={image}
-              alt=""
+              alt={`${title} - miniatura ${index + 1}`}
               width={240}
               height={160}
               className="
                 aspect-video
                 cursor-pointer
+                select-none
                 rounded-xl
                 border
                 border-white/10
@@ -112,8 +119,8 @@ export default function CarGallery({
                 transition
                 hover:border-lime-400
               "
+              draggable={false}
             />
-
           </SwiperSlide>
         ))}
       </Swiper>
