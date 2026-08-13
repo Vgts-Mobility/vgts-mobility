@@ -17,29 +17,73 @@ type Props = {
   cars: Car[];
 };
 
-export default function CarsSlider({ cars }: Props) {
+export default function CarsSlider({
+  cars,
+}: Props) {
   const t = useTranslations("cars");
 
   return (
     <section
       id="cars"
-      className="bg-[#05070d] py-14 lg:py-16"
+      className="
+        bg-[#05070d]
+        py-9
+        sm:py-10
+        lg:py-12
+      "
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div
+        className="
+          mx-auto
+          max-w-7xl
+          px-4
+          sm:px-6
+          lg:px-8
+        "
+      >
 
         {/* HEADER */}
 
-        <div className="mb-10">
+        <div className="mb-6 sm:mb-7">
 
-          <p className="text-sm font-semibold uppercase tracking-[5px] text-lime-400">
+          <p
+            className="
+              text-[10px]
+              font-semibold
+              uppercase
+              tracking-[4px]
+              text-lime-400
+              sm:text-xs
+              sm:tracking-[5px]
+            "
+          >
             {t("eyebrow")}
           </p>
 
-          <h2 className="mt-3 text-4xl font-black text-white lg:text-5xl">
+          <h2
+            className="
+              mt-2
+              text-3xl
+              font-black
+              leading-tight
+              text-white
+              sm:text-4xl
+              lg:text-[42px]
+            "
+          >
             {t("title")}
           </h2>
 
-          <p className="mt-4 max-w-2xl text-gray-400">
+          <p
+            className="
+              mt-2
+              max-w-2xl
+              text-sm
+              leading-6
+              text-gray-400
+              sm:text-[15px]
+            "
+          >
             {t("description")}
           </p>
 
@@ -49,16 +93,62 @@ export default function CarsSlider({ cars }: Props) {
 
         <div className="relative">
 
-          <button
-            className="cars-prev absolute -left-5 top-1/2 z-20 hidden -translate-y-1/2 rounded-full border border-white/10 bg-[#10141d] p-3 text-white transition hover:border-lime-400 hover:text-lime-400 xl:flex"
-          >
-            <ChevronLeft size={24} />
-          </button>
+          {/* PREVIOUS */}
 
           <button
-            className="cars-next absolute -right-5 top-1/2 z-20 hidden -translate-y-1/2 rounded-full border border-white/10 bg-[#10141d] p-3 text-white transition hover:border-lime-400 hover:text-lime-400 xl:flex"
+            type="button"
+            aria-label="Previous"
+            className="
+              cars-prev
+              absolute
+              -left-4
+              top-1/2
+              z-20
+              hidden
+              -translate-y-1/2
+              rounded-full
+              border
+              border-white/10
+              bg-[#10141d]
+              p-2.5
+              text-white
+              shadow-lg
+              transition
+              hover:border-lime-400
+              hover:text-lime-400
+              xl:flex
+            "
           >
-            <ChevronRight size={24} />
+            <ChevronLeft size={20} />
+          </button>
+
+          {/* NEXT */}
+
+          <button
+            type="button"
+            aria-label="Next"
+            className="
+              cars-next
+              absolute
+              -right-4
+              top-1/2
+              z-20
+              hidden
+              -translate-y-1/2
+              rounded-full
+              border
+              border-white/10
+              bg-[#10141d]
+              p-2.5
+              text-white
+              shadow-lg
+              transition
+              hover:border-lime-400
+              hover:text-lime-400
+              xl:flex
+            "
+          >
+            <ChevronRight size={20} />
           </button>
 
           <Swiper
@@ -67,10 +157,13 @@ export default function CarsSlider({ cars }: Props) {
               prevEl: ".cars-prev",
               nextEl: ".cars-next",
             }}
-            spaceBetween={24}
+            spaceBetween={16}
             breakpoints={{
               0: {
                 slidesPerView: 1,
+              },
+              640: {
+                slidesPerView: 1.15,
               },
               768: {
                 slidesPerView: 2,
@@ -89,11 +182,27 @@ export default function CarsSlider({ cars }: Props) {
 
           {/* BUTTON */}
 
-          <div className="mt-12 flex justify-center">
+          <div className="mt-7 flex justify-center">
 
             <Link
               href="/cars"
-              className="group inline-flex items-center gap-3 rounded-full bg-lime-400 px-8 py-4 text-lg font-bold text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(163,230,53,.35)]"
+              className="
+                group
+                inline-flex
+                items-center
+                gap-2
+                rounded-full
+                bg-lime-400
+                px-7
+                py-3
+                text-sm
+                font-bold
+                text-black
+                transition-all
+                duration-300
+                hover:scale-105
+                hover:shadow-[0_0_35px_rgba(163,230,53,.35)]
+              "
             >
               {t("viewAll")}
 

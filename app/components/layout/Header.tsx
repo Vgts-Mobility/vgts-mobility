@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Globe, Menu, X, MessageCircle } from "lucide-react";
+import { Globe, Menu, X } from "lucide-react";
 
 import { useLocale, useTranslations } from "next-intl";
 
@@ -53,7 +53,9 @@ export default function Header() {
     }
   }
 
-  function changeLanguage(newLocale: "cs" | "uk" | "en") {
+  function changeLanguage(
+    newLocale: "cs" | "uk" | "en"
+  ) {
     setMobileOpen(false);
 
     router.replace(pathname, {
@@ -61,7 +63,9 @@ export default function Header() {
     });
   }
 
-  function goToCars(e: React.MouseEvent<HTMLAnchorElement>) {
+  function goToCars(
+    e: React.MouseEvent<HTMLAnchorElement>
+  ) {
     e.preventDefault();
 
     if (pathname === "/") {
@@ -90,22 +94,50 @@ export default function Header() {
       setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener(
+      "scroll",
+      handleScroll
+    );
 
     return () =>
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
   }, []);
 
   return (
     <>
+      {/* HEADER */}
+
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "border-b border-white/10 bg-[#05070d]/85 shadow-xl backdrop-blur-2xl"
-            : "bg-[#05070d]/35 backdrop-blur-xl"
-        }`}
+        className={`
+          fixed
+          inset-x-0
+          top-0
+          z-50
+          transition-all
+          duration-500
+          ${
+            scrolled
+              ? "border-b border-white/10 bg-[#05070d]/90 shadow-xl backdrop-blur-2xl"
+              : "bg-[#05070d]/35 backdrop-blur-xl"
+          }
+        `}
       >
-        <div className="mx-auto flex h-20 max-w-7xl items-center px-8 lg:px-10">
+        <div
+          className="
+            mx-auto
+            flex
+            h-[68px]
+            max-w-7xl
+            items-center
+            px-4
+            sm:h-[72px]
+            sm:px-6
+            lg:px-8
+          "
+        >
 
           {/* LOGO */}
 
@@ -117,38 +149,96 @@ export default function Header() {
             onMouseLeave={cancelLogoPress}
             onTouchStart={startLogoPress}
             onTouchEnd={cancelLogoPress}
-            className="flex items-center gap-4"
+            className="
+              flex
+              items-center
+              gap-2.5
+              sm:gap-3
+            "
           >
             <Image
               src="/images/logo.jpg"
               alt="VGTS Mobility"
-              width={72}
-              height={72}
+              width={56}
+              height={56}
               priority
-              className="h-16 w-16 rounded-full object-cover shadow-lg"
+              className="
+                h-11
+                w-11
+                rounded-full
+                object-cover
+                shadow-lg
+                sm:h-12
+                sm:w-12
+              "
             />
 
-            <div>
-              <h2 className="text-3xl font-black tracking-wide text-white">
+            <div className="leading-none">
+
+              <h2
+                className="
+                  text-[22px]
+                  font-black
+                  tracking-wide
+                  text-white
+                  sm:text-2xl
+                "
+              >
                 VGTS{" "}
                 <span className="text-lime-400">
                   Mobility
                 </span>
               </h2>
 
-              <p className="text-sm uppercase tracking-[4px] text-white/60">
+              <p
+                className="
+                  mt-1
+                  text-[9px]
+                  uppercase
+                  tracking-[2.5px]
+                  text-white/55
+                  sm:text-[10px]
+                  sm:tracking-[3px]
+                "
+              >
                 {t("tagline")}
               </p>
+
             </div>
           </Link>
 
           {/* DESKTOP MENU */}
 
-          <nav className="ml-auto hidden items-center gap-12 xl:flex">
+          <nav
+            className="
+              ml-auto
+              hidden
+              items-center
+              gap-7
+              xl:flex
+            "
+          >
 
             <Link
               href="/"
-              className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
+              className="
+                relative
+                text-[17px]
+                font-semibold
+                tracking-wide
+                text-white
+                transition-all
+                duration-300
+                hover:text-lime-400
+                after:absolute
+                after:-bottom-1
+                after:left-0
+                after:h-[2px]
+                after:w-0
+                after:bg-lime-400
+                after:transition-all
+                hover:after:w-full
+              "
             >
               {t("home")}
             </Link>
@@ -156,28 +246,96 @@ export default function Header() {
             <a
               href="#cars"
               onClick={goToCars}
-              className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
+              className="
+                relative
+                text-[17px]
+                font-semibold
+                tracking-wide
+                text-white
+                transition-all
+                duration-300
+                hover:text-lime-400
+                after:absolute
+                after:-bottom-1
+                after:left-0
+                after:h-[2px]
+                after:w-0
+                after:bg-lime-400
+                after:transition-all
+                hover:after:w-full
+              "
             >
               {t("cars")}
             </a>
 
             <a
               href="#services"
-              className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
+              className="
+                relative
+                text-[17px]
+                font-semibold
+                tracking-wide
+                text-white
+                transition-all
+                duration-300
+                hover:text-lime-400
+                after:absolute
+                after:-bottom-1
+                after:left-0
+                after:h-[2px]
+                after:w-0
+                after:bg-lime-400
+                after:transition-all
+                hover:after:w-full
+              "
             >
               {t("import")}
             </a>
 
             <a
               href="#about"
-              className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
+              className="
+                relative
+                text-[17px]
+                font-semibold
+                tracking-wide
+                text-white
+                transition-all
+                duration-300
+                hover:text-lime-400
+                after:absolute
+                after:-bottom-1
+                after:left-0
+                after:h-[2px]
+                after:w-0
+                after:bg-lime-400
+                after:transition-all
+                hover:after:w-full
+              "
             >
               {t("about")}
             </a>
 
             <a
               href="#contact"
-              className="relative text-[22px] font-semibold tracking-wide text-white transition-all duration-300 hover:scale-105 hover:text-lime-400 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-lime-400 after:transition-all after:duration-300 hover:after:w-full"
+              className="
+                relative
+                text-[17px]
+                font-semibold
+                tracking-wide
+                text-white
+                transition-all
+                duration-300
+                hover:text-lime-400
+                after:absolute
+                after:-bottom-1
+                after:left-0
+                after:h-[2px]
+                after:w-0
+                after:bg-lime-400
+                after:transition-all
+                hover:after:w-full
+              "
             >
               {t("contact")}
             </a>
@@ -186,45 +344,86 @@ export default function Header() {
 
           {/* LANGUAGE SWITCHER */}
 
-          <div className="ml-10 hidden items-center gap-2 xl:flex">
+          <div
+            className="
+              ml-6
+              hidden
+              items-center
+              gap-1.5
+              xl:flex
+            "
+          >
 
             <Globe
-              size={18}
-              className="mr-1 text-white/60"
+              size={16}
+              className="mr-1 text-white/50"
             />
 
             <button
               type="button"
-              onClick={() => changeLanguage("cs")}
-              className={`rounded-full border px-3 py-1.5 text-sm font-bold transition ${
-                locale === "cs"
-                  ? "border-lime-400 bg-lime-400/15 text-lime-400"
-                  : "border-white/10 text-white/70 hover:border-lime-400 hover:text-lime-400"
-              }`}
+              onClick={() =>
+                changeLanguage("cs")
+              }
+              className={`
+                rounded-full
+                border
+                px-2.5
+                py-1
+                text-xs
+                font-bold
+                transition
+                ${
+                  locale === "cs"
+                    ? "border-lime-400 bg-lime-400/15 text-lime-400"
+                    : "border-white/10 text-white/70 hover:border-lime-400 hover:text-lime-400"
+                }
+              `}
             >
               CZ
             </button>
 
             <button
               type="button"
-              onClick={() => changeLanguage("uk")}
-              className={`rounded-full border px-3 py-1.5 text-sm font-bold transition ${
-                locale === "uk"
-                  ? "border-lime-400 bg-lime-400/15 text-lime-400"
-                  : "border-white/10 text-white/70 hover:border-lime-400 hover:text-lime-400"
-              }`}
+              onClick={() =>
+                changeLanguage("uk")
+              }
+              className={`
+                rounded-full
+                border
+                px-2.5
+                py-1
+                text-xs
+                font-bold
+                transition
+                ${
+                  locale === "uk"
+                    ? "border-lime-400 bg-lime-400/15 text-lime-400"
+                    : "border-white/10 text-white/70 hover:border-lime-400 hover:text-lime-400"
+                }
+              `}
             >
               UA
             </button>
 
             <button
               type="button"
-              onClick={() => changeLanguage("en")}
-              className={`rounded-full border px-3 py-1.5 text-sm font-bold transition ${
-                locale === "en"
-                  ? "border-lime-400 bg-lime-400/15 text-lime-400"
-                  : "border-white/10 text-white/70 hover:border-lime-400 hover:text-lime-400"
-              }`}
+              onClick={() =>
+                changeLanguage("en")
+              }
+              className={`
+                rounded-full
+                border
+                px-2.5
+                py-1
+                text-xs
+                font-bold
+                transition
+                ${
+                  locale === "en"
+                    ? "border-lime-400 bg-lime-400/15 text-lime-400"
+                    : "border-white/10 text-white/70 hover:border-lime-400 hover:text-lime-400"
+                }
+              `}
             >
               EN
             </button>
@@ -235,13 +434,20 @@ export default function Header() {
 
           <button
             type="button"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="ml-auto text-white xl:hidden"
+            onClick={() =>
+              setMobileOpen(!mobileOpen)
+            }
+            className="
+              ml-auto
+              text-white
+              xl:hidden
+            "
+            aria-label="Menu"
           >
             {mobileOpen ? (
-              <X size={34} />
+              <X size={28} />
             ) : (
-              <Menu size={34} />
+              <Menu size={28} />
             )}
           </button>
 
@@ -251,18 +457,47 @@ export default function Header() {
       {/* MOBILE MENU */}
 
       <div
-        className={`fixed inset-0 z-40 bg-[#05070d]/95 backdrop-blur-2xl transition-transform duration-500 xl:hidden ${
-          mobileOpen
-            ? "translate-x-0"
-            : "translate-x-full"
-        }`}
+        className={`
+          fixed
+          inset-0
+          z-40
+          bg-[#05070d]/95
+          backdrop-blur-2xl
+          transition-transform
+          duration-500
+          xl:hidden
+          ${
+            mobileOpen
+              ? "translate-x-0"
+              : "translate-x-full"
+          }
+        `}
       >
-        <div className="flex flex-col px-10 pt-32">
+
+        <div
+          className="
+            flex
+            flex-col
+            px-6
+            pt-24
+          "
+        >
 
           <Link
             href="/"
-            onClick={() => setMobileOpen(false)}
-            className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
+            onClick={() =>
+              setMobileOpen(false)
+            }
+            className="
+              border-b
+              border-white/10
+              py-4
+              text-2xl
+              font-semibold
+              text-white
+              transition
+              hover:text-lime-400
+            "
           >
             {t("home")}
           </Link>
@@ -270,93 +505,159 @@ export default function Header() {
           <a
             href="#cars"
             onClick={goToCars}
-            className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
+            className="
+              border-b
+              border-white/10
+              py-4
+              text-2xl
+              font-semibold
+              text-white
+              transition
+              hover:text-lime-400
+            "
           >
             {t("cars")}
           </a>
 
           <a
             href="#services"
-            onClick={() => setMobileOpen(false)}
-            className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
+            onClick={() =>
+              setMobileOpen(false)
+            }
+            className="
+              border-b
+              border-white/10
+              py-4
+              text-2xl
+              font-semibold
+              text-white
+              transition
+              hover:text-lime-400
+            "
           >
             {t("import")}
           </a>
 
           <a
             href="#about"
-            onClick={() => setMobileOpen(false)}
-            className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
+            onClick={() =>
+              setMobileOpen(false)
+            }
+            className="
+              border-b
+              border-white/10
+              py-4
+              text-2xl
+              font-semibold
+              text-white
+              transition
+              hover:text-lime-400
+            "
           >
             {t("about")}
           </a>
 
           <a
             href="#contact"
-            onClick={() => setMobileOpen(false)}
-            className="border-b border-white/10 py-6 text-3xl font-semibold text-white transition hover:text-lime-400"
+            onClick={() =>
+              setMobileOpen(false)
+            }
+            className="
+              border-b
+              border-white/10
+              py-4
+              text-2xl
+              font-semibold
+              text-white
+              transition
+              hover:text-lime-400
+            "
           >
             {t("contact")}
           </a>
 
           {/* MOBILE LANGUAGES */}
 
-          <div className="mt-8 flex items-center justify-center gap-3">
+          <div
+            className="
+              mt-6
+              flex
+              items-center
+              justify-center
+              gap-2
+            "
+          >
 
             <Globe
-              size={20}
-              className="text-white/60"
+              size={18}
+              className="text-white/50"
             />
 
             <button
               type="button"
-              onClick={() => changeLanguage("cs")}
-              className={`rounded-full border px-4 py-2 text-sm font-bold transition ${
-                locale === "cs"
-                  ? "border-lime-400 bg-lime-400/15 text-lime-400"
-                  : "border-white/10 text-white/70"
-              }`}
+              onClick={() =>
+                changeLanguage("cs")
+              }
+              className={`
+                rounded-full
+                border
+                px-3
+                py-1.5
+                text-xs
+                font-bold
+                ${
+                  locale === "cs"
+                    ? "border-lime-400 bg-lime-400/15 text-lime-400"
+                    : "border-white/10 text-white/70"
+                }
+              `}
             >
               CZ
             </button>
 
             <button
               type="button"
-              onClick={() => changeLanguage("uk")}
-              className={`rounded-full border px-4 py-2 text-sm font-bold transition ${
-                locale === "uk"
-                  ? "border-lime-400 bg-lime-400/15 text-lime-400"
-                  : "border-white/10 text-white/70"
-              }`}
+              onClick={() =>
+                changeLanguage("uk")
+              }
+              className={`
+                rounded-full
+                border
+                px-3
+                py-1.5
+                text-xs
+                font-bold
+                ${
+                  locale === "uk"
+                    ? "border-lime-400 bg-lime-400/15 text-lime-400"
+                    : "border-white/10 text-white/70"
+                }
+              `}
             >
               UA
             </button>
 
             <button
               type="button"
-              onClick={() => changeLanguage("en")}
-              className={`rounded-full border px-4 py-2 text-sm font-bold transition ${
-                locale === "en"
-                  ? "border-lime-400 bg-lime-400/15 text-lime-400"
-                  : "border-white/10 text-white/70"
-              }`}
+              onClick={() =>
+                changeLanguage("en")
+              }
+              className={`
+                rounded-full
+                border
+                px-3
+                py-1.5
+                text-xs
+                font-bold
+                ${
+                  locale === "en"
+                    ? "border-lime-400 bg-lime-400/15 text-lime-400"
+                    : "border-white/10 text-white/70"
+                }
+              `}
             >
               EN
             </button>
-
-          </div>
-
-          {/* WHATSAPP */}
-
-          <div className="mt-8">
-
-            <a
-              href="https://wa.me/420739974155"
-              className="flex items-center justify-center gap-3 rounded-2xl bg-lime-400 py-5 text-xl font-bold text-black transition hover:scale-[1.02]"
-            >
-              <MessageCircle size={24} />
-              {t("whatsapp")}
-            </a>
 
           </div>
 

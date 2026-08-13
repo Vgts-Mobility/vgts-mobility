@@ -6,7 +6,7 @@ export default function Hero() {
   const t = useTranslations("hero");
 
   return (
-    <section className="relative overflow-hidden bg-[#05070d] pt-16 pb-12 lg:pt-24 lg:pb-20">
+    <section className="relative overflow-hidden bg-[#05070d] pt-12 pb-8 sm:pt-14 sm:pb-10 lg:pt-16 lg:pb-12">
 
       {/* BACKGROUND */}
 
@@ -22,23 +22,34 @@ export default function Hero() {
 
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 lg:grid-cols-[0.95fr_1.25fr] lg:px-8">
+      <div
+        className="
+          relative
+          mx-auto
+          grid
+          max-w-7xl
+          items-center
+          gap-6
+          px-4
+          sm:gap-8
+          sm:px-6
+          lg:grid-cols-[0.95fr_1.25fr]
+          lg:gap-4
+          lg:px-8
+        "
+      >
 
         {/* LEFT */}
 
         <div>
 
-          <div className="mb-5 text-xs font-semibold uppercase tracking-[6px] text-lime-400 sm:text-sm">
-            {t("eyebrow")}
-          </div>
-
-          <h1 className="text-4xl font-black leading-tight text-white sm:text-5xl xl:text-[60px]">
+          <h1 className="text-4xl font-black leading-[1.05] text-white sm:text-5xl xl:text-[56px]">
             {t("titleLine1")}
             <br />
             {t("titleLine2")}
           </h1>
 
-          <h2 className="mt-4 text-xl font-bold sm:text-2xl">
+          <h2 className="mt-3 text-lg font-bold sm:text-xl">
 
             <span className="text-lime-400">
               {t("future")}
@@ -54,66 +65,95 @@ export default function Hero() {
 
           </h2>
 
-          <p className="mt-5 max-w-lg text-[15px] leading-7 text-gray-400 sm:text-base">
+          <p className="mt-4 max-w-lg text-sm leading-6 text-gray-400 sm:text-[15px] sm:leading-6">
             {t("description")}
           </p>
 
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
 
             <Link
               href="#cars"
-              className="w-full rounded-full bg-lime-400 px-8 py-4 text-center font-bold text-black transition duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(163,230,53,.45)] sm:w-auto"
+              className="
+                w-full
+                rounded-full
+                bg-lime-400
+                px-7
+                py-3.5
+                text-center
+                text-sm
+                font-bold
+                text-black
+                transition
+                duration-300
+                hover:scale-105
+                hover:shadow-[0_0_35px_rgba(163,230,53,.45)]
+                sm:w-auto
+              "
             >
               {t("viewCars")}
             </Link>
 
             <Link
               href="#request"
-              className="w-full rounded-full border border-white/15 px-8 py-4 text-center font-semibold text-white transition hover:border-lime-400 sm:w-auto"
+              className="
+                w-full
+                rounded-full
+                border
+                border-white/15
+                px-7
+                py-3.5
+                text-center
+                text-sm
+                font-semibold
+                text-white
+                transition
+                hover:border-lime-400
+                sm:w-auto
+              "
             >
               {t("requestImport")}
             </Link>
 
           </div>
 
-          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
 
             <div>
-              <div className="text-3xl font-black text-lime-400 sm:text-4xl">
+              <div className="text-2xl font-black text-lime-400 sm:text-3xl">
                 EV
               </div>
 
-              <div className="mt-1 text-sm text-gray-400">
+              <div className="mt-0.5 text-xs text-gray-400 sm:text-sm">
                 {t("evSpecialists")}
               </div>
             </div>
 
             <div>
-              <div className="text-3xl font-black text-sky-400 sm:text-4xl">
+              <div className="text-2xl font-black text-sky-400 sm:text-3xl">
                 EU
               </div>
 
-              <div className="mt-1 text-sm text-gray-400">
+              <div className="mt-0.5 text-xs text-gray-400 sm:text-sm">
                 {t("euImport")}
               </div>
             </div>
 
             <div>
-              <div className="text-3xl font-black text-fuchsia-400 sm:text-4xl">
+              <div className="text-2xl font-black text-fuchsia-400 sm:text-3xl">
                 100%
               </div>
 
-              <div className="mt-1 text-sm text-gray-400">
+              <div className="mt-0.5 text-xs text-gray-400 sm:text-sm">
                 {t("verifiedHistory")}
               </div>
             </div>
 
             <div>
-              <div className="text-3xl font-black text-white sm:text-4xl">
+              <div className="text-2xl font-black text-white sm:text-3xl">
                 ✔
               </div>
 
-              <div className="mt-1 text-sm text-gray-400">
+              <div className="mt-0.5 text-xs text-gray-400 sm:text-sm">
                 {t("individualApproach")}
               </div>
             </div>
@@ -124,25 +164,45 @@ export default function Hero() {
 
         {/* RIGHT */}
 
-        <div className="relative mt-10 flex items-center justify-center lg:mt-0 lg:justify-end">
+        <div className="relative mt-5 flex items-center justify-center lg:mt-0 lg:justify-end">
 
           {/* Glow */}
 
-          <div className="absolute right-0 top-8 h-[700px] w-[700px] rounded-full bg-sky-500/15 blur-[180px]" />
+          <div className="absolute right-0 top-8 h-[650px] w-[650px] rounded-full bg-sky-500/15 blur-[180px]" />
 
-          <div className="absolute bottom-10 right-10 h-[220px] w-[220px] rounded-full bg-lime-400/20 blur-[120px]" />
+          <div className="absolute bottom-10 right-10 h-[200px] w-[200px] rounded-full bg-lime-400/20 blur-[120px]" />
 
-          <div className="absolute top-24 right-32 h-[180px] w-[180px] rounded-full bg-fuchsia-500/20 blur-[120px]" />
+          <div className="absolute top-24 right-32 h-[160px] w-[160px] rounded-full bg-fuchsia-500/20 blur-[120px]" />
 
           {/* INFO */}
 
-          <div className="absolute top-0 left-1/2 z-30 w-[90%] max-w-sm -translate-x-1/2 rounded-3xl border border-white/10 bg-[#10141d]/90 px-5 py-4 backdrop-blur-xl lg:left-8 lg:w-auto lg:-translate-x-0">
+          <div
+            className="
+              absolute
+              left-1/2
+              top-0
+              z-30
+              w-[88%]
+              max-w-sm
+              -translate-x-1/2
+              rounded-2xl
+              border
+              border-white/10
+              bg-[#10141d]/90
+              px-4
+              py-3
+              backdrop-blur-xl
+              lg:left-8
+              lg:w-auto
+              lg:-translate-x-0
+            "
+          >
 
-            <div className="text-[11px] font-semibold uppercase tracking-[5px] text-lime-400">
+            <div className="text-[9px] font-semibold uppercase tracking-[4px] text-lime-400">
               {t("concept")}
             </div>
 
-            <h3 className="mt-2 text-2xl font-black text-white lg:text-3xl">
+            <h3 className="mt-1 text-xl font-black text-white lg:text-2xl">
               ŠKODA ENYAQ
             </h3>
 
@@ -159,18 +219,18 @@ export default function Hero() {
             className="
               relative
               z-20
-              mt-12
+              mt-10
               w-full
-              max-w-[720px]
+              max-w-[650px]
               object-contain
-              drop-shadow-[0_45px_70px_rgba(0,0,0,.45)]
+              drop-shadow-[0_40px_60px_rgba(0,0,0,.45)]
               transition-all
               duration-700
               hover:scale-[1.02]
               lg:mt-0
-              lg:max-w-[1350px]
-              lg:translate-x-12
-              lg:translate-y-10
+              lg:max-w-[1200px]
+              lg:translate-x-10
+              lg:translate-y-6
             "
           />
 

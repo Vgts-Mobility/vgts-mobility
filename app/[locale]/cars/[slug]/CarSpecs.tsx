@@ -1,27 +1,26 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-
 import { Car } from "@/types/car";
+import { useTranslations } from "next-intl";
 
 export default function CarSpecs({
   car,
 }: {
   car: Car;
 }) {
-  const t = useTranslations("carDetails");
+  const t = useTranslations("carDetails.technicalData");
 
   return (
-    <section className="mt-16">
+    <section className="mt-7">
 
-      <h2 className="mb-8 text-3xl font-black">
-        {t("technicalData.title")}
+      <h2 className="mb-4 text-2xl font-black sm:text-3xl">
+        {t("title")}
       </h2>
 
-      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
 
         <SpecCard
-          title={t("technicalData.transmission")}
+          title={t("transmission")}
           value={translateTransmission(
             car.transmission,
             t
@@ -29,7 +28,7 @@ export default function CarSpecs({
         />
 
         <SpecCard
-          title={t("technicalData.drive")}
+          title={t("drive")}
           value={translateDrive(
             car.drive,
             t
@@ -37,32 +36,32 @@ export default function CarSpecs({
         />
 
         <SpecCard
-          title={t("technicalData.body")}
+          title={t("body")}
           value={car.body_type}
         />
 
         <SpecCard
-          title={t("technicalData.color")}
+          title={t("color")}
           value={car.color}
         />
 
         <SpecCard
-          title={t("technicalData.battery")}
+          title={t("battery")}
           value={car.battery}
         />
 
         <SpecCard
-          title={t("technicalData.soh")}
+          title={t("soh")}
           value={car.soh}
         />
 
         <SpecCard
-          title={t("technicalData.vin")}
+          title={t("vin")}
           value={car.vin}
         />
 
         <SpecCard
-          title={t("technicalData.seats")}
+          title={t("seats")}
           value={car.seats?.toString()}
         />
 
@@ -82,36 +81,41 @@ function SpecCard({
   return (
     <div
       className="
-        rounded-3xl
+        rounded-2xl
         border
         border-white/10
         bg-[#10141d]
-        p-6
+        px-4
+        py-3
         transition
         hover:border-lime-400/40
       "
     >
-      <div className="text-xs uppercase tracking-[3px] text-gray-500">
+
+      <div className="text-[10px] uppercase tracking-[2px] text-gray-500">
         {title}
       </div>
 
-      <div className="mt-3 text-xl font-bold">
+      <div className="mt-1 text-sm font-bold text-white sm:text-base">
         {value || "-"}
       </div>
+
     </div>
   );
 }
 
 function translateTransmission(
   value: string | null | undefined,
-  t: ReturnType<typeof useTranslations<"carDetails">>
+  t: ReturnType<typeof useTranslations>
 ) {
   switch (value) {
     case "Автомат":
-      return t("values.automatic");
+      return t("transmission") === "Převodovka"
+        ? "Automatická"
+        : value;
 
     case "Механіка":
-      return t("values.manual");
+      return "Manuální";
 
     default:
       return value;
@@ -120,17 +124,17 @@ function translateTransmission(
 
 function translateDrive(
   value: string | null | undefined,
-  t: ReturnType<typeof useTranslations<"carDetails">>
+  t: ReturnType<typeof useTranslations>
 ) {
   switch (value) {
     case "Передній":
-      return t("values.front");
+      return "Přední";
 
     case "Задній":
-      return t("values.rear");
+      return "Zadní";
 
     case "Повний":
-      return t("values.awd");
+      return "4x4";
 
     default:
       return value;

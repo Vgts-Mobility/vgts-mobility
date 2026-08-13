@@ -14,19 +14,21 @@ export default async function CarsSection() {
 
   if (error) {
     return (
-      <section className="py-20 text-center text-red-500">
-        <h2 className="text-2xl font-bold">
+      <section className="py-12 text-center text-red-500 sm:py-14">
+        <h2 className="text-xl font-bold sm:text-2xl">
           {t("loadError")}
         </h2>
 
-        <p className="mt-4">{error.message}</p>
+        <p className="mt-2 text-sm">
+          {error.message}
+        </p>
       </section>
     );
   }
 
   if (!cars || cars.length === 0) {
     return (
-      <section className="py-20 text-center text-white">
+      <section className="py-12 text-center text-sm text-white sm:py-14">
         {t("empty")}
       </section>
     );

@@ -1,20 +1,36 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 import { supabase } from "@/lib/supabase";
 import CarCard from "@/app/components/cars/CarCard";
 
-export const dynamic = "force-dynamic";
+type Props = {
+  params: Promise<{
+    locale: string;
+  }>;
+};
 
-export default async function CarsPage() {
+export default async function CarsPage({
+  params,
+}: Props) {
+  const { locale } = await params;
+
+  const t = await getTranslations({
+    locale,
+    namespace: "cars",
+  });
+
   const { data: cars, error } = await supabase
     .from("cars")
     .select("*");
 
   if (error) {
     return (
-      <div className="mx-auto max-w-7xl px-6 py-20 text-center text-red-500">
-        Chyba při načítání vozidel.
-      </div>
+      <main className="min-h-screen bg-[#05070d]">
+        <div className="mx-auto max-w-[1380px] px-4 py-16 text-center text-red-500 sm:px-6 lg:px-8">
+          {t("loadError")}
+        </div>
+      </main>
     );
   }
 
@@ -33,38 +49,88 @@ export default async function CarsPage() {
   });
 
   return (
-    <main className="min-h-screen bg-[#05070d] py-16">
-      <div className="mx-auto max-w-7xl px-6">
+    <main className="min-h-screen bg-[#05070d] py-8 sm:py-10 lg:py-12">
 
-        <div className="mb-12">
+      <div className="mx-auto max-w-[1380px] px-4 sm:px-6 lg:px-8">
+
+        {/* HEADER */}
+
+        <div className="mb-7 sm:mb-8">
 
           <Link
-            href="/"
-            className="text-lime-400 hover:underline"
+            href={`/${locale}`}
+            className="
+              inline-flex
+              items-center
+              gap-1
+              text-xs
+              font-semibold
+              text-lime-400
+              transition
+              hover:text-lime-300
+              hover:underline
+              sm:text-sm
+            "
           >
-            ← Zpět na hlavní stránku
+            ← {locale === "cs"
+              ? "Zpět na hlavní stránku"
+              : locale === "uk"
+                ? "На головну"
+                : "Back to home"}
           </Link>
 
-          <h1 className="mt-6 text-5xl font-black text-white">
-            Všechny vozy
+          <h1 className="mt-4 text-3xl font-black leading-none tracking-tight text-white sm:text-4xl lg:text-5xl">
+            {locale === "cs"
+              ? "Všechny vozy"
+              : locale === "uk"
+                ? "Усі автомобілі"
+                : "All cars"}
           </h1>
 
-          <p className="mt-4 max-w-2xl text-gray-400">
-            Kompletní nabídka prověřených vozidel VGTS Mobility.
+          <p className="mt-3 max-w-xl text-sm leading-6 text-gray-400 sm:text-base">
+            {locale === "cs"
+              ? "Kompletní nabídka prověřených vozidel VGTS Mobility."
+              : locale === "uk"
+                ? "Повна пропозиція перевірених автомобілів VGTS Mobility."
+                : "Complete selection of verified VGTS Mobility vehicles."}
           </p>
 
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {sortedCars.map((car) => (
-            <CarCard
-              key={car.id}
-              car={car}
-            />
-          ))}
-        </div>
+        {/* CARS GRID */}
+
+        {sortedCars.length > 0 ? (
+
+          <div
+            className="
+              grid
+              grid-cols-1
+              gap-5
+              sm:grid-cols-2
+              lg:grid-cols-3
+              xl:grid-cols-4
+            "
+          >
+
+            {sortedCars.map((car) => (
+              <CarCard
+                key={car.id}
+                car={car}
+              />
+            ))}
+
+          </div>
+
+        ) : (
+
+          <div className="rounded-3xl border border-white/10 bg-[#10141d] p-8 text-center text-sm text-gray-400">
+            {t("empty")}
+          </div>
+
+        )}
 
       </div>
+
     </main>
   );
 }

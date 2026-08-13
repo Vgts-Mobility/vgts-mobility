@@ -26,18 +26,19 @@ export default function CarGallery({
 
   if (!images.length) {
     return (
-      <div className="flex aspect-[16/10] items-center justify-center rounded-3xl border border-white/10 bg-[#10141d] text-gray-500">
+      <div className="flex h-[250px] items-center justify-center rounded-3xl border border-white/10 bg-[#10141d] text-gray-500 sm:h-[300px] lg:h-[360px]">
         Žádné fotografie
       </div>
     );
   }
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-3">
 
-      {/* MAIN GALLERY */}
+      {/* MAIN IMAGE */}
 
       <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#10141d]">
+
         <Swiper
           modules={[Navigation, Thumbs]}
           navigation
@@ -47,38 +48,61 @@ export default function CarGallery({
                 ? thumbsSwiper
                 : null,
           }}
-          spaceBetween={0}
           slidesPerView={1}
-          allowTouchMove={true}
-          simulateTouch={true}
+          spaceBetween={0}
+          allowTouchMove
+          simulateTouch
           touchRatio={1}
           touchAngle={45}
           threshold={5}
-          resistance={true}
+          resistance
           resistanceRatio={0.85}
           className="car-gallery"
         >
+
           {images.map((image, index) => (
+
             <SwiperSlide key={image}>
-              <Image
-                src={image}
-                alt={`${title} - foto ${index + 1}`}
-                width={1600}
-                height={1000}
-                priority={index === 0}
+
+              <div
                 onClick={() => onOpen?.(index)}
                 className="
-                  aspect-[16/10]
+                  flex
+                  h-[250px]
                   w-full
                   cursor-zoom-in
-                  select-none
-                  object-cover
+                  items-center
+                  justify-center
+                  bg-[#10141d]
+                  sm:h-[300px]
+                  lg:h-[360px]
                 "
-                draggable={false}
-              />
+              >
+
+                <Image
+                  src={image}
+                  alt={`${title} - foto ${index + 1}`}
+                  width={1600}
+                  height={1000}
+                  priority={index === 0}
+                  draggable={false}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 70vw, 900px"
+                  className="
+                    h-full
+                    w-full
+                    select-none
+                    object-contain
+                  "
+                />
+
+              </div>
+
             </SwiperSlide>
+
           ))}
+
         </Swiper>
+
       </div>
 
       {/* THUMBNAILS */}
@@ -87,29 +111,39 @@ export default function CarGallery({
         modules={[Thumbs]}
         onSwiper={setThumbsSwiper}
         watchSlidesProgress
-        spaceBetween={12}
+        spaceBetween={8}
         slidesPerView={4}
         breakpoints={{
-          640: {
+          480: {
             slidesPerView: 5,
           },
-          1024: {
+          640: {
             slidesPerView: 6,
           },
-          1280: {
+          1024: {
             slidesPerView: 7,
           },
+          1200: {
+            slidesPerView: 8,
+          },
         }}
+        className="car-thumbnails"
       >
+
         {images.map((image, index) => (
+
           <SwiperSlide key={image}>
+
             <Image
               src={image}
               alt={`${title} - miniatura ${index + 1}`}
               width={240}
-              height={160}
+              height={150}
+              draggable={false}
+              sizes="120px"
               className="
                 aspect-video
+                w-full
                 cursor-pointer
                 select-none
                 rounded-xl
@@ -119,10 +153,12 @@ export default function CarGallery({
                 transition
                 hover:border-lime-400
               "
-              draggable={false}
             />
+
           </SwiperSlide>
+
         ))}
+
       </Swiper>
 
     </div>

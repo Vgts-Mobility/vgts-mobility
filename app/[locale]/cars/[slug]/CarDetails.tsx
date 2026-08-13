@@ -1,485 +1,134 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import { useTranslations } from "next-intl";
-
-import {
-  ArrowLeft,
-  Calendar,
-  Gauge,
-  Fuel,
-  Zap,
-  MessageCircle,
-  ChevronLeft,
-  ChevronRight,
-  CheckCircle2,
-  CircleX,
-  Clock3,
-  Truck,
-} from "lucide-react";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 
 import { Car } from "@/types/car";
+
+import CarGallery from "./CarGallery";
+import CarSidebar from "./CarSidebar";
+import CarSpecs from "./CarSpecs";
+import CarEquipment from "./CarEquipment";
+import CarDescription from "./CarDescription";
+import FullscreenGallery from "./FullscreenGallery";
+
 import { getPublicImage } from "@/lib/storage/get-public-image";
+
+type Props = {
+  car: Car;
+};
 
 export default function CarDetails({
   car,
-}: {
-  car: Car;
-}) {
-  const router = useRouter();
+}: Props) {
   const t = useTranslations("carDetails");
+  const locale = useLocale();
+
+  const [fullscreenOpen, setFullscreenOpen] =
+    useState(false);
+
+  const [initialSlide, setInitialSlide] =
+    useState(0);
 
   const images =
-    car.images?.length
-      ? car.images.map(getPublicImage)
-      : [];
+    car.images?.map((image) =>
+      getPublicImage(image)
+    ) ?? [];
 
-  const [current, setCurrent] = useState(0);
-
-  function next() {
-    setCurrent((prev) =>
-      prev === images.length - 1 ? 0 : prev + 1
-    );
-  }
-
-  function prev() {
-    setCurrent((prev) =>
-      prev === 0 ? images.length - 1 : prev - 1
-    );
+  function openFullscreen(index: number) {
+    setInitialSlide(index);
+    setFullscreenOpen(true);
   }
 
   return (
     <main className="min-h-screen bg-[#05070d] text-white">
 
-      <div className="mx-auto max-w-7xl px-6 pt-5 pb-8">
-
-        <div className="mb-5 flex items-center gap-6">
-
-          <button
-            type="button"
-            onClick={() => router.back()}
-            className="inline-flex items-center gap-2 rounded-2xl border border-lime-400/20 bg-[#10141d] px-5 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-x-1 hover:border-lime-400 hover:bg-lime-400 hover:text-black"
-          >
-            <ArrowLeft size={18} />
-            {t("back")}
-          </button>
-
-          <h1 className="text-5xl font-black leading-tight">
-            {car.brand} {car.model}
-          </h1>
-
-        </div>
-
-        <div className="grid gap-6 xl:grid-cols-[1.9fr_360px] items-start">
-
-          {/* GALERIE */}
-
-          <div>
-
-            <div className="relative flex h-[520px] items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-[#10141d]">
-
-              {images.length > 0 && (
-                <>
-
-                  <Image
-                    src={images[current]}
-                    alt={`${car.brand} ${car.model}`}
-                    width={1600}
-                    height={900}
-                    priority
-                    className="max-h-full max-w-full object-contain"
-                  />
-
-                  <button
-                    type="button"
-                    onClick={prev}
-                    className="hidden md:block absolute left-5 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-4 text-white backdrop-blur transition hover:bg-lime-400 hover:text-black"
-                  >
-                    <ChevronLeft size={28} />
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={next}
-                    className="hidden md:block absolute right-5 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-4 text-white backdrop-blur transition hover:bg-lime-400 hover:text-black"
-                  >
-                    <ChevronRight size={28} />
-                  </button>
-
-                </>
-              )}
-
-            </div>
-
-            {/* MINIATURY */}
-
-            <div className="mt-2 grid grid-cols-5 gap-2 md:grid-cols-6 lg:grid-cols-8">
-
-              {images.map((image, index) => (
-
-                <button
-                  key={image}
-                  type="button"
-                  onClick={() => setCurrent(index)}
-                  className={`overflow-hidden rounded-xl border-2 transition ${
-                    current === index
-                      ? "border-lime-400"
-                      : "border-white/10"
-                  }`}
-                >
-                  <div className="flex aspect-video items-center justify-center bg-[#10141d]">
-
-                    <Image
-                      src={image}
-                      alt=""
-                      width={180}
-                      height={120}
-                      className="max-h-full max-w-full object-contain"
-                    />
-
-                  </div>
-                </button>
-
-              ))}
-
-            </div>
-
-          </div>
-
-          {/* INFO */}
-
-          <div>
-
-            <div className="sticky top-28 w-full max-w-[380px] rounded-3xl border border-lime-400/20 bg-[#10141d] p-6">
-
-              <div className="text-[44px] font-black whitespace-nowrap text-lime-400">
-                {car.price.toLocaleString()} Kč
-              </div>
-
-              {/* STATUS */}
-
-              <div className="mt-5">
-
-                {car.status === "В наявності" && (
-                  <div className="inline-flex items-center gap-3 rounded-full border border-lime-400/40 bg-lime-400/15 px-6 py-3 text-lg font-bold uppercase tracking-[2px] text-lime-400 shadow-lg">
-                    <CheckCircle2 size={22} />
-                    {t("status.available")}
-                  </div>
-                )}
-
-                {car.status === "Продано" && (
-                  <div className="inline-flex items-center gap-3 rounded-full border border-red-500/40 bg-red-500/15 px-6 py-3 text-lg font-bold uppercase tracking-[2px] text-red-400 shadow-lg">
-                    <CircleX size={22} />
-                    {t("status.sold")}
-                  </div>
-                )}
-
-                {car.status === "Резерв" && (
-                  <div className="inline-flex items-center gap-3 rounded-full border border-yellow-500/40 bg-yellow-500/15 px-6 py-3 text-lg font-bold uppercase tracking-[2px] text-yellow-300 shadow-lg">
-                    <Clock3 size={22} />
-                    {t("status.reserved")}
-                  </div>
-                )}
-
-                {car.status === "В дорозі" && (
-                  <div className="inline-flex items-center gap-3 rounded-full border border-sky-500/40 bg-sky-500/15 px-6 py-3 text-lg font-bold uppercase tracking-[2px] text-sky-300 shadow-lg">
-                    <Truck size={22} />
-                    {t("status.inTransit")}
-                  </div>
-                )}
-
-              </div>
-
-              {/* WHATSAPP */}
-
-              <div className="mt-8 space-y-3">
-
-                <a
-                  href="https://wa.me/420739974155"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 rounded-xl bg-lime-400 px-5 py-4 text-black transition hover:scale-[1.02]"
-                >
-                  <MessageCircle size={22} />
-
-                  <div>
-                    <div className="font-bold">
-                      Taras
-                    </div>
-
-                    <div className="text-sm opacity-80">
-                      +420 739 974 155
-                    </div>
-                  </div>
-
-                </a>
-
-                <a
-                  href="https://wa.me/420703695936"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 rounded-xl bg-lime-400 px-5 py-4 text-black transition hover:scale-[1.02]"
-                >
-                  <MessageCircle size={22} />
-
-                  <div>
-                    <div className="font-bold">
-                      Vadym
-                    </div>
-
-                    <div className="text-sm opacity-80">
-                      +420 703 695 936
-                    </div>
-                  </div>
-
-                </a>
-
-              </div>
-
-              {/* QUICK INFO */}
-
-              <div className="mt-8 space-y-5">
-
-                <QuickInfo
-                  icon={<Calendar size={20} />}
-                  label={t("quickInfo.year")}
-                  value={String(car.year)}
-                />
-
-                <QuickInfo
-                  icon={<Gauge size={20} />}
-                  label={t("quickInfo.mileage")}
-                  value={`${car.mileage.toLocaleString()} km`}
-                />
-
-                <QuickInfo
-                  icon={<Fuel size={20} />}
-                  label={t("quickInfo.fuel")}
-                  value={car.fuel}
-                />
-
-                <QuickInfo
-                  icon={<Zap size={20} />}
-                  label={t("quickInfo.power")}
-                  value={car.power}
-                />
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* TECHNICAL DATA */}
-
-        <section className="mt-14">
-
-          <h2 className="mb-6 text-3xl font-black">
-            {t("technicalData.title")}
-          </h2>
-
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-
-            <SpecCard
-              title={t("technicalData.transmission")}
-              value={translateTransmission(
-                car.transmission,
-                t
-              )}
-            />
-
-            <SpecCard
-              title={t("technicalData.drive")}
-              value={translateDrive(
-                car.drive,
-                t
-              )}
-            />
-
-            <SpecCard
-              title={t("technicalData.body")}
-              value={car.body_type}
-            />
-
-            <SpecCard
-              title={t("technicalData.color")}
-              value={car.color}
-            />
-
-            <SpecCard
-              title={t("technicalData.battery")}
-              value={car.battery}
-            />
-
-            <SpecCard
-              title={t("technicalData.soh")}
-              value={car.soh}
-            />
-
-            <SpecCard
-              title={t("technicalData.vin")}
-              value={car.vin}
-            />
-
-            <SpecCard
-              title={t("technicalData.seats")}
-              value={car.seats?.toString()}
-            />
-
-          </div>
-
-        </section>
-
-        {/* EQUIPMENT */}
-
-        <section className="mt-14">
-
-          <h2 className="mb-6 text-3xl font-black">
-            {t("equipment.title")}
-          </h2>
-
-          {car.features?.length ? (
-
-            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-
-              {car.features.map((feature) => (
-
-                <div
-                  key={feature}
-                  className="rounded-xl border border-white/10 bg-[#151922] px-4 py-3 text-sm font-medium text-white transition hover:border-lime-400/40 hover:bg-[#1a1f2a]"
-                >
-                  <span className="mr-2 text-lime-400">
-                    ✓
-                  </span>
-
-                  {feature}
-                </div>
-
-              ))}
-
-            </div>
-
-          ) : (
-
-            <div className="rounded-2xl border border-white/10 bg-[#10141d] p-6 text-gray-400">
-              {t("equipment.empty")}
-            </div>
-
-          )}
-
-        </section>
-
-        {/* DESCRIPTION */}
-
-        <section className="mt-14">
-
-          <h2 className="mb-6 text-3xl font-black">
-            {t("description.title")}
-          </h2>
-
-          <div className="rounded-3xl border border-white/10 bg-[#10141d] p-8 leading-8 text-gray-300">
-
-            {car.description || t("description.empty")}
-
-          </div>
-
-        </section>
+      {/* BACK BUTTON */}
+
+      <div className="mx-auto max-w-[1250px] px-4 pt-5 sm:px-6 lg:px-8">
+
+        <Link
+          href={`/${locale}/cars`}
+          className="
+            inline-flex
+            items-center
+            gap-2
+            rounded-xl
+            border
+            border-lime-400/50
+            bg-[#10141d]
+            px-4
+            py-2.5
+            text-sm
+            font-bold
+            text-white
+            shadow-lg
+            shadow-black/20
+            transition-all
+            hover:border-lime-400
+            hover:bg-lime-400
+            hover:text-black
+            hover:shadow-lime-400/10
+          "
+        >
+          <ArrowLeft size={17} />
+
+          {t("back")}
+        </Link>
 
       </div>
+
+      {/* MAIN CONTENT */}
+
+      <div className="mx-auto max-w-[1250px] px-4 pb-16 pt-5 sm:px-6 lg:px-8">
+
+        <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_350px] xl:gap-7">
+
+          {/* LEFT COLUMN */}
+
+          <div className="min-w-0">
+
+            <CarGallery
+              images={images}
+              title={`${car.brand} ${car.model}`}
+              onOpen={openFullscreen}
+            />
+
+            <CarSpecs car={car} />
+
+            <CarEquipment
+              features={car.features}
+            />
+
+            <CarDescription
+              description={car.description}
+            />
+
+          </div>
+
+          {/* RIGHT COLUMN */}
+
+          <aside className="min-w-0 lg:sticky lg:top-5">
+            <CarSidebar car={car} />
+          </aside>
+
+        </div>
+
+      </div>
+
+      {/* FULLSCREEN GALLERY */}
+
+      <FullscreenGallery
+        open={fullscreenOpen}
+        images={images}
+        initialSlide={initialSlide}
+        onClose={() =>
+          setFullscreenOpen(false)
+        }
+      />
 
     </main>
   );
-}
-
-function QuickInfo({
-  icon,
-  label,
-  value,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value?: string | null;
-}) {
-  return (
-    <div className="flex items-center gap-4">
-
-      <div className="rounded-xl bg-[#151922] p-3 text-lime-400">
-        {icon}
-      </div>
-
-      <div>
-
-        <div className="text-sm text-gray-500">
-          {label}
-        </div>
-
-        <div className="font-semibold">
-          {value || "-"}
-        </div>
-
-      </div>
-
-    </div>
-  );
-}
-
-function SpecCard({
-  title,
-  value,
-}: {
-  title: string;
-  value?: string | null;
-}) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-[#10141d] p-6">
-
-      <div className="text-sm uppercase tracking-[3px] text-gray-500">
-        {title}
-      </div>
-
-      <div className="mt-3 text-xl font-bold">
-        {value || "-"}
-      </div>
-
-    </div>
-  );
-}
-
-function translateTransmission(
-  value: string | null | undefined,
-  t: ReturnType<typeof useTranslations<"carDetails">>
-) {
-  switch (value) {
-    case "Автомат":
-      return t("values.automatic");
-
-    case "Механіка":
-      return t("values.manual");
-
-    default:
-      return value;
-  }
-}
-
-function translateDrive(
-  value: string | null | undefined,
-  t: ReturnType<typeof useTranslations<"carDetails">>
-) {
-  switch (value) {
-    case "Передній":
-      return t("values.front");
-
-    case "Задній":
-      return t("values.rear");
-
-    case "Повний":
-      return t("values.awd");
-
-    default:
-      return value;
-  }
 }
