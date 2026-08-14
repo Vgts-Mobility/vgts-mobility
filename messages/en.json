@@ -25,6 +25,41 @@
     "individualApproach": "individual approach",
     "concept": "VGTS MOBILITY CONCEPT"
   },
+  "about": {
+  "back": "Back to homepage",
+  "eyebrow": "ABOUT VGTS MOBILITY",
+  "title": "Your partner for cars from Europe",
+  "tagline": "Quality cars from Europe",
+  "description": "VGTS Mobility s.r.o. specializes in selling and individually importing verified vehicles from across Europe. We help customers find the right car, verify its history and take care of the complete process until the keys are handed over.",
+  "badges": {
+    "verified": "Verified cars",
+    "europe": "All of Europe",
+    "individual": "Individual approach"
+  },
+  "features": {
+    "selection": {
+      "title": "Car selection",
+      "description": "We find a vehicle according to your requirements and budget."
+    },
+    "verification": {
+      "title": "History verification",
+      "description": "We verify the vehicle history and technical condition."
+    },
+    "europe": {
+      "title": "European import",
+      "description": "We arrange vehicle transportation from European markets."
+    },
+    "service": {
+      "title": "Complete service",
+      "description": "We take care of administration, registration and handover."
+    }
+  },
+  "foundedLabel": "Established",
+  "founded": "25 March 2026",
+  "locationLabel": "Registered office",
+  "managementLabel": "Managing directors",
+  "contactButton": "Contact us"
+},
 
   "cars": {
     "eyebrow": "CURRENT OFFER",
@@ -34,7 +69,49 @@
     "loadError": "Error loading vehicles",
     "empty": "There are currently no vehicles available."
   },
+  "reviews": {
+  "eyebrow": "Customer reviews",
+  "title": "What our customers say",
+  "description": "Your experience and feedback are very important to us.",
+  "averageRating": "Average rating",
+  "reviewsCount": "reviews",
+  "leaveReview": "Leave a review",
+  "viewAll": "View all reviews",
+  "latestReviews": "Latest reviews",
+"noReviews": "No reviews yet",
+"beFirst": "Be the first to share your experience!",
 
+  "name": "Your name",
+  "namePlaceholder": "For example, John",
+
+  "rating": "Your rating",
+  "stars": "stars",
+
+  "text": "Your review",
+  "textPlaceholder": "Tell us about your experience with VGTS Mobility...",
+
+  "photo": "Photo",
+  "choosePhoto": "Add a photo",
+  "photoOptional": "Optional",
+  "photoHint": "JPG, PNG or WEBP, maximum 5 MB.",
+
+  "submit": "Submit review",
+  "sending": "Sending...",
+
+  "successTitle": "Thank you for your review!",
+  "successDescription": "Your review has been submitted successfully and will be published after approval.",
+  "leaveAnother": "Leave another review",
+
+  "moderationNotice": "Your review will be checked before publication.",
+
+  "nameRequired": "Please enter your name.",
+  "ratingRequired": "Please select a rating from 1 to 5 stars.",
+  "textRequired": "Please write your review.",
+  "photoType": "The photo must be JPG, PNG or WEBP.",
+  "photoSize": "The photo can be a maximum of 5 MB.",
+  "photoUploadError": "The photo could not be uploaded.",
+  "submitError": "The review could not be submitted. Please try again."
+},
   "carCard": {
     "status": {
       "available": "Available",

@@ -25,6 +25,41 @@
     "individualApproach": "individuální přístup",
     "concept": "KONCEPT VGTS MOBILITY"
   },
+  "about": {
+  "back": "Zpět na hlavní stránku",
+  "eyebrow": "O VGTS MOBILITY",
+  "title": "Partner pro váš vůz z Evropy",
+  "tagline": "Kvalitní vozy z Evropy",
+  "description": "VGTS Mobility s.r.o. se specializuje na prodej a individuální dovoz prověřených automobilů z celé Evropy. Pomáháme zákazníkům najít správný vůz, prověřit jeho historii a zajistit kompletní proces až po předání klíčů.",
+  "badges": {
+    "verified": "Prověřené vozy",
+    "europe": "Celá Evropa",
+    "individual": "Individuální přístup"
+  },
+  "features": {
+    "selection": {
+      "title": "Výběr vozu",
+      "description": "Najdeme vůz podle vašich požadavků a rozpočtu."
+    },
+    "verification": {
+      "title": "Prověření historie",
+      "description": "Kontrolujeme historii a technický stav vozidel."
+    },
+    "europe": {
+      "title": "Dovoz z Evropy",
+      "description": "Zajišťujeme dopravu vozidel z evropských trhů."
+    },
+    "service": {
+      "title": "Kompletní servis",
+      "description": "Postaráme se o administrativu, registraci i předání."
+    }
+  },
+  "foundedLabel": "Založena",
+  "founded": "25. března 2026",
+  "locationLabel": "Sídlo",
+  "managementLabel": "Jednatelé",
+  "contactButton": "Kontaktovat nás"
+},
 
   "cars": {
     "eyebrow": "AKTUÁLNÍ NABÍDKA",
@@ -34,6 +69,49 @@
     "loadError": "Chyba při načítání vozidel",
     "empty": "Zatím nejsou k dispozici žádná vozidla."
   },
+  "reviews": {
+  "eyebrow": "Recenze zákazníků",
+  "title": "Co říkají naši zákazníci",
+  "description": "Vaše zkušenosti a hodnocení jsou pro nás důležité.",
+  "averageRating": "Průměrné hodnocení",
+  "reviewsCount": "recenzí",
+  "leaveReview": "Zanechat recenzi",
+  "viewAll": "Zobrazit všechny recenze",
+  "latestReviews": "Nejnovější recenze",
+"noReviews": "Zatím žádné recenze",
+"beFirst": "Buďte první, kdo sdílí svou zkušenost!",
+
+  "name": "Vaše jméno",
+  "namePlaceholder": "Např. Jan Novák",
+
+  "rating": "Vaše hodnocení",
+  "stars": "hvězdiček",
+
+  "text": "Vaše recenze",
+  "textPlaceholder": "Napište nám o své zkušenosti s VGTS Mobility...",
+
+  "photo": "Fotografie",
+  "choosePhoto": "Přidat fotografii",
+  "photoOptional": "Volitelné",
+  "photoHint": "JPG, PNG nebo WEBP, maximálně 5 MB.",
+
+  "submit": "Odeslat recenzi",
+  "sending": "Odesílání...",
+
+  "successTitle": "Děkujeme za vaši recenzi!",
+  "successDescription": "Vaše recenze byla úspěšně odeslána a bude zveřejněna po schválení.",
+  "leaveAnother": "Zanechat další recenzi",
+
+  "moderationNotice": "Recenze bude před zveřejněním zkontrolována.",
+
+  "nameRequired": "Zadejte prosím své jméno.",
+  "ratingRequired": "Vyberte prosím hodnocení od 1 do 5 hvězdiček.",
+  "textRequired": "Napište prosím svou recenzi.",
+  "photoType": "Fotografie musí být ve formátu JPG, PNG nebo WEBP.",
+  "photoSize": "Fotografie může mít maximálně 5 MB.",
+  "photoUploadError": "Fotografii se nepodařilo nahrát.",
+  "submitError": "Recenzi se nepodařilo odeslat. Zkuste to prosím znovu."
+},
 
   "carCard": {
     "status": {

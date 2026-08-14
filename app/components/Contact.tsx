@@ -1,168 +1,329 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
-  Phone,
-  Mail,
-  Building2,
+  Star,
+  MessageCircle,
+  Users,
 } from "lucide-react";
 
 import { useTranslations } from "next-intl";
+import { createClient } from "@supabase/supabase-js";
+
+import ReviewForm from "@/app/components/reviews/ReviewForm";
+
+type Review = {
+  id: string;
+  name: string;
+  rating: number;
+  text: string;
+  photo_url: string | null;
+  status: string;
+  created_at: string;
+};
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
+);
 
 export default function Contact() {
-  const t = useTranslations("contact");
+  const t = useTranslations("reviews");
+
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [averageRating, setAverageRating] = useState("0.0");
+  const [totalReviews, setTotalReviews] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadReviews() {
+      try {
+        const { data, error } = await supabase
+          .from("reviews")
+          .select(
+            "id, name, rating, text, photo_url, status, created_at"
+          )
+          .eq("status", "approved")
+          .order("created_at", {
+            ascending: false,
+          });
+
+        if (error) {
+          console.error("Reviews loading error:", error);
+          return;
+        }
+
+        const allReviews = data || [];
+
+        setTotalReviews(allReviews.length);
+
+        if (allReviews.length > 0) {
+          const average =
+            allReviews.reduce(
+              (sum, review) => sum + review.rating,
+              0
+            ) / allReviews.length;
+
+          setAverageRating(average.toFixed(1));
+        } else {
+          setAverageRating("0.0");
+        }
+
+        setReviews(allReviews.slice(0, 6));
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadReviews();
+  }, []);
 
   return (
     <section
-      id="contact"
-      className="bg-[#05070d] py-12 sm:py-14 lg:py-16"
+      id="reviews"
+      className="bg-[#05070d] py-8 sm:py-10"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
 
+        {/* ========================= */}
         {/* HEADER */}
+        {/* ========================= */}
 
-        <div className="mb-8 text-center sm:mb-10">
+        <div className="mb-4 text-center">
 
-          <p className="text-[10px] font-semibold uppercase tracking-[4px] text-lime-400 sm:text-xs sm:tracking-[5px]">
+          <p className="text-[9px] font-semibold uppercase tracking-[3px] text-lime-400">
             {t("eyebrow")}
           </p>
 
-          <h2 className="mt-2 text-3xl font-black leading-tight text-white sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-1 text-2xl font-black leading-tight text-white sm:text-3xl">
             {t("title")}
           </h2>
 
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-gray-400 sm:text-[15px]">
+          <p className="mx-auto mt-1 max-w-xl text-[11px] leading-4 text-gray-500">
             {t("description")}
           </p>
 
         </div>
 
-        {/* CONTACT CARDS */}
+        {/* ========================= */}
+        {/* STATISTICS */}
+        {/* ========================= */}
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="mb-3 grid grid-cols-2 gap-2">
 
-          {/* TARAS */}
+          {/* AVERAGE */}
 
-          <div className="rounded-2xl border border-white/10 bg-[#10141d] p-5 transition hover:border-lime-400/40 sm:p-6">
+          <div className="flex h-12 items-center gap-2.5 rounded-lg border border-lime-400/20 bg-[#10141d] px-3">
 
-            <div className="flex items-center gap-3 text-lime-400">
-
-              <Phone size={20} />
-
-              <h3 className="text-lg font-bold text-white">
-                Taras Savenko
-              </h3>
-
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-lime-400/10">
+              <Star
+                size={15}
+                fill="currentColor"
+                className="text-lime-400"
+              />
             </div>
 
-            <p className="mt-4 text-xl font-bold text-white sm:text-2xl">
-              +420 739 974 155
-            </p>
+            <div>
+              <p className="text-[8px] text-gray-500">
+                {t("averageRating")}
+              </p>
 
-            <a
-              href="https://wa.me/420739974155"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                mt-4
-                inline-block
-                rounded-full
-                bg-lime-400
-                px-5
-                py-2.5
-                text-sm
-                font-semibold
-                text-black
-                transition
-                hover:scale-105
-              "
-            >
-              {t("whatsapp")}
-            </a>
+              <div className="flex items-baseline gap-1">
+                <span className="text-base font-bold leading-none text-white">
+                  {averageRating}
+                </span>
+
+                <span className="text-[8px] text-gray-500">
+                  / 5
+                </span>
+              </div>
+            </div>
 
           </div>
 
-          {/* VADYM */}
+          {/* COUNT */}
 
-          <div className="rounded-2xl border border-white/10 bg-[#10141d] p-5 transition hover:border-lime-400/40 sm:p-6">
+          <div className="flex h-12 items-center gap-2.5 rounded-lg border border-white/10 bg-[#10141d] px-3">
 
-            <div className="flex items-center gap-3 text-lime-400">
-
-              <Phone size={20} />
-
-              <h3 className="text-lg font-bold text-white">
-                Vadym Horbach
-              </h3>
-
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-blue-500/10">
+              <Users
+                size={15}
+                className="text-blue-400"
+              />
             </div>
 
-            <p className="mt-4 text-xl font-bold text-white sm:text-2xl">
-              +420 703 695 936
-            </p>
+            <div>
+              <p className="text-[8px] text-gray-500">
+                {t("reviewsCount")}
+              </p>
 
-            <a
-              href="https://wa.me/420703695936"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                mt-4
-                inline-block
-                rounded-full
-                bg-lime-400
-                px-5
-                py-2.5
-                text-sm
-                font-semibold
-                text-black
-                transition
-                hover:scale-105
-              "
-            >
-              {t("whatsapp")}
-            </a>
+              <span className="text-base font-bold leading-none text-white">
+                {totalReviews}
+              </span>
+            </div>
 
           </div>
 
-          {/* EMAIL */}
+        </div>
 
-          <div className="rounded-2xl border border-white/10 bg-[#10141d] p-5 transition hover:border-blue-400/40 sm:p-6">
+        {/* ========================= */}
+        {/* REVIEWS + FORM */}
+        {/* ========================= */}
 
-            <div className="flex items-center gap-3 text-blue-400">
+        <div className="grid items-stretch gap-3 lg:grid-cols-2">
 
-              <Mail size={20} />
+          {/* ========================= */}
+          {/* LATEST REVIEWS */}
+          {/* ========================= */}
 
-              <h3 className="text-lg font-bold text-white">
-                {t("email")}
+          <div className="h-[430px] rounded-xl border border-white/10 bg-[#10141d] p-3">
+
+            <div className="mb-2 flex items-center gap-2">
+
+              <MessageCircle
+                size={15}
+                className="text-lime-400"
+              />
+
+              <h3 className="text-sm font-bold text-white">
+                {t("latestReviews")}
               </h3>
 
             </div>
 
-            <p className="mt-4 text-base text-gray-300 sm:text-lg">
-              vgts-mobility@outlook.com
-            </p>
+            <div className="h-[390px] overflow-y-auto pr-1">
+
+              {loading ? (
+                <div className="flex h-full items-center justify-center rounded-lg border border-dashed border-white/10">
+                  <span className="text-xs text-gray-500">
+                    ...
+                  </span>
+                </div>
+              ) : reviews.length === 0 ? (
+                <div className="flex h-full flex-col items-center justify-center rounded-lg border border-dashed border-white/10 text-center">
+
+                  <Star
+                    size={24}
+                    className="text-gray-600"
+                  />
+
+                  <p className="mt-2 text-xs font-semibold text-white">
+                    {t("noReviews")}
+                  </p>
+
+                  <p className="mt-1 text-[10px] text-gray-600">
+                    {t("beFirst")}
+                  </p>
+
+                </div>
+              ) : (
+                <div className="space-y-2">
+
+                  {reviews.map((review) => (
+                    <article
+                      key={review.id}
+                      className="rounded-lg border border-white/10 bg-[#0a0d14] p-2.5"
+                    >
+
+                      <div className="flex gap-2.5">
+
+                        {/* AVATAR / PHOTO */}
+
+                        {review.photo_url ? (
+                          <img
+                            src={review.photo_url}
+                            alt={review.name}
+                            className="h-8 w-8 shrink-0 rounded-full object-cover"
+                          />
+                        ) : (
+                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-lime-400/10 text-[11px] font-bold text-lime-400">
+                            {review.name
+                              .charAt(0)
+                              .toUpperCase()}
+                          </div>
+                        )}
+
+                        {/* CONTENT */}
+
+                        <div className="min-w-0 flex-1">
+
+                          <div className="flex items-center justify-between gap-2">
+
+                            <p className="truncate text-[11px] font-bold text-white">
+                              {review.name}
+                            </p>
+
+                            <div className="flex shrink-0">
+                              {Array.from(
+                                { length: 5 },
+                                (_, index) => {
+                                  const active =
+                                    index <
+                                    review.rating;
+
+                                  return (
+                                    <Star
+                                      key={index}
+                                      size={9}
+                                      fill={
+                                        active
+                                          ? "currentColor"
+                                          : "none"
+                                      }
+                                      className={
+                                        active
+                                          ? "text-yellow-400"
+                                          : "text-gray-700"
+                                      }
+                                    />
+                                  );
+                                }
+                              )}
+                            </div>
+
+                          </div>
+
+                          <p className="mt-1 text-[10px] leading-4 text-gray-400">
+                            {review.text}
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                    </article>
+                  ))}
+
+                </div>
+              )}
+
+            </div>
 
           </div>
 
-          {/* COMPANY */}
+          {/* ========================= */}
+          {/* REVIEW FORM */}
+          {/* ========================= */}
 
-          <div className="rounded-2xl border border-white/10 bg-[#10141d] p-5 transition hover:border-fuchsia-400/40 sm:p-6">
+          <div className="h-[430px] overflow-hidden rounded-xl border border-lime-400/20 bg-[#10141d] p-3">
 
-            <div className="flex items-center gap-3 text-fuchsia-400">
+            <div className="mb-2">
 
-              <Building2 size={20} />
-
-              <h3 className="text-lg font-bold text-white">
-                VGTS Mobility s.r.o.
+              <h3 className="text-sm font-bold text-white">
+                {t("leaveReview")}
               </h3>
+
+              <p className="mt-0.5 text-[9px] leading-3 text-gray-500">
+                {t("moderationNotice")}
+              </p>
 
             </div>
 
-            <div className="mt-4 space-y-1.5 text-sm text-gray-300">
+            <div className="h-[395px] overflow-y-auto pr-1">
 
-              <p>IČO: 24876526</p>
-
-              <p>DIČ: CZ24873626</p>
-
-              <p>{t("location")}</p>
+              <ReviewForm />
 
             </div>
 

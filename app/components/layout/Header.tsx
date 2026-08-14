@@ -46,7 +46,9 @@ export default function Header() {
     }
   }
 
-  function handleLogoClick(e: React.MouseEvent) {
+  function handleLogoClick(
+    e: React.MouseEvent<HTMLAnchorElement>
+  ) {
     if (longPressTriggered.current) {
       e.preventDefault();
       longPressTriggered.current = false;
@@ -84,6 +86,34 @@ export default function Header() {
             behavior: "smooth",
           });
       }, 100);
+    }
+
+    setMobileOpen(false);
+  }
+
+  function goToContact(
+    e: React.MouseEvent<HTMLAnchorElement>
+  ) {
+    e.preventDefault();
+
+    if (pathname === "/") {
+      document
+        .getElementById("contact")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+    } else {
+      router.push("/");
+
+      setTimeout(() => {
+        document
+          .getElementById("contact")
+          ?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+      }, 150);
     }
 
     setMobileOpen(false);
@@ -173,11 +203,10 @@ export default function Header() {
               "
             />
 
-            <div className="leading-none">
-
+            <div>
               <h2
                 className="
-                  text-[22px]
+                  text-xl
                   font-black
                   tracking-wide
                   text-white
@@ -192,18 +221,17 @@ export default function Header() {
 
               <p
                 className="
-                  mt-1
-                  text-[9px]
+                  mt-0.5
+                  text-[8px]
                   uppercase
-                  tracking-[2.5px]
+                  tracking-[2px]
                   text-white/55
-                  sm:text-[10px]
-                  sm:tracking-[3px]
+                  sm:text-[9px]
+                  sm:tracking-[2.5px]
                 "
               >
                 {t("tagline")}
               </p>
-
             </div>
           </Link>
 
@@ -218,6 +246,8 @@ export default function Header() {
               xl:flex
             "
           >
+
+            {/* HOME */}
 
             <Link
               href="/"
@@ -242,6 +272,8 @@ export default function Header() {
             >
               {t("home")}
             </Link>
+
+            {/* CARS */}
 
             <a
               href="#cars"
@@ -268,8 +300,11 @@ export default function Header() {
               {t("cars")}
             </a>
 
+            {/* IMPORT / SERVICES */}
+
             <a
               href="#services"
+              onClick={() => setMobileOpen(false)}
               className="
                 relative
                 text-[17px]
@@ -292,8 +327,11 @@ export default function Header() {
               {t("import")}
             </a>
 
-            <a
-              href="#about"
+            {/* ABOUT */}
+
+            <Link
+              href="/about"
+              onClick={() => setMobileOpen(false)}
               className="
                 relative
                 text-[17px]
@@ -314,10 +352,13 @@ export default function Header() {
               "
             >
               {t("about")}
-            </a>
+            </Link>
+
+            {/* CONTACT */}
 
             <a
               href="#contact"
+              onClick={goToContact}
               className="
                 relative
                 text-[17px]
@@ -483,6 +524,8 @@ export default function Header() {
           "
         >
 
+          {/* HOME */}
+
           <Link
             href="/"
             onClick={() =>
@@ -502,6 +545,8 @@ export default function Header() {
             {t("home")}
           </Link>
 
+          {/* CARS */}
+
           <a
             href="#cars"
             onClick={goToCars}
@@ -518,6 +563,8 @@ export default function Header() {
           >
             {t("cars")}
           </a>
+
+          {/* IMPORT */}
 
           <a
             href="#services"
@@ -538,8 +585,10 @@ export default function Header() {
             {t("import")}
           </a>
 
-          <a
-            href="#about"
+          {/* ABOUT */}
+
+          <Link
+            href="/about"
             onClick={() =>
               setMobileOpen(false)
             }
@@ -555,13 +604,13 @@ export default function Header() {
             "
           >
             {t("about")}
-          </a>
+          </Link>
+
+          {/* CONTACT */}
 
           <a
             href="#contact"
-            onClick={() =>
-              setMobileOpen(false)
-            }
+            onClick={goToContact}
             className="
               border-b
               border-white/10
@@ -605,6 +654,7 @@ export default function Header() {
                 py-1.5
                 text-xs
                 font-bold
+                transition
                 ${
                   locale === "cs"
                     ? "border-lime-400 bg-lime-400/15 text-lime-400"
@@ -627,6 +677,7 @@ export default function Header() {
                 py-1.5
                 text-xs
                 font-bold
+                transition
                 ${
                   locale === "uk"
                     ? "border-lime-400 bg-lime-400/15 text-lime-400"
@@ -649,6 +700,7 @@ export default function Header() {
                 py-1.5
                 text-xs
                 font-bold
+                transition
                 ${
                   locale === "en"
                     ? "border-lime-400 bg-lime-400/15 text-lime-400"

@@ -6,7 +6,7 @@ export default function Hero() {
   const t = useTranslations("hero");
 
   return (
-    <section className="relative overflow-hidden bg-[#05070d] pt-12 pb-8 sm:pt-14 sm:pb-10 lg:pt-16 lg:pb-12">
+    <section className="relative overflow-hidden bg-[#05070d] pt-24 pb-8 sm:pt-20 sm:pb-10 lg:pt-16 lg:pb-12">
 
       {/* BACKGROUND */}
 
