@@ -24,12 +24,21 @@ export default function CarGallery({
   const [thumbsSwiper, setThumbsSwiper] =
     useState<SwiperType | null>(null);
 
+  const [mainSwiper, setMainSwiper] =
+    useState<SwiperType | null>(null);
+
   if (!images.length) {
     return (
       <div className="flex h-[250px] items-center justify-center rounded-3xl border border-white/10 bg-[#10141d] text-gray-500 sm:h-[300px] lg:h-[360px]">
         Žádné fotografie
       </div>
     );
+  }
+
+  function selectImage(index: number) {
+    if (mainSwiper && !mainSwiper.destroyed) {
+      mainSwiper.slideTo(index);
+    }
   }
 
   return (
@@ -41,6 +50,7 @@ export default function CarGallery({
 
         <Swiper
           modules={[Navigation, Thumbs]}
+          onSwiper={setMainSwiper}
           navigation
           thumbs={{
             swiper:
@@ -62,7 +72,7 @@ export default function CarGallery({
 
           {images.map((image, index) => (
 
-            <SwiperSlide key={image}>
+            <SwiperSlide key={`${image}-${index}`}>
 
               <div
                 onClick={() => onOpen?.(index)}
@@ -132,7 +142,11 @@ export default function CarGallery({
 
         {images.map((image, index) => (
 
-          <SwiperSlide key={image}>
+          <SwiperSlide
+            key={`${image}-thumb-${index}`}
+            onClick={() => selectImage(index)}
+            className="cursor-pointer"
+          >
 
             <Image
               src={image}

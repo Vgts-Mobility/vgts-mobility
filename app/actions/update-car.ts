@@ -27,6 +27,13 @@ export async function updateCar(
 
   const features = formData.getAll("features").map(String);
 
+  const sohValue = formData.get("soh");
+
+  const soh =
+    sohValue !== null && String(sohValue).trim() !== ""
+      ? Number(sohValue)
+      : null;
+
   await updateCarModel(id, {
     brand,
     model,
@@ -40,13 +47,17 @@ export async function updateCar(
     power: String(formData.get("power") || ""),
 
     battery: String(formData.get("battery") || ""),
+    soh,
+
     color: String(formData.get("color") || ""),
 
     transmission: String(
       formData.get("transmission") || ""
     ),
 
-    drive: String(formData.get("drive") || ""),
+    drive: String(
+      formData.get("drive") || ""
+    ),
 
     body_type: String(
       formData.get("body_type") || ""
@@ -56,11 +67,17 @@ export async function updateCar(
       formData.get("interior_color") || ""
     ),
 
-    vin: String(formData.get("vin") || ""),
+    vin: String(
+      formData.get("vin") || ""
+    ),
 
-    seats: Number(formData.get("seats") || 0),
+    seats: Number(
+      formData.get("seats") || 0
+    ),
 
-    owners: Number(formData.get("owners") || 0),
+    owners: Number(
+      formData.get("owners") || 0
+    ),
 
     service_history:
       formData.get("service_history") === "on",

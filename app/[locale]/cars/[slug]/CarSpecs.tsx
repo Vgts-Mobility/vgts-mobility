@@ -52,7 +52,12 @@ export default function CarSpecs({
 
         <SpecCard
           title={t("soh")}
-          value={car.soh}
+          value={
+            car.soh !== null &&
+            car.soh !== undefined
+              ? `${car.soh}%`
+              : null
+          }
         />
 
         <SpecCard
@@ -76,7 +81,7 @@ function SpecCard({
   value,
 }: {
   title: string;
-  value?: string | null;
+  value?: string | number | null;
 }) {
   return (
     <div
@@ -97,7 +102,11 @@ function SpecCard({
       </div>
 
       <div className="mt-1 text-sm font-bold text-white sm:text-base">
-        {value || "-"}
+        {value !== null &&
+        value !== undefined &&
+        value !== ""
+          ? value
+          : "-"}
       </div>
 
     </div>

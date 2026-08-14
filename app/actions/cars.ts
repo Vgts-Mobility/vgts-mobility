@@ -27,7 +27,11 @@ export async function createCarAction(formData: FormData) {
 
   const slug = slugify(`${brand}-${model}`);
 
-  const features = formData.getAll("features").map(String);
+  const features = formData
+    .getAll("features")
+    .map(String);
+
+  const sohValue = formData.get("soh");
 
   const car = await createCar({
     brand,
@@ -42,17 +46,40 @@ export async function createCarAction(formData: FormData) {
     power: String(formData.get("power") || ""),
 
     battery: String(formData.get("battery") || ""),
+
+    soh:
+      sohValue !== null &&
+      String(sohValue).trim() !== ""
+        ? Number(sohValue)
+        : null,
+
     color: String(formData.get("color") || ""),
 
-    transmission: String(formData.get("transmission") || ""),
-    drive: String(formData.get("drive") || ""),
-    body_type: String(formData.get("body_type") || ""),
-    interior_color: String(formData.get("interior_color") || ""),
+    transmission: String(
+      formData.get("transmission") || ""
+    ),
+
+    drive: String(
+      formData.get("drive") || ""
+    ),
+
+    body_type: String(
+      formData.get("body_type") || ""
+    ),
+
+    interior_color: String(
+      formData.get("interior_color") || ""
+    ),
 
     vin: String(formData.get("vin") || ""),
 
-    seats: Number(formData.get("seats") || 0),
-    owners: Number(formData.get("owners") || 0),
+    seats: Number(
+      formData.get("seats") || 0
+    ),
+
+    owners: Number(
+      formData.get("owners") || 0
+    ),
 
     service_history:
       formData.get("service_history") === "on",
@@ -67,9 +94,15 @@ export async function createCarAction(formData: FormData) {
   const files = formData.getAll("files") as File[];
 
   if (files.length > 0) {
-    const uploaded = await uploadImages(slug, files);
+    const uploaded = await uploadImages(
+      slug,
+      files
+    );
 
-    await updateCarImages(car.id, uploaded);
+    await updateCarImages(
+      car.id,
+      uploaded
+    );
   }
 
   revalidatePath("/");

@@ -14,6 +14,7 @@ type Car = {
   power: string;
 
   battery: string | null;
+  soh?: number | null;
   color: string | null;
 
   transmission?: string | null;
@@ -85,6 +86,8 @@ export default function CarForm({
     >
       <div className="grid gap-6 md:grid-cols-2">
 
+        {/* МАРКА */}
+
         <div>
           <label className="mb-2 block text-sm font-medium">
             Марка
@@ -98,6 +101,8 @@ export default function CarForm({
           />
         </div>
 
+        {/* МОДЕЛЬ */}
+
         <div>
           <label className="mb-2 block text-sm font-medium">
             Модель
@@ -110,6 +115,8 @@ export default function CarForm({
             className={inputClass}
           />
         </div>
+
+        {/* РІК */}
 
         <div>
           <label className="mb-2 block text-sm font-medium">
@@ -125,6 +132,8 @@ export default function CarForm({
           />
         </div>
 
+        {/* ЦІНА */}
+
         <div>
           <label className="mb-2 block text-sm font-medium">
             Ціна
@@ -138,6 +147,8 @@ export default function CarForm({
             className={inputClass}
           />
         </div>
+
+        {/* ПРОБІГ */}
 
         <div>
           <label className="mb-2 block text-sm font-medium">
@@ -153,6 +164,8 @@ export default function CarForm({
           />
         </div>
 
+        {/* ПАЛИВО */}
+
         <div>
           <label className="mb-2 block text-sm font-medium">
             Паливо
@@ -164,6 +177,8 @@ export default function CarForm({
             className={inputClass}
           />
         </div>
+
+        {/* ПОТУЖНІСТЬ */}
 
         <div>
           <label className="mb-2 block text-sm font-medium">
@@ -177,6 +192,8 @@ export default function CarForm({
           />
         </div>
 
+        {/* БАТАРЕЯ */}
+
         <div>
           <label className="mb-2 block text-sm font-medium">
             Батарея
@@ -185,9 +202,41 @@ export default function CarForm({
           <input
             name="battery"
             defaultValue={car?.battery ?? ""}
+            placeholder="Наприклад: 82 kWh"
             className={inputClass}
           />
         </div>
+
+        {/* SOH */}
+
+        <div>
+          <label className="mb-2 block text-sm font-medium">
+            Стан батареї (SOH)
+          </label>
+
+          <div className="relative">
+            <input
+              type="number"
+              name="soh"
+              min="0"
+              max="100"
+              step="0.1"
+              defaultValue={car?.soh ?? ""}
+              placeholder="Наприклад: 95"
+              className={`${inputClass} pr-12`}
+            />
+
+            <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm text-text-muted">
+              %
+            </span>
+          </div>
+
+          <p className="mt-1.5 text-xs text-text-muted">
+            Стан батареї від 0 до 100%.
+          </p>
+        </div>
+
+        {/* VIN */}
 
         <div>
           <label className="mb-2 block text-sm font-medium">
@@ -201,6 +250,8 @@ export default function CarForm({
           />
         </div>
 
+        {/* КОЛІР */}
+
         <div>
           <label className="mb-2 block text-sm font-medium">
             Колір кузова
@@ -213,6 +264,8 @@ export default function CarForm({
           />
         </div>
 
+        {/* КОЛІР САЛОНУ */}
+
         <div>
           <label className="mb-2 block text-sm font-medium">
             Колір салону
@@ -224,6 +277,8 @@ export default function CarForm({
             className={inputClass}
           />
         </div>
+
+        {/* КОРОБКА */}
 
         <div>
           <label className="mb-2 block text-sm font-medium">
@@ -241,6 +296,8 @@ export default function CarForm({
           </select>
         </div>
 
+        {/* ПРИВІД */}
+
         <div>
           <label className="mb-2 block text-sm font-medium">
             Привід
@@ -257,6 +314,8 @@ export default function CarForm({
             <option>Повний AWD</option>
           </select>
         </div>
+
+        {/* КУЗОВ */}
 
         <div>
           <label className="mb-2 block text-sm font-medium">
@@ -278,6 +337,8 @@ export default function CarForm({
           </select>
         </div>
 
+        {/* МІСЦЯ */}
+
         <div>
           <label className="mb-2 block text-sm font-medium">
             Кількість місць
@@ -291,6 +352,8 @@ export default function CarForm({
           />
         </div>
 
+        {/* ВЛАСНИКИ */}
+
         <div>
           <label className="mb-2 block text-sm font-medium">
             Власників
@@ -303,7 +366,10 @@ export default function CarForm({
             className={inputClass}
           />
         </div>
-                {car && (
+
+        {/* СТАТУС */}
+
+        {car && (
           <div>
             <label className="mb-2 block text-sm font-medium">
               Статус
@@ -322,6 +388,8 @@ export default function CarForm({
           </div>
         )}
 
+        {/* СЕРВІСНА ІСТОРІЯ */}
+
         <div className="flex items-center gap-3 md:col-span-2">
           <input
             id="service_history"
@@ -339,6 +407,8 @@ export default function CarForm({
           </label>
         </div>
       </div>
+
+      {/* КОМПЛЕКТАЦІЯ */}
 
       <div>
         <h2 className="mb-5 text-xl font-bold text-white">
@@ -367,7 +437,11 @@ export default function CarForm({
         </div>
       </div>
 
+      {/* ФОТО */}
+
       {!car && <ImageUpload />}
+
+      {/* ОПИС */}
 
       <div>
         <label className="mb-2 block text-sm font-medium">
@@ -382,6 +456,8 @@ export default function CarForm({
           className={inputClass}
         />
       </div>
+
+      {/* SUBMIT */}
 
       <div className="flex justify-end">
         <button

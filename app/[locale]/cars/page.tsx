@@ -27,7 +27,7 @@ export default async function CarsPage({
   if (error) {
     return (
       <main className="min-h-screen bg-[#05070d]">
-        <div className="mx-auto max-w-[1380px] px-4 py-16 text-center text-red-500 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1200px] px-4 py-12 text-center text-red-500 sm:px-6">
           {t("loadError")}
         </div>
       </main>
@@ -49,13 +49,13 @@ export default async function CarsPage({
   });
 
   return (
-    <main className="min-h-screen bg-[#05070d] py-8 sm:py-10 lg:py-12">
+    <main className="min-h-screen bg-[#05070d] py-6 sm:py-8 lg:py-10">
 
-      <div className="mx-auto max-w-[1380px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
 
         {/* HEADER */}
 
-        <div className="mb-7 sm:mb-8">
+        <div className="mb-5 sm:mb-6">
 
           <Link
             href={`/${locale}`}
@@ -72,14 +72,25 @@ export default async function CarsPage({
               sm:text-sm
             "
           >
-            ← {locale === "cs"
+            ←{" "}
+            {locale === "cs"
               ? "Zpět na hlavní stránku"
               : locale === "uk"
                 ? "На головну"
                 : "Back to home"}
           </Link>
 
-          <h1 className="mt-4 text-3xl font-black leading-none tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h1
+            className="
+              mt-3
+              text-3xl
+              font-black
+              leading-none
+              tracking-tight
+              text-white
+              sm:text-4xl
+            "
+          >
             {locale === "cs"
               ? "Všechny vozy"
               : locale === "uk"
@@ -87,7 +98,17 @@ export default async function CarsPage({
                 : "All cars"}
           </h1>
 
-          <p className="mt-3 max-w-xl text-sm leading-6 text-gray-400 sm:text-base">
+          <p
+            className="
+              mt-2
+              max-w-xl
+              text-sm
+              leading-5
+              text-gray-400
+              sm:text-[15px]
+              sm:leading-6
+            "
+          >
             {locale === "cs"
               ? "Kompletní nabídka prověřených vozidel VGTS Mobility."
               : locale === "uk"
@@ -105,9 +126,9 @@ export default async function CarsPage({
             className="
               grid
               grid-cols-1
-              gap-5
+              gap-3
               sm:grid-cols-2
-              lg:grid-cols-3
+              lg:gap-4
               xl:grid-cols-4
             "
           >
@@ -123,7 +144,18 @@ export default async function CarsPage({
 
         ) : (
 
-          <div className="rounded-3xl border border-white/10 bg-[#10141d] p-8 text-center text-sm text-gray-400">
+          <div
+            className="
+              rounded-2xl
+              border
+              border-white/10
+              bg-[#10141d]
+              p-8
+              text-center
+              text-sm
+              text-gray-400
+            "
+          >
             {t("empty")}
           </div>
 

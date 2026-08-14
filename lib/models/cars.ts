@@ -13,6 +13,7 @@ type CreateCarData = {
   power: string;
 
   battery: string;
+  soh: number | null;
   color: string;
 
   transmission: string;
