@@ -18,18 +18,44 @@ const statusMap: Record<string, string> = {
   "В дорозі": "Na cestě",
 };
 
+const statusStyles: Record<string, string> = {
+  "В наявності":
+    "border border-lime-400/30 bg-lime-400/15 text-lime-400",
+
+  "Продано":
+    "border border-red-500/40 bg-red-500/15 text-red-400",
+
+  "Резерв":
+    "border border-yellow-400/30 bg-yellow-400/15 text-yellow-400",
+
+  "В дорозі":
+    "border border-blue-400/30 bg-blue-400/15 text-blue-400",
+};
+
 export default function CarSidebar({
   car,
 }: {
   car: Car;
 }) {
+  const currentStatus = car.status ?? "";
+
   return (
     <aside className="rounded-3xl border border-lime-400/20 bg-[#10141d] p-6 lg:p-7">
 
       {/* STATUS */}
 
-      <div className="inline-flex rounded-full bg-lime-400/15 px-4 py-2 text-sm font-semibold text-lime-400">
-        {statusMap[car.status ?? ""] ?? car.status}
+      <div
+        className={`
+          inline-flex
+          rounded-full
+          px-5
+          py-2.5
+          text-base
+          font-black
+          ${statusStyles[currentStatus] ?? "border border-white/10 bg-white/10 text-white"}
+        `}
+      >
+        {statusMap[currentStatus] ?? currentStatus}
       </div>
 
       {/* TITLE */}

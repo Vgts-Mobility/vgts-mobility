@@ -16,21 +16,38 @@ const statusMap: Record<
     uk: "В наявності",
     en: "Available",
   },
+
   "Продано": {
     cs: "Prodáno",
     uk: "Продано",
     en: "Sold",
   },
+
   "Резерв": {
     cs: "Rezervováno",
     uk: "Резерв",
     en: "Reserved",
   },
+
   "В дорозі": {
     cs: "Na cestě",
     uk: "В дорозі",
     en: "On the way",
   },
+};
+
+const statusStyles: Record<string, string> = {
+  "В наявності":
+    "border-lime-400/50 bg-lime-400/10 text-lime-400",
+
+  "Продано":
+    "border-red-500/50 bg-red-500/10 text-red-400",
+
+  "Резерв":
+    "border-yellow-400/50 bg-yellow-400/10 text-yellow-400",
+
+  "В дорозі":
+    "border-blue-400/50 bg-blue-400/10 text-blue-400",
 };
 
 export default function CarCard({
@@ -45,6 +62,10 @@ export default function CarCard({
     car.status ??
     "";
 
+  const statusStyle =
+    statusStyles[car.status ?? ""] ??
+    "border-white/10 bg-white/10 text-white";
+
   return (
     <Link
       href={`/${locale}/cars/${car.slug}`}
@@ -52,7 +73,7 @@ export default function CarCard({
         group
         block
         overflow-hidden
-        rounded-xl
+        rounded-2xl
         border
         border-white/10
         bg-[#10141d]
@@ -64,18 +85,11 @@ export default function CarCard({
         hover:shadow-black/30
       "
     >
+
       {/* PHOTO */}
 
-      <div
-        className="
-          relative
-          h-[145px]
-          overflow-hidden
-          bg-[#0c1018]
-          sm:h-[150px]
-          lg:h-[155px]
-        "
-      >
+      <div className="relative h-[190px] overflow-hidden bg-[#0c1018] sm:h-[175px] lg:h-[180px]">
+
         <CarCardImage car={car} />
 
         {/* YEAR / MILEAGE */}
@@ -83,44 +97,46 @@ export default function CarCard({
         <div
           className="
             absolute
-            bottom-2
-            left-2
+            bottom-3
+            left-3
             z-10
-            rounded-md
+            rounded-lg
             border
             border-white/10
             bg-black/75
-            px-2
-            py-1
-            text-[9px]
+            px-2.5
+            py-1.5
+            text-[10px]
             font-bold
             text-white
             backdrop-blur-md
+            sm:text-xs
           "
         >
           {car.year}
 
-          <span className="mx-1 text-gray-500">
+          <span className="mx-1.5 text-gray-500">
             •
           </span>
 
           {car.mileage.toLocaleString("cs-CZ")} km
         </div>
+
       </div>
 
       {/* MAIN INFO */}
 
-      <div className="px-3 py-2.5">
+      <div className="px-4 py-4">
 
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex items-start justify-between gap-3">
 
           <div className="min-w-0">
 
-            <h2 className="truncate text-base font-black leading-tight text-white">
+            <h2 className="text-lg font-black leading-tight text-white">
               {car.brand}
             </h2>
 
-            <p className="mt-0.5 truncate text-[11px] text-gray-400">
+            <p className="mt-1 truncate text-xs text-gray-400">
               {car.model}
             </p>
 
@@ -129,18 +145,16 @@ export default function CarCard({
           {/* STATUS */}
 
           <div
-            className="
+            className={`
               shrink-0
               rounded-full
               border
-              border-lime-400/40
-              bg-lime-400/10
-              px-2
-              py-0.5
-              text-[8px]
-              font-bold
-              text-lime-400
-            "
+              px-3
+              py-1.5
+              text-xs
+              font-black
+              ${statusStyle}
+            `}
           >
             {status}
           </div>
@@ -149,10 +163,10 @@ export default function CarCard({
 
         {/* SPECS */}
 
-        <div className="mt-2.5 grid grid-cols-2 gap-x-2 gap-y-1.5">
+        <div className="mt-4 grid grid-cols-2 gap-x-5 gap-y-3">
 
           <Info
-            icon={<Calendar size={12} />}
+            icon={<Calendar size={15} />}
             label={
               locale === "cs"
                 ? "Rok"
@@ -164,7 +178,7 @@ export default function CarCard({
           />
 
           <Info
-            icon={<Gauge size={12} />}
+            icon={<Gauge size={15} />}
             label={
               locale === "cs"
                 ? "Najeto"
@@ -176,7 +190,7 @@ export default function CarCard({
           />
 
           <Info
-            icon={<Fuel size={12} />}
+            icon={<Fuel size={15} />}
             label={
               locale === "cs"
                 ? "Palivo"
@@ -188,7 +202,7 @@ export default function CarCard({
           />
 
           <Info
-            icon={<Zap size={12} />}
+            icon={<Zap size={15} />}
             label={
               locale === "cs"
                 ? "Výkon"
@@ -210,12 +224,12 @@ export default function CarCard({
           border-t
           border-white/10
           bg-[#151922]
-          px-3
-          py-2.5
+          px-4
+          py-3
         "
       >
 
-        <div className="text-[7px] uppercase tracking-[1.5px] text-gray-500">
+        <div className="text-[9px] uppercase tracking-[2px] text-gray-500">
           {locale === "cs"
             ? "Cena"
             : locale === "uk"
@@ -223,11 +237,12 @@ export default function CarCard({
               : "Price"}
         </div>
 
-        <div className="mt-0.5 text-xl font-black leading-none text-lime-400">
+        <div className="mt-1 text-2xl font-black leading-none text-lime-400">
           {car.price.toLocaleString("cs-CZ")} Kč
         </div>
 
       </div>
+
     </Link>
   );
 }
@@ -242,17 +257,17 @@ function Info({
   value?: string | null;
 }) {
   return (
-    <div className="flex min-w-0 items-center gap-1.5">
+    <div className="flex min-w-0 items-center gap-2">
 
       <div
         className="
           flex
-          h-6
-          w-6
+          h-8
+          w-8
           shrink-0
           items-center
           justify-center
-          rounded-md
+          rounded-lg
           bg-[#202632]
           text-lime-400
         "
@@ -262,11 +277,11 @@ function Info({
 
       <div className="min-w-0">
 
-        <div className="text-[7px] uppercase tracking-[1px] text-gray-500">
+        <div className="text-[8px] uppercase tracking-[1.5px] text-gray-500">
           {label}
         </div>
 
-        <div className="truncate text-[10px] font-bold text-white">
+        <div className="truncate text-xs font-bold text-white">
           {value || "-"}
         </div>
 
