@@ -22,11 +22,18 @@ export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const logoPressTimer = useRef<NodeJS.Timeout | null>(null);
-  const longPressTriggered = useRef(false);
+  const logoPressTimer =
+    useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const longPressTriggered =
+    useRef(false);
 
   function startLogoPress() {
     longPressTriggered.current = false;
+
+    if (logoPressTimer.current) {
+      clearTimeout(logoPressTimer.current);
+    }
 
     logoPressTimer.current = setTimeout(() => {
       longPressTriggered.current = true;
@@ -47,13 +54,31 @@ export default function Header() {
   }
 
   function handleLogoClick(
-    e: React.MouseEvent<HTMLAnchorElement>
-  ) {
-    if (longPressTriggered.current) {
-      e.preventDefault();
-      longPressTriggered.current = false;
-    }
+  e: React.MouseEvent<HTMLAnchorElement>
+) {
+  if (longPressTriggered.current) {
+    e.preventDefault();
+
+    longPressTriggered.current = false;
+
+    return;
   }
+
+  /*
+   * Якщо вже на головній —
+   * просто повертаємося в самий верх.
+   */
+  if (pathname === "/") {
+    e.preventDefault();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    setMobileOpen(false);
+  }
+}
 
   function changeLanguage(
     newLocale: "cs" | "uk" | "en"
@@ -304,7 +329,9 @@ export default function Header() {
 
             <a
               href="#services"
-              onClick={() => setMobileOpen(false)}
+              onClick={() =>
+                setMobileOpen(false)
+              }
               className="
                 relative
                 text-[17px]
@@ -331,7 +358,9 @@ export default function Header() {
 
             <Link
               href="/about"
-              onClick={() => setMobileOpen(false)}
+              onClick={() =>
+                setMobileOpen(false)
+              }
               className="
                 relative
                 text-[17px]
