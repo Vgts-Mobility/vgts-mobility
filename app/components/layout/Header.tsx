@@ -54,31 +54,31 @@ export default function Header() {
   }
 
   function handleLogoClick(
-  e: React.MouseEvent<HTMLAnchorElement>
-) {
-  if (longPressTriggered.current) {
-    e.preventDefault();
+    e: React.MouseEvent<HTMLAnchorElement>
+  ) {
+    if (longPressTriggered.current) {
+      e.preventDefault();
 
-    longPressTriggered.current = false;
+      longPressTriggered.current = false;
 
-    return;
+      return;
+    }
+
+    /*
+     * Якщо вже на головній —
+     * повертаємося в самий верх.
+     */
+    if (pathname === "/") {
+      e.preventDefault();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+
+      setMobileOpen(false);
+    }
   }
-
-  /*
-   * Якщо вже на головній —
-   * просто повертаємося в самий верх.
-   */
-  if (pathname === "/") {
-    e.preventDefault();
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-
-    setMobileOpen(false);
-  }
-}
 
   function changeLanguage(
     newLocale: "cs" | "uk" | "en"
@@ -354,6 +354,35 @@ export default function Header() {
               {t("import")}
             </a>
 
+            {/* PRICES */}
+
+            <Link
+              href="/prices"
+              onClick={() =>
+                setMobileOpen(false)
+              }
+              className="
+                relative
+                text-[17px]
+                font-semibold
+                tracking-wide
+                text-white
+                transition-all
+                duration-300
+                hover:text-lime-400
+                after:absolute
+                after:-bottom-1
+                after:left-0
+                after:h-[2px]
+                after:w-0
+                after:bg-lime-400
+                after:transition-all
+                hover:after:w-full
+              "
+            >
+              {t("prices")}
+            </Link>
+
             {/* ABOUT */}
 
             <Link
@@ -613,6 +642,27 @@ export default function Header() {
           >
             {t("import")}
           </a>
+
+          {/* PRICES */}
+
+          <Link
+            href="/prices"
+            onClick={() =>
+              setMobileOpen(false)
+            }
+            className="
+              border-b
+              border-white/10
+              py-4
+              text-2xl
+              font-semibold
+              text-white
+              transition
+              hover:text-lime-400
+            "
+          >
+            {t("prices")}
+          </Link>
 
           {/* ABOUT */}
 
