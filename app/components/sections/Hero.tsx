@@ -1,9 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 export default function Hero() {
   const t = useTranslations("hero");
+
+  function openRequestModal() {
+    window.dispatchEvent(
+      new CustomEvent("open-request-modal")
+    );
+  }
 
   return (
     <section className="relative overflow-hidden bg-[#05070d] pt-24 pb-8 sm:pt-20 sm:pb-10 lg:pt-16 lg:pb-12">
@@ -71,6 +79,8 @@ export default function Hero() {
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
 
+            {/* VIEW CARS */}
+
             <Link
               href="#cars"
               className="
@@ -93,8 +103,11 @@ export default function Hero() {
               {t("viewCars")}
             </Link>
 
-            <Link
-              href="#request"
+            {/* REQUEST IMPORT */}
+
+            <button
+              type="button"
+              onClick={openRequestModal}
               className="
                 w-full
                 rounded-full
@@ -108,11 +121,12 @@ export default function Hero() {
                 text-white
                 transition
                 hover:border-lime-400
+                hover:text-lime-400
                 sm:w-auto
               "
             >
               {t("requestImport")}
-            </Link>
+            </button>
 
           </div>
 
@@ -166,7 +180,7 @@ export default function Hero() {
 
         <div className="relative mt-5 flex items-center justify-center lg:mt-0 lg:justify-end">
 
-          {/* Glow */}
+          {/* GLOW */}
 
           <div className="absolute right-0 top-8 h-[650px] w-[650px] rounded-full bg-sky-500/15 blur-[180px]" />
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RequestModal from "./RequestModal";
 import { useTranslations } from "next-intl";
 
@@ -9,9 +9,38 @@ export default function RequestForm() {
 
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    function handleOpenRequestModal() {
+      setOpen(true);
+    }
+
+    window.addEventListener(
+      "open-request-modal",
+      handleOpenRequestModal
+    );
+
+    return () => {
+      window.removeEventListener(
+        "open-request-modal",
+        handleOpenRequestModal
+      );
+    };
+  }, []);
+
+  function openModal() {
+    setOpen(true);
+  }
+
+  function closeModal() {
+    setOpen(false);
+  }
+
   return (
     <>
-      <section className="bg-[#05070d] py-4 sm:py-5 lg:py-6">
+      <section
+        id="request"
+        className="bg-[#05070d] py-4 sm:py-5 lg:py-6"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           <div
@@ -83,7 +112,7 @@ export default function RequestForm() {
 
             <button
               type="button"
-              onClick={() => setOpen(true)}
+              onClick={openModal}
               className="
                 mt-4
                 rounded-full
@@ -111,7 +140,7 @@ export default function RequestForm() {
 
       <RequestModal
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={closeModal}
       />
     </>
   );
