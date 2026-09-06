@@ -383,6 +383,35 @@ export default function Header() {
               {t("prices")}
             </Link>
 
+            {/* DOCUMENTS */}
+
+            <Link
+              href="/documents"
+              onClick={() =>
+                setMobileOpen(false)
+              }
+              className="
+                relative
+                text-[17px]
+                font-semibold
+                tracking-wide
+                text-white
+                transition-all
+                duration-300
+                hover:text-lime-400
+                after:absolute
+                after:-bottom-1
+                after:left-0
+                after:h-[2px]
+                after:w-0
+                after:bg-lime-400
+                after:transition-all
+                hover:after:w-full
+              "
+            >
+              {t("documents")}
+            </Link>
+
             {/* ABOUT */}
 
             <Link
@@ -662,6 +691,27 @@ export default function Header() {
             "
           >
             {t("prices")}
+          </Link>
+
+          {/* DOCUMENTS */}
+
+          <Link
+            href="/documents"
+            onClick={() =>
+              setMobileOpen(false)
+            }
+            className="
+              border-b
+              border-white/10
+              py-4
+              text-2xl
+              font-semibold
+              text-white
+              transition
+              hover:text-lime-400
+            "
+          >
+            {t("documents")}
           </Link>
 
           {/* ABOUT */}

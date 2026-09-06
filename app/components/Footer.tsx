@@ -90,7 +90,12 @@ export default function Footer() {
                 {t("navigation.services")}
               </Link>
 
-
+              <Link
+                href="/documents"
+                className="text-sm text-gray-400 transition hover:text-lime-400"
+              >
+                {t("navigation.documents")}
+              </Link>
 
             </div>
 
