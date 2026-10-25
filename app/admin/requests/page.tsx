@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DeleteRequestButton from "@/app/components/admin/DeleteRequestButton";
 import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
@@ -92,6 +93,9 @@ export default async function RequestsPage() {
                 <th className="p-4">
                   Stav
                 </th>
+                <th className="p-4 text-right">
+                  Akce
+                </th>
 
               </tr>
 
@@ -136,10 +140,23 @@ export default async function RequestsPage() {
 
                   <td className="p-4">
 
-                    <span className="rounded-full bg-lime-400/20 px-3 py-1 text-sm text-lime-400">
+                    <span className={`inline-flex rounded-full px-3 py-1 text-sm font-semibold ${
+                      (request.status || "Nová") === "Nová"
+                        ? "bg-yellow-500/15 text-yellow-400"
+                        : request.status === "V procesu"
+                          ? "bg-blue-500/15 text-blue-400"
+                          : request.status === "Hotovo"
+                            ? "bg-green-500/15 text-green-400"
+                            : request.status === "Zamítnuto"
+                              ? "bg-red-500/15 text-red-400"
+                              : "bg-white/10 text-gray-300"
+                    }`}>
                       {request.status || "Nová"}
                     </span>
 
+                  </td>
+                  <td className="p-4 text-right">
+                    <DeleteRequestButton id={request.id} />
                   </td>
 
                 </tr>
