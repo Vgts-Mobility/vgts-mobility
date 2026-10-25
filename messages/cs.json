@@ -10,7 +10,6 @@
     "tagline": "Kvalitní vozy z Evropy",
     "whatsapp": "WhatsApp"
   },
-
   "hero": {
     "eyebrow": "ELEKTROMOBILY • DOVOZ • EVROPA",
     "titleLine1": "Najdeme elektromobil,",
@@ -27,7 +26,6 @@
     "individualApproach": "individuální přístup",
     "concept": "KONCEPT VGTS MOBILITY"
   },
-
   "about": {
     "back": "Zpět na hlavní stránku",
     "eyebrow": "O VGTS MOBILITY",
@@ -63,7 +61,6 @@
     "managementLabel": "Jednatelé",
     "contactButton": "Kontaktovat nás"
   },
-
   "cars": {
     "eyebrow": "AKTUÁLNÍ NABÍDKA",
     "title": "Vyberte si svůj vůz",
@@ -72,7 +69,6 @@
     "loadError": "Chyba při načítání vozidel",
     "empty": "Zatím nejsou k dispozici žádná vozidla."
   },
-
   "reviews": {
     "eyebrow": "Recenze zákazníků",
     "title": "Co říkají naši zákazníci",
@@ -108,7 +104,6 @@
     "photoUploadError": "Fotografii se nepodařilo nahrát.",
     "submitError": "Recenzi se nepodařilo odeslat. Zkuste to prosím znovu."
   },
-
   "carCard": {
     "status": {
       "available": "Skladem",
@@ -122,7 +117,6 @@
     "power": "Výkon",
     "price": "Cena"
   },
-
   "services": {
     "eyebrow": "NAŠE SLUŽBY",
     "title": "Postaráme se o celý proces.",
@@ -140,14 +134,12 @@
       "description": "Zajistíme dopravu, registraci vozidla, administrativu i předání vozu."
     }
   },
-
   "request": {
     "eyebrow": "INDIVIDUÁLNÍ DOVOZ VOZŮ",
     "title": "Hledáte konkrétní vůz?",
     "description": "Vyplňte krátký formulář a najdeme pro vás prověřený vůz přesně podle vašich požadavků.",
     "button": "Nezávazně poptat vůz"
   },
-
   "requestModal": {
     "success": "Děkujeme za vaši poptávku.",
     "close": "Zavřít",
@@ -199,7 +191,6 @@
     "sending": "Odesílání...",
     "submit": "Odeslat poptávku"
   },
-
   "contact": {
     "eyebrow": "KONTAKT",
     "title": "Kontaktujte nás",
@@ -208,14 +199,12 @@
     "email": "E-mail",
     "location": "Praha, Česká republika"
   },
-
   "whatsapp": {
     "chooseContact": "Vyberte kontakt",
     "tarasRole": "Prodej vozidel",
     "vadymRole": "Dovoz vozidel",
     "close": "Zavřít"
   },
-
   "footer": {
     "tagline": "Prémiové vozy z Evropy",
     "description": "Dovážíme prověřené automobily z evropských aukcí, kontrolujeme jejich historii a pomáháme zákazníkům najít vůz přesně podle jejich požadavků.",
@@ -231,13 +220,11 @@
     },
     "copyright": "© 2026 VGTS Mobility s.r.o. Všechna práva vyhrazena."
   },
-
   "documents": {
     "back": "Zpět na hlavní stránku",
     "title": "Dokumenty",
     "description": "Oficiální dokumenty a podmínky společnosti VGTS Mobility s.r.o. Seznamte se s podmínkami našich služeb, zásadami ochrany osobních údajů a reklamačním řádem.",
     "open": "Otevřít dokument",
-
     "items": {
       "terms": {
         "title": "Obchodní podmínky",
@@ -252,23 +239,19 @@
         "description": "Pravidla pro uplatnění a vyřízení reklamací týkajících se zakoupených vozidel."
       }
     },
-
     "info": {
       "title": "Dokumenty VGTS Mobility",
       "text": "Dokumenty jsou platné ve znění uvedeném přímo v jednotlivých dokumentech."
     },
-
     "cta": {
       "title": "Máte další otázky?",
       "text": "Kontaktujte nás, pokud potřebujete další informace týkající se podmínek nákupu, reklamací nebo zpracování osobních údajů."
     }
   },
-
   "carDescription": {
     "title": "Popis vozu",
     "empty": "Popis vozidla bude doplněn."
   },
-
   "carDetails": {
     "back": "Zpět",
     "status": {
@@ -296,7 +279,78 @@
     },
     "equipment": {
       "title": "Výbava",
-      "empty": "Výbava není uvedena."
+      "empty": "Výbava není uvedena.",
+      "categories": {
+        "multimedia": "Multimédia a konektivita",
+        "safety": "Bezpečnostní asistenti",
+        "comfort": "Komfort a interiér",
+        "parking": "Parkování a kamery",
+        "exterior": "Exteriér a podvozek",
+        "electric": "Elektromobilita",
+        "other": "Ostatní výbava"
+      },
+      "features": {
+        "appleCarPlay": "Apple CarPlay",
+        "androidAuto": "Android Auto",
+        "navigation": "Navigace",
+        "headUpDisplay": "Head-Up Display",
+        "digitalCockpit": "Digitální přístrojový štít",
+        "premiumAudio": "Prémiový audiosystém",
+        "harmanKardon": "Harman Kardon",
+        "bowersWilkins": "Bowers & Wilkins",
+        "bangOlufsen": "Bang & Olufsen",
+        "wirelessCharging": "Bezdrátové nabíjení",
+        "voiceControl": "Hlasové ovládání",
+        "bluetooth": "Bluetooth",
+        "adaptiveCruise": "Adaptivní tempomat",
+        "laneAssist": "Lane Assist",
+        "blindSpot": "Sledování mrtvého úhlu",
+        "frontAssist": "Front Assist",
+        "emergencyBraking": "Nouzové brzdění",
+        "trafficSigns": "Rozpoznávání dopravních značek",
+        "travelAssist": "Travel Assist",
+        "isofix": "ISOFIX",
+        "heatedSeats": "Vyhřívaná sedadla",
+        "heatedSteeringWheel": "Vyhřívaný volant",
+        "ventilatedSeats": "Odvětrávaná sedadla",
+        "massageSeats": "Masážní sedadla",
+        "electricSeats": "Elektricky nastavitelná sedadla",
+        "memorySeats": "Paměť sedadel",
+        "leatherInterior": "Kožený interiér",
+        "panoramicRoof": "Panoramatická střecha",
+        "sunroof": "Střešní okno",
+        "ambientLighting": "Ambientní osvětlení",
+        "threeZoneClimate": "Třízónová klimatizace",
+        "fourZoneClimate": "Čtyřzónová klimatizace",
+        "keyless": "Keyless",
+        "electricTailgate": "Elektrické víko kufru",
+        "heatedWindshield": "Vyhřívané čelní sklo",
+        "camera360": "360° kamera",
+        "rearCamera": "Zadní parkovací kamera",
+        "parkingSensors": "Parkovací senzory",
+        "automaticParking": "Automatické parkování",
+        "matrixLed": "Matrix LED",
+        "ledHeadlights": "LED světlomety",
+        "adaptiveHeadlights": "Adaptivní světlomety",
+        "automaticHighBeam": "Automatická dálková světla",
+        "adaptiveSuspension": "Adaptivní podvozek",
+        "airSuspension": "Vzduchové odpružení",
+        "towBar": "Tažné zařízení",
+        "heatedMirrors": "Vyhřívaná zrcátka",
+        "fourWheelDrive": "Pohon všech kol (4×4)",
+        "heatPump": "Tepelné čerpadlo",
+        "batteryPreconditioning": "Předehřev baterie",
+        "scheduledCharging": "Plánované nabíjení",
+        "dcFastCharging": "Rychlé DC nabíjení",
+        "acCharging": "AC nabíjení",
+        "regenerativeBraking": "Rekuperační brzdění",
+        "onePedalDriving": "Jízda jedním pedálem",
+        "v2l": "Napájení externích zařízení (V2L)",
+        "sportSeats": "Sportovní sedadla",
+        "driveModes": "Jízdní režimy",
+        "alarm": "Alarm",
+        "digitalKey": "Digitální klíč"
+      }
     },
     "description": {
       "title": "Popis vozu",
