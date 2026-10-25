@@ -280,8 +280,8 @@ export default function Contact() {
                             {review.text}
                           </p>
                           {review.photo_url && (
-                            <button type="button" onClick={() => setExpandedPhoto(review.photo_url)} className="mt-3 block max-w-full overflow-hidden rounded-xl border border-white/10 transition hover:border-lime-400/60" aria-label="View customer photo">
-                              <img src={review.photo_url} alt="Customer's car" className="max-h-64 max-w-full rounded-xl object-contain sm:max-h-80" />
+                            <button type="button" onClick={() => setExpandedPhoto(review.photo_url)} className="mt-3 block w-full max-w-[280px] overflow-hidden rounded-xl border border-white/10 transition hover:border-lime-400/60" aria-label="View customer photo">
+                              <img src={review.photo_url} alt="Customer's car" className="h-40 w-full rounded-xl object-cover sm:h-44" />
                               <span className="block bg-black/40 px-3 py-2 text-left text-xs font-semibold text-lime-400">View photo</span>
                             </button>
                           )}
