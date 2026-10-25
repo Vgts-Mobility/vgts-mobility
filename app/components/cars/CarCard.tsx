@@ -88,7 +88,7 @@ export default function CarCard({
 
       {/* PHOTO */}
 
-      <div className="relative h-[190px] overflow-hidden bg-[#0c1018] sm:h-[175px] lg:h-[180px]">
+      <div className="relative h-[145px] overflow-hidden bg-[#0c1018] sm:h-[150px] lg:h-[145px] 2xl:h-[155px]">
 
         <CarCardImage car={car} />
 
@@ -126,17 +126,17 @@ export default function CarCard({
 
       {/* MAIN INFO */}
 
-      <div className="px-4 py-4">
+      <div className="px-3 py-3">
 
         <div className="flex items-start justify-between gap-3">
 
           <div className="min-w-0">
 
-            <h2 className="text-lg font-black leading-tight text-white">
+            <h2 className="text-base font-black leading-tight text-white">
               {car.brand}
             </h2>
 
-            <p className="mt-1 truncate text-xs text-gray-400">
+            <p className="mt-0.5 truncate text-[11px] text-gray-400">
               {car.model}
             </p>
 
@@ -163,7 +163,7 @@ export default function CarCard({
 
         {/* SPECS */}
 
-        <div className="mt-4 grid grid-cols-2 gap-x-5 gap-y-3">
+        <div className="mt-3 grid grid-cols-2 gap-x-2 gap-y-2">
 
           <Info
             icon={<Calendar size={15} />}
@@ -237,8 +237,9 @@ export default function CarCard({
               : "Price"}
         </div>
 
-        <div className="mt-1 text-2xl font-black leading-none text-lime-400">
-          {car.price.toLocaleString("cs-CZ")} Kč
+        <div className="mt-1 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+          <span className="whitespace-nowrap text-lg font-black leading-none text-lime-400">{car.price.toLocaleString("cs-CZ")} Kč</span>
+          <span className="whitespace-nowrap text-xs font-bold leading-none text-sky-400">{Math.round(car.price / 1.21).toLocaleString("cs-CZ")} Kč <span className="text-[9px] font-medium text-sky-300/80">{locale === "cs" ? "bez DPH" : locale === "uk" ? "без ПДВ" : "excl. VAT"}</span></span>
         </div>
 
       </div>
@@ -277,11 +278,11 @@ function Info({
 
       <div className="min-w-0">
 
-        <div className="text-[8px] uppercase tracking-[1.5px] text-gray-500">
+        <div className="text-[7px] uppercase tracking-[1px] text-gray-500">
           {label}
         </div>
 
-        <div className="truncate text-xs font-bold text-white">
+        <div className="truncate text-[11px] font-bold text-white">
           {value || "-"}
         </div>
 
