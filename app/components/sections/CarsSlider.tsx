@@ -101,7 +101,7 @@ export default function CarsSlider({
             className="
               cars-prev
               absolute
-              -left-4
+              -left-6
               top-1/2
               z-20
               hidden
@@ -130,7 +130,7 @@ export default function CarsSlider({
             className="
               cars-next
               absolute
-              -right-4
+              -right-6
               top-1/2
               z-20
               hidden
