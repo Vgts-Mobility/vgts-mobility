@@ -210,7 +210,7 @@ export default function CarCard({
 
         <div className="mt-1 flex flex-col items-start gap-1">
           <span className="whitespace-nowrap text-lg font-black leading-tight text-lime-400">{car.price.toLocaleString("cs-CZ")} Kč</span>
-          <span className="whitespace-nowrap text-lg font-black leading-tight text-gray-300">{Math.round(car.price / 1.21).toLocaleString("cs-CZ")} Kč <span className="text-[9px] font-semibold text-gray-500">{locale === "cs" ? "bez DPH" : locale === "uk" ? "без ПДВ" : "excl. VAT"}</span></span>
+          <span className="whitespace-nowrap text-lg font-black leading-tight text-[#7898c4]">{Math.round(car.price / 1.21).toLocaleString("cs-CZ")} Kč <span className="text-[9px] font-semibold text-gray-500">{locale === "cs" ? "bez DPH" : locale === "uk" ? "без ПДВ" : "excl. VAT"}</span></span>
         </div>
 
       </div>
