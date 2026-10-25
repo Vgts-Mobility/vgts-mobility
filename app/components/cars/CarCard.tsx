@@ -92,35 +92,6 @@ export default function CarCard({
 
         <CarCardImage car={car} />
 
-        {/* YEAR / MILEAGE */}
-
-        <div
-          className="
-            absolute
-            bottom-3
-            left-3
-            z-10
-            rounded-lg
-            border
-            border-white/10
-            bg-black/75
-            px-2.5
-            py-1.5
-            text-[10px]
-            font-bold
-            text-white
-            backdrop-blur-md
-            sm:text-xs
-          "
-        >
-          {car.year}
-
-          <span className="mx-1.5 text-gray-500">
-            •
-          </span>
-
-          {car.mileage.toLocaleString("cs-CZ")} km
-        </div>
 
       </div>
 
@@ -237,9 +208,9 @@ export default function CarCard({
               : "Price"}
         </div>
 
-        <div className="mt-1 flex flex-wrap items-baseline gap-x-2 gap-y-1">
-          <span className="whitespace-nowrap text-lg font-black leading-none text-lime-400">{car.price.toLocaleString("cs-CZ")} Kč</span>
-          <span className="whitespace-nowrap text-xs font-bold leading-none text-sky-400">{Math.round(car.price / 1.21).toLocaleString("cs-CZ")} Kč <span className="text-[9px] font-medium text-sky-300/80">{locale === "cs" ? "bez DPH" : locale === "uk" ? "без ПДВ" : "excl. VAT"}</span></span>
+        <div className="mt-1 flex flex-col items-start gap-1">
+          <span className="whitespace-nowrap text-lg font-black leading-tight text-lime-400">{car.price.toLocaleString("cs-CZ")} Kč</span>
+          <span className="whitespace-nowrap text-lg font-black leading-tight text-gray-300">{Math.round(car.price / 1.21).toLocaleString("cs-CZ")} Kč <span className="text-[9px] font-semibold text-gray-500">{locale === "cs" ? "bez DPH" : locale === "uk" ? "без ПДВ" : "excl. VAT"}</span></span>
         </div>
 
       </div>
