@@ -10,7 +10,6 @@
     "tagline": "Quality cars from Europe",
     "whatsapp": "WhatsApp"
   },
-
   "hero": {
     "eyebrow": "ELECTRIC CARS • IMPORT • EUROPE",
     "titleLine1": "We will find the electric car,",
@@ -27,7 +26,6 @@
     "individualApproach": "individual approach",
     "concept": "VGTS MOBILITY CONCEPT"
   },
-
   "about": {
     "back": "Back to homepage",
     "eyebrow": "ABOUT VGTS MOBILITY",
@@ -63,7 +61,6 @@
     "managementLabel": "Managing directors",
     "contactButton": "Contact us"
   },
-
   "cars": {
     "eyebrow": "CURRENT OFFER",
     "title": "Choose your car",
@@ -72,7 +69,6 @@
     "loadError": "Error loading vehicles",
     "empty": "There are currently no vehicles available."
   },
-
   "reviews": {
     "eyebrow": "Customer reviews",
     "title": "What our customers say",
@@ -108,7 +104,6 @@
     "photoUploadError": "The photo could not be uploaded.",
     "submitError": "The review could not be submitted. Please try again."
   },
-
   "carCard": {
     "status": {
       "available": "Available",
@@ -122,7 +117,6 @@
     "power": "Power",
     "price": "Price"
   },
-
   "services": {
     "eyebrow": "OUR SERVICES",
     "title": "We take care of the entire process.",
@@ -140,14 +134,12 @@
       "description": "We arrange transportation, vehicle registration, administration and vehicle handover."
     }
   },
-
   "request": {
     "eyebrow": "INDIVIDUAL CAR IMPORT",
     "title": "Looking for a specific car?",
     "description": "Fill out the short form and we will find a verified car that matches your requirements.",
     "button": "Request a car"
   },
-
   "requestModal": {
     "success": "Thank you for your request.",
     "close": "Close",
@@ -199,7 +191,6 @@
     "sending": "Sending...",
     "submit": "Submit request"
   },
-
   "contact": {
     "eyebrow": "CONTACT",
     "title": "Contact us",
@@ -208,14 +199,12 @@
     "email": "E-mail",
     "location": "Prague, Czech Republic"
   },
-
   "whatsapp": {
     "chooseContact": "Choose a contact",
     "tarasRole": "Car sales",
     "vadymRole": "Car import",
     "close": "Close"
   },
-
   "footer": {
     "tagline": "Premium cars from Europe",
     "description": "We import verified vehicles from European auctions, check their history and help customers find a car that matches their requirements.",
@@ -231,13 +220,11 @@
     },
     "copyright": "© 2026 VGTS Mobility s.r.o. All rights reserved."
   },
-
   "documents": {
     "back": "Back to home",
     "title": "Documents",
     "description": "Official documents and terms of VGTS Mobility s.r.o. Please review our service terms, privacy policy and complaints procedure.",
     "open": "Open document",
-
     "items": {
       "terms": {
         "title": "Terms and Conditions",
@@ -252,23 +239,19 @@
         "description": "Rules for submitting and handling complaints concerning purchased vehicles."
       }
     },
-
     "info": {
       "title": "VGTS Mobility Documents",
       "text": "The documents are valid in the version stated directly in each individual document."
     },
-
     "cta": {
       "title": "Have any questions?",
       "text": "Contact us if you need additional information about purchase terms, complaints or personal data processing."
     }
   },
-
   "carDescription": {
     "title": "Vehicle description",
     "empty": "Vehicle description will be added."
   },
-
   "carDetails": {
     "back": "Back",
     "status": {
@@ -296,7 +279,78 @@
     },
     "equipment": {
       "title": "Equipment",
-      "empty": "Equipment not specified."
+      "empty": "Equipment not specified.",
+      "categories": {
+        "multimedia": "Multimedia & connectivity",
+        "safety": "Driver assistance & safety",
+        "comfort": "Comfort & interior",
+        "parking": "Parking & cameras",
+        "exterior": "Exterior & chassis",
+        "electric": "Electric vehicle features",
+        "other": "Other equipment"
+      },
+      "features": {
+        "appleCarPlay": "Apple CarPlay",
+        "androidAuto": "Android Auto",
+        "navigation": "Navigation",
+        "headUpDisplay": "Head-Up Display",
+        "digitalCockpit": "Digital instrument cluster",
+        "premiumAudio": "Premium audio system",
+        "harmanKardon": "Harman Kardon",
+        "bowersWilkins": "Bowers & Wilkins",
+        "bangOlufsen": "Bang & Olufsen",
+        "wirelessCharging": "Wireless phone charging",
+        "voiceControl": "Voice control",
+        "bluetooth": "Bluetooth",
+        "adaptiveCruise": "Adaptive cruise control",
+        "laneAssist": "Lane Assist",
+        "blindSpot": "Blind-spot monitoring",
+        "frontAssist": "Front Assist",
+        "emergencyBraking": "Emergency braking",
+        "trafficSigns": "Traffic sign recognition",
+        "travelAssist": "Travel Assist",
+        "isofix": "ISOFIX",
+        "heatedSeats": "Heated seats",
+        "heatedSteeringWheel": "Heated steering wheel",
+        "ventilatedSeats": "Ventilated seats",
+        "massageSeats": "Massage seats",
+        "electricSeats": "Electric seats",
+        "memorySeats": "Seat memory",
+        "leatherInterior": "Leather interior",
+        "panoramicRoof": "Panoramic roof",
+        "sunroof": "Sunroof",
+        "ambientLighting": "Ambient lighting",
+        "threeZoneClimate": "Three-zone climate control",
+        "fourZoneClimate": "Four-zone climate control",
+        "keyless": "Keyless entry",
+        "electricTailgate": "Electric tailgate",
+        "heatedWindshield": "Heated windscreen",
+        "camera360": "360° camera",
+        "rearCamera": "Rear-view camera",
+        "parkingSensors": "Parking sensors",
+        "automaticParking": "Automatic parking",
+        "matrixLed": "Matrix LED headlights",
+        "ledHeadlights": "LED headlights",
+        "adaptiveHeadlights": "Adaptive headlights",
+        "automaticHighBeam": "Automatic high beam",
+        "adaptiveSuspension": "Adaptive suspension",
+        "airSuspension": "Air suspension",
+        "towBar": "Tow bar",
+        "heatedMirrors": "Heated mirrors",
+        "fourWheelDrive": "All-wheel drive (4×4)",
+        "heatPump": "Heat pump",
+        "batteryPreconditioning": "Battery preconditioning",
+        "scheduledCharging": "Scheduled charging",
+        "dcFastCharging": "DC fast charging",
+        "acCharging": "AC charging",
+        "regenerativeBraking": "Regenerative braking",
+        "onePedalDriving": "One-pedal driving",
+        "v2l": "Vehicle-to-load (V2L)",
+        "sportSeats": "Sport seats",
+        "driveModes": "Drive modes",
+        "alarm": "Alarm system",
+        "digitalKey": "Digital key"
+      }
     },
     "description": {
       "title": "Vehicle description",
