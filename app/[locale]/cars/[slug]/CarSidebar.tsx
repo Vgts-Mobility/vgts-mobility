@@ -74,7 +74,7 @@ export default function CarSidebar({
         </div>
         <div className="text-3xl font-black leading-tight text-gray-300 sm:text-4xl">
           <span className="whitespace-nowrap">{Math.round(car.price / 1.21).toLocaleString("cs-CZ")} Kč</span>
-          <span className="ml-2 text-sm font-semibold text-gray-500">bez DPH (21%)</span>
+          <span className="ml-2 text-sm font-semibold text-gray-500">bez DPH</span>
         </div>
       </div>
 
