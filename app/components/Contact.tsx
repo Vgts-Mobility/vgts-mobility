@@ -34,6 +34,7 @@ export default function Contact() {
   const [averageRating, setAverageRating] = useState("0.0");
   const [totalReviews, setTotalReviews] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [expandedPhoto, setExpandedPhoto] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadReviews() {
@@ -83,25 +84,25 @@ export default function Contact() {
   return (
     <section
       id="reviews"
-      className="bg-[#05070d] py-8 sm:py-10"
+      className="bg-[#05070d] py-12 sm:py-16"
     >
-      <div className="mx-auto max-w-5xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* ========================= */}
         {/* HEADER */}
         {/* ========================= */}
 
-        <div className="mb-4 text-center">
+        <div className="mb-7 text-center sm:mb-8">
 
-          <p className="text-[9px] font-semibold uppercase tracking-[3px] text-lime-400">
+          <p className="text-[11px] font-semibold uppercase tracking-[3px] text-lime-400 sm:text-xs">
             {t("eyebrow")}
           </p>
 
-          <h2 className="mt-1 text-2xl font-black leading-tight text-white sm:text-3xl">
+          <h2 className="mt-2 text-3xl font-black leading-tight text-white sm:text-4xl">
             {t("title")}
           </h2>
 
-          <p className="mx-auto mt-1 max-w-xl text-[11px] leading-4 text-gray-500">
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-gray-400 sm:text-base">
             {t("description")}
           </p>
 
@@ -111,13 +112,13 @@ export default function Contact() {
         {/* STATISTICS */}
         {/* ========================= */}
 
-        <div className="mb-3 grid grid-cols-2 gap-2">
+        <div className="mb-5 grid grid-cols-2 gap-3 sm:gap-4">
 
           {/* AVERAGE */}
 
-          <div className="flex h-12 items-center gap-2.5 rounded-lg border border-lime-400/20 bg-[#10141d] px-3">
+          <div className="flex min-h-[68px] items-center gap-3 rounded-xl border border-lime-400/20 bg-[#10141d] px-4 py-3 sm:min-h-[76px] sm:px-5">
 
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-lime-400/10">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-lime-400/10">
               <Star
                 size={15}
                 fill="currentColor"
@@ -126,12 +127,12 @@ export default function Contact() {
             </div>
 
             <div>
-              <p className="text-[8px] text-gray-500">
+              <p className="text-[11px] text-gray-500 sm:text-xs">
                 {t("averageRating")}
               </p>
 
               <div className="flex items-baseline gap-1">
-                <span className="text-base font-bold leading-none text-white">
+                <span className="text-xl font-bold leading-none text-white sm:text-2xl">
                   {averageRating}
                 </span>
 
@@ -145,7 +146,7 @@ export default function Contact() {
 
           {/* COUNT */}
 
-          <div className="flex h-12 items-center gap-2.5 rounded-lg border border-white/10 bg-[#10141d] px-3">
+          <div className="flex min-h-[68px] items-center gap-3 rounded-xl border border-white/10 bg-[#10141d] px-4 py-3 sm:min-h-[76px] sm:px-5">
 
             <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-blue-500/10">
               <Users
@@ -172,13 +173,13 @@ export default function Contact() {
         {/* REVIEWS + FORM */}
         {/* ========================= */}
 
-        <div className="grid items-stretch gap-3 lg:grid-cols-2">
+        <div className="grid items-stretch gap-5 xl:grid-cols-2">
 
           {/* ========================= */}
           {/* LATEST REVIEWS */}
           {/* ========================= */}
 
-          <div className="h-[430px] rounded-xl border border-white/10 bg-[#10141d] p-3">
+          <div className="min-h-[520px] rounded-2xl border border-white/10 bg-[#10141d] p-5 sm:p-6">
 
             <div className="mb-2 flex items-center gap-2">
 
@@ -187,13 +188,13 @@ export default function Contact() {
                 className="text-lime-400"
               />
 
-              <h3 className="text-sm font-bold text-white">
+              <h3 className="text-lg font-bold text-white sm:text-xl">
                 {t("latestReviews")}
               </h3>
 
             </div>
 
-            <div className="h-[390px] overflow-y-auto pr-1">
+            <div className="min-h-[440px] pr-1">
 
               {loading ? (
                 <div className="flex h-full items-center justify-center rounded-lg border border-dashed border-white/10">
@@ -224,26 +225,16 @@ export default function Contact() {
                   {reviews.map((review) => (
                     <article
                       key={review.id}
-                      className="rounded-lg border border-white/10 bg-[#0a0d14] p-2.5"
+                      className="rounded-xl border border-white/10 bg-[#0a0d14] p-4 sm:p-5"
                     >
 
                       <div className="flex gap-2.5">
 
                         {/* AVATAR / PHOTO */}
 
-                        {review.photo_url ? (
-                          <img
-                            src={review.photo_url}
-                            alt={review.name}
-                            className="h-8 w-8 shrink-0 rounded-full object-cover"
-                          />
-                        ) : (
-                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-lime-400/10 text-[11px] font-bold text-lime-400">
-                            {review.name
-                              .charAt(0)
-                              .toUpperCase()}
-                          </div>
-                        )}
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lime-400/10 text-sm font-bold text-lime-400">
+                          {review.name.charAt(0).toUpperCase()}
+                        </div>
 
                         {/* CONTENT */}
 
@@ -285,9 +276,15 @@ export default function Contact() {
 
                           </div>
 
-                          <p className="mt-1 text-[10px] leading-4 text-gray-400">
+                          <p className="mt-2 text-sm leading-6 text-gray-300 sm:text-base">
                             {review.text}
                           </p>
+                          {review.photo_url && (
+                            <button type="button" onClick={() => setExpandedPhoto(review.photo_url)} className="mt-3 block max-w-full overflow-hidden rounded-xl border border-white/10 transition hover:border-lime-400/60" aria-label="View customer photo">
+                              <img src={review.photo_url} alt="Customer's car" className="max-h-64 max-w-full rounded-xl object-contain sm:max-h-80" />
+                              <span className="block bg-black/40 px-3 py-2 text-left text-xs font-semibold text-lime-400">View photo</span>
+                            </button>
+                          )}
 
                         </div>
 
@@ -307,7 +304,7 @@ export default function Contact() {
           {/* REVIEW FORM */}
           {/* ========================= */}
 
-          <div className="h-[430px] overflow-hidden rounded-xl border border-lime-400/20 bg-[#10141d] p-3">
+          <div className="min-h-[520px] rounded-2xl border border-lime-400/20 bg-[#10141d] p-5 sm:p-6">
 
             <div className="mb-2">
 
@@ -321,7 +318,7 @@ export default function Contact() {
 
             </div>
 
-            <div className="h-[395px] overflow-y-auto pr-1">
+            <div className="pr-1">
 
               <ReviewForm />
 
@@ -332,6 +329,12 @@ export default function Contact() {
         </div>
 
       </div>
+      {expandedPhoto && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4" role="dialog" aria-modal="true" onClick={() => setExpandedPhoto(null)}>
+          <button type="button" className="absolute right-5 top-5 rounded-full bg-white/10 px-4 py-2 text-lg text-white hover:bg-white/20" onClick={() => setExpandedPhoto(null)} aria-label="Close photo">✕</button>
+          <img src={expandedPhoto} alt="Customer's car" className="max-h-[90vh] max-w-[95vw] rounded-xl object-contain" onClick={(event) => event.stopPropagation()} />
+        </div>
+      )}
     </section>
   );
 }
