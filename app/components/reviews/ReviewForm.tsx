@@ -106,14 +106,14 @@ export default function ReviewForm() {
     <form
       ref={formRef}
       onSubmit={handleSubmit}
-      className="space-y-2.5"
+      className="space-y-5"
     >
       {/* NAME */}
 
       <div>
         <label
           htmlFor="review-name"
-          className="mb-1 block text-[11px] font-semibold text-white"
+          className="mb-2 block text-sm font-semibold text-white sm:text-base"
         >
           {t("name")}
         </label>
@@ -212,7 +212,7 @@ export default function ReviewForm() {
           rows={3}
           placeholder={t("textPlaceholder")}
           className="
-            h-[72px]
+            min-h-[120px]
             w-full
             resize-none
             rounded-lg
@@ -332,7 +332,7 @@ export default function ReviewForm() {
           : t("submit")}
       </button>
 
-      <p className="text-center text-[8px] leading-3 text-gray-600">
+      <p className="text-center text-[10px] leading-4 text-gray-500">
         {t("moderationNotice")}
       </p>
     </form>
