@@ -1,6 +1,7 @@
 "use client";
 
 import ImageUpload from "@/app/components/admin/ImageUpload";
+import { CAR_FEATURE_CATEGORIES, normalizeFeatureId } from "@/lib/models/car-features";
 
 type Car = {
   brand: string;
@@ -45,34 +46,7 @@ type CarFormProps = {
 const inputClass =
   "w-full rounded-xl border border-white/10 bg-surface px-4 py-3 text-text placeholder:text-text-muted outline-none transition focus:border-primary";
 
-const FEATURES = [
-  "Apple CarPlay",
-  "Android Auto",
-  "Navigace",
-  "Head-Up Display",
-  "360° kamera",
-  "Parkovací kamera",
-  "Parkovací senzory",
-  "Adaptivní tempomat",
-  "Lane Assist",
-  "Blind Spot",
-  "Matrix LED",
-  "LED světlomety",
-  "Vyhřívaná sedadla",
-  "Vyhřívaný volant",
-  "Odvětrávaná sedadla",
-  "Elektrická sedadla",
-  "Paměť sedadel",
-  "Kožený interiér",
-  "Panoramatická střecha",
-  "Střešní okno",
-  "Keyless",
-  "Bezdrátová nabíječka",
-  "Ambientní osvětlení",
-  "Elektrické víko kufru",
-  "Tažné zařízení",
-  "4x4",
-];
+
 
 export default function CarForm({
   action,
@@ -416,23 +390,24 @@ export default function CarForm({
         </h2>
 
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {FEATURES.map((feature) => (
-            <label
-              key={feature}
-              className="flex items-center gap-3 rounded-xl border border-white/10 p-3 transition hover:border-primary"
-            >
-              <input
-                type="checkbox"
-                name="features"
-                value={feature}
-                defaultChecked={
-                  car?.features?.includes(feature) ?? false
-                }
-                className="h-5 w-5"
-              />
-
-              <span>{feature}</span>
-            </label>
+          {CAR_FEATURE_CATEGORIES.map((category) => (
+            <section key={category.id} className="rounded-xl border border-white/10 p-4">
+              <h3 className="mb-3 text-sm font-bold text-primary">{category.title}</h3>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {category.features.map((feature) => (
+                  <label key={feature.id} className="flex items-center gap-3 rounded-lg border border-white/10 p-3 transition hover:border-primary">
+                    <input
+                      type="checkbox"
+                      name="features"
+                      value={feature.id}
+                      defaultChecked={car?.features?.some((saved) => normalizeFeatureId(saved) === feature.id) ?? false}
+                      className="h-5 w-5"
+                    />
+                    <span>{feature.label}</span>
+                  </label>
+                ))}
+              </div>
+            </section>
           ))}
         </div>
       </div>
