@@ -157,7 +157,7 @@ export default function CarsSlider({
               prevEl: ".cars-prev",
               nextEl: ".cars-next",
             }}
-            spaceBetween={16}
+            spaceBetween={12}
             breakpoints={{
               0: {
                 slidesPerView: 1,
@@ -169,7 +169,7 @@ export default function CarsSlider({
                 slidesPerView: 2,
               },
               1280: {
-                slidesPerView: 3,
+                slidesPerView: 4,
               },
             }}
           >
