@@ -10,7 +10,6 @@
     "tagline": "Якісні автомобілі з Європи",
     "whatsapp": "WhatsApp"
   },
-
   "hero": {
     "eyebrow": "ЕЛЕКТРОМОБІЛІ • ДОСТАВКА • ЄВРОПА",
     "titleLine1": "Знайдемо електромобіль,",
@@ -27,7 +26,6 @@
     "individualApproach": "індивідуальний підхід",
     "concept": "КОНЦЕПЦІЯ VGTS MOBILITY"
   },
-
   "about": {
     "back": "Назад на головну",
     "eyebrow": "ПРО VGTS MOBILITY",
@@ -63,7 +61,6 @@
     "managementLabel": "Керівники",
     "contactButton": "Зв'язатися з нами"
   },
-
   "cars": {
     "eyebrow": "АКТУАЛЬНА ПРОПОЗИЦІЯ",
     "title": "Оберіть свій автомобіль",
@@ -72,7 +69,6 @@
     "loadError": "Помилка завантаження автомобілів",
     "empty": "Наразі немає доступних автомобілів."
   },
-
   "reviews": {
     "eyebrow": "Відгуки клієнтів",
     "title": "Що кажуть наші клієнти",
@@ -108,7 +104,6 @@
     "photoUploadError": "Не вдалося завантажити фотографію.",
     "submitError": "Не вдалося надіслати відгук. Спробуйте ще раз."
   },
-
   "carCard": {
     "status": {
       "available": "В наявності",
@@ -122,7 +117,6 @@
     "power": "Потужність",
     "price": "Ціна"
   },
-
   "services": {
     "eyebrow": "НАШІ ПОСЛУГИ",
     "title": "Подбаємо про весь процес.",
@@ -140,14 +134,12 @@
       "description": "Організуємо доставку, реєстрацію автомобіля, документацію та передачу автомобіля."
     }
   },
-
   "request": {
     "eyebrow": "ІНДИВІДУАЛЬНА ДОСТАВКА АВТО",
     "title": "Шукаєте конкретний автомобіль?",
     "description": "Заповніть коротку форму, і ми знайдемо для вас перевірений автомобіль відповідно до ваших вимог.",
     "button": "Замовити автомобіль"
   },
-
   "requestModal": {
     "success": "Дякуємо за ваш запит.",
     "close": "Закрити",
@@ -199,7 +191,6 @@
     "sending": "Надсилання...",
     "submit": "Надіслати запит"
   },
-
   "contact": {
     "eyebrow": "КОНТАКТИ",
     "title": "Зв'яжіться з нами",
@@ -208,14 +199,12 @@
     "email": "E-mail",
     "location": "Прага, Чеська Республіка"
   },
-
   "whatsapp": {
     "chooseContact": "Оберіть контакт",
     "tarasRole": "Продаж автомобілів",
     "vadymRole": "Доставка автомобілів",
     "close": "Закрити"
   },
-
   "footer": {
     "tagline": "Преміальні автомобілі з Європи",
     "description": "Доставляємо перевірені автомобілі з європейських аукціонів, перевіряємо їхню історію та допомагаємо клієнтам знайти автомобіль відповідно до їхніх вимог.",
@@ -231,13 +220,11 @@
     },
     "copyright": "© 2026 VGTS Mobility s.r.o. Усі права захищені."
   },
-
   "documents": {
     "back": "На головну",
     "title": "Документи",
     "description": "Офіційні документи та умови VGTS Mobility s.r.o. Ознайомтеся з умовами наших послуг, політикою захисту персональних даних та порядком рекламацій.",
     "open": "Відкрити документ",
-
     "items": {
       "terms": {
         "title": "Торгові умови",
@@ -252,23 +239,19 @@
         "description": "Правила подання та розгляду рекламацій щодо придбаних автомобілів."
       }
     },
-
     "info": {
       "title": "Документи VGTS Mobility",
       "text": "Документи діють у редакції, зазначеній безпосередньо в кожному документі."
     },
-
     "cta": {
       "title": "Залишилися запитання?",
       "text": "Зв'яжіться з нами, якщо вам потрібна додаткова інформація щодо умов покупки, рекламацій або обробки персональних даних."
     }
   },
-
   "carDescription": {
     "title": "Опис автомобіля",
     "empty": "Опис автомобіля буде додано."
   },
-
   "carDetails": {
     "back": "Назад",
     "status": {
@@ -296,7 +279,78 @@
     },
     "equipment": {
       "title": "Комплектація",
-      "empty": "Комплектація не вказана."
+      "empty": "Комплектація не вказана.",
+      "categories": {
+        "multimedia": "Мультимедіа та зв’язок",
+        "safety": "Системи безпеки",
+        "comfort": "Комфорт і салон",
+        "parking": "Паркування та камери",
+        "exterior": "Екстер’єр і підвіска",
+        "electric": "Електромобільність",
+        "other": "Інше обладнання"
+      },
+      "features": {
+        "appleCarPlay": "Apple CarPlay",
+        "androidAuto": "Android Auto",
+        "navigation": "Навігація",
+        "headUpDisplay": "Проєкційний дисплей Head-Up",
+        "digitalCockpit": "Цифрова панель приладів",
+        "premiumAudio": "Преміальна аудіосистема",
+        "harmanKardon": "Harman Kardon",
+        "bowersWilkins": "Bowers & Wilkins",
+        "bangOlufsen": "Bang & Olufsen",
+        "wirelessCharging": "Бездротова зарядка",
+        "voiceControl": "Голосове керування",
+        "bluetooth": "Bluetooth",
+        "adaptiveCruise": "Адаптивний круїз-контроль",
+        "laneAssist": "Утримання в смузі Lane Assist",
+        "blindSpot": "Контроль сліпих зон",
+        "frontAssist": "Front Assist",
+        "emergencyBraking": "Система екстреного гальмування",
+        "trafficSigns": "Розпізнавання дорожніх знаків",
+        "travelAssist": "Travel Assist",
+        "isofix": "ISOFIX",
+        "heatedSeats": "Підігрів сидінь",
+        "heatedSteeringWheel": "Підігрів керма",
+        "ventilatedSeats": "Вентиляція сидінь",
+        "massageSeats": "Масаж сидінь",
+        "electricSeats": "Електрорегулювання сидінь",
+        "memorySeats": "Пам’ять сидінь",
+        "leatherInterior": "Шкіряний салон",
+        "panoramicRoof": "Панорамний дах",
+        "sunroof": "Люк",
+        "ambientLighting": "Атмосферне підсвічування",
+        "threeZoneClimate": "Тризонний клімат-контроль",
+        "fourZoneClimate": "Чотиризонний клімат-контроль",
+        "keyless": "Безключовий доступ",
+        "electricTailgate": "Електропривід багажника",
+        "heatedWindshield": "Підігрів лобового скла",
+        "camera360": "Камери кругового огляду 360°",
+        "rearCamera": "Камера заднього огляду",
+        "parkingSensors": "Парктроніки",
+        "automaticParking": "Автоматичне паркування",
+        "matrixLed": "Matrix LED",
+        "ledHeadlights": "LED-фари",
+        "adaptiveHeadlights": "Адаптивні фари",
+        "automaticHighBeam": "Автоматичне дальнє світло",
+        "adaptiveSuspension": "Адаптивна підвіска",
+        "airSuspension": "Пневмопідвіска",
+        "towBar": "Фаркоп",
+        "heatedMirrors": "Підігрів дзеркал",
+        "fourWheelDrive": "Повний привід (4×4)",
+        "heatPump": "Тепловий насос",
+        "batteryPreconditioning": "Підготовка батареї до заряджання",
+        "scheduledCharging": "Планування заряджання",
+        "dcFastCharging": "Швидке DC-заряджання",
+        "acCharging": "AC-заряджання",
+        "regenerativeBraking": "Рекуперативне гальмування",
+        "onePedalDriving": "Керування однією педаллю",
+        "v2l": "Живлення зовнішніх пристроїв (V2L)",
+        "sportSeats": "Спортивні сидіння",
+        "driveModes": "Режими руху",
+        "alarm": "Сигналізація",
+        "digitalKey": "Цифровий ключ"
+      }
     },
     "description": {
       "title": "Опис автомобіля",
