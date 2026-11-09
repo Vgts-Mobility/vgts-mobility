@@ -35,10 +35,7 @@ export async function middleware(req: NextRequest) {
       data: { user },
     } = await supabase.auth.getUser();
 
-    if (
-      !user &&
-      pathname !== "/admin/login"
-    ) {
+    if (!user && pathname !== "/admin/login") {
       return NextResponse.redirect(
         new URL("/admin/login", req.url)
       );
@@ -47,7 +44,13 @@ export async function middleware(req: NextRequest) {
     return res;
   }
 
-  // PUBLIC SITE — next-intl
+  // ROOT DOMAIN — always open the Czech homepage first.
+  // This explicit redirect takes precedence over browser language and old locale cookies.
+  if (pathname === "/") {
+    return NextResponse.redirect(new URL("/cs", req.url), 307);
+  }
+
+  // PUBLIC SITE — next-intl handles /cs, /en and /uk routes.
   return intlMiddleware(req);
 }
 
