@@ -281,11 +281,14 @@ export default function Contact() {
                             {review.text}
                           </p>
                           {review.company_reply && (
-                            <div className="mt-3 rounded-lg border border-lime-400/20 bg-lime-400/5 p-3">
-                              <p className="text-[10px] font-bold uppercase tracking-wide text-lime-400">
-                                VGTS Mobility
-                              </p>
-                              <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-gray-300">
+                            <div className="mt-3 overflow-hidden rounded-xl border border-blue-400/25 bg-gradient-to-br from-blue-500/10 via-[#111827] to-purple-500/10 p-3.5 shadow-[0_8px_24px_rgba(59,130,246,0.08)]">
+                              <div className="flex items-center gap-2">
+                                <span className="h-2 w-2 rounded-full bg-lime-400 shadow-[0_0_10px_rgba(183,255,0,0.7)]" />
+                                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-blue-300">
+                                  Odpověď VGTS Mobility
+                                </p>
+                              </div>
+                              <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-gray-200">
                                 {review.company_reply}
                               </p>
                             </div>
