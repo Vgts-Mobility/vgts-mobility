@@ -3,12 +3,14 @@
 import { revalidatePath } from "next/cache";
 
 import { supabaseAdmin } from "@/lib/supabase-admin";
+import { requireAdminSession } from "@/lib/auth/require-admin";
 
 export async function deleteImageAction(
   carId: string,
   folder: string,
   image: string
 ) {
+  await requireAdminSession();
   const { data: car, error } = await supabaseAdmin
     .from("cars")
     .select("images")
