@@ -4,6 +4,7 @@ import {
   approveReview,
   hideReview,
   deleteReview,
+  saveReviewReply,
 } from "@/app/actions/reviews";
 
 export default async function ReviewsPage() {
@@ -52,12 +53,12 @@ export default async function ReviewsPage() {
       : "0.0";
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-5 md:space-y-8">
 
       {/* HEADER */}
 
       <div>
-        <h1 className="text-4xl font-black text-white">
+        <h1 className="text-3xl font-black text-white sm:text-4xl">
           Recenze
         </h1>
 
@@ -68,19 +69,19 @@ export default async function ReviewsPage() {
 
       {/* STATISTICS */}
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
 
-        <div className="rounded-2xl border border-white/10 bg-surface p-6">
+        <div className="rounded-2xl border border-white/10 bg-surface p-4 md:p-6">
           <p className="text-sm text-text-muted">
             Celkem recenzí
           </p>
 
-          <p className="mt-2 text-3xl font-black text-white">
+          <p className="mt-2 text-2xl font-black text-white md:text-3xl">
             {totalReviews}
           </p>
         </div>
 
-        <div className="rounded-2xl border border-lime-400/20 bg-lime-400/5 p-6">
+        <div className="rounded-2xl border border-lime-400/20 bg-lime-400/5 p-4 md:p-6">
           <p className="text-sm text-text-muted">
             Průměrné hodnocení
           </p>
@@ -96,12 +97,12 @@ export default async function ReviewsPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-yellow-400/20 bg-yellow-400/5 p-6">
+        <div className="col-span-2 rounded-2xl border border-yellow-400/20 bg-yellow-400/5 p-4 md:col-span-1 md:p-6">
           <p className="text-sm text-text-muted">
             Čeká na schválení
           </p>
 
-          <p className="mt-2 text-3xl font-black text-yellow-400">
+          <p className="mt-2 text-2xl font-black text-yellow-400 md:text-3xl">
             {pendingReviews}
           </p>
 
@@ -116,7 +117,7 @@ export default async function ReviewsPage() {
 
       <div className="overflow-hidden rounded-2xl border border-white/10">
 
-        <div className="border-b border-white/10 bg-surface px-6 py-4">
+        <div className="border-b border-white/10 bg-surface px-4 py-4 md:px-6">
           <h2 className="text-xl font-bold text-white">
             Všechny recenze
           </h2>
@@ -134,7 +135,7 @@ export default async function ReviewsPage() {
               return (
                 <div
                   key={review.id}
-                  className="p-6 transition hover:bg-white/5"
+                  className="p-4 transition hover:bg-white/5 md:p-6"
                 >
 
                   <div className="flex flex-col gap-6">
@@ -205,10 +206,40 @@ export default async function ReviewsPage() {
                     {/* TEXT */}
 
                     {review.text && (
-                      <div className="max-w-4xl rounded-xl bg-white/5 p-4">
+                      <div className="max-w-4xl rounded-xl bg-white/5 p-3 sm:p-4">
                         <p className="leading-7 text-gray-300">
                           {review.text}
                         </p>
+                      </div>
+                    )}
+
+                    {/* COMPANY REPLY */}
+                    {isApproved && (
+                      <div className="w-full max-w-4xl space-y-3 rounded-xl border border-lime-400/20 bg-lime-400/5 p-3 sm:p-4">
+                        <p className="text-sm font-semibold text-lime-400">
+                          Odpověď VGTS Mobility
+                        </p>
+                        {review.company_reply && (
+                          <p className="whitespace-pre-wrap text-sm leading-6 text-gray-300">
+                            {review.company_reply}
+                          </p>
+                        )}
+                        <form action={saveReviewReply.bind(null, review.id)} className="space-y-2">
+                          <textarea
+                            name="company_reply"
+                            required
+                            rows={3}
+                            defaultValue={review.company_reply ?? ""}
+                            placeholder="Napište odpověď zákazníkovi..."
+                            className="w-full rounded-lg border border-white/10 bg-[#05070d] px-3 py-2 text-sm text-white outline-none transition placeholder:text-gray-600 focus:border-lime-400"
+                          />
+                          <button
+                            type="submit"
+                            className="min-h-11 w-full rounded-lg bg-lime-400 px-5 py-2.5 font-semibold text-black transition hover:bg-lime-300 sm:w-auto"
+                          >
+                            Uložit odpověď
+                          </button>
+                        </form>
                       </div>
                     )}
 
@@ -229,7 +260,7 @@ export default async function ReviewsPage() {
 
                     {/* ACTIONS */}
 
-                    <div className="flex flex-wrap gap-3 border-t border-white/10 pt-5">
+                    <div className="grid grid-cols-2 gap-2 border-t border-white/10 pt-4 sm:flex sm:flex-wrap sm:gap-3 sm:pt-5">
 
                       {!isApproved ? (
                         <form
@@ -254,7 +285,7 @@ export default async function ReviewsPage() {
                         >
                           <button
                             type="submit"
-                            className="rounded-lg border border-yellow-400/30 bg-yellow-400/10 px-5 py-2.5 font-semibold text-yellow-400 transition hover:bg-yellow-400/20"
+                            className="min-h-11 w-full rounded-lg border border-yellow-400/30 bg-yellow-400/10 px-3 py-2.5 text-sm font-semibold text-yellow-400 transition hover:bg-yellow-400/20 sm:w-auto sm:px-5"
                           >
                             ○ Skrýt z webu
                           </button>
@@ -269,7 +300,7 @@ export default async function ReviewsPage() {
                       >
                         <button
                           type="submit"
-                          className="rounded-lg border border-red-500/30 bg-red-500/10 px-5 py-2.5 font-semibold text-red-400 transition hover:bg-red-500/20"
+                          className="min-h-11 w-full rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2.5 text-sm font-semibold text-red-400 transition hover:bg-red-500/20 sm:w-auto sm:px-5"
                         >
                           🗑 Smazat
                         </button>

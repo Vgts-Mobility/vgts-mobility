@@ -19,6 +19,7 @@ type Review = {
   text: string;
   photo_url: string | null;
   status: string;
+  company_reply: string | null;
   created_at: string;
 };
 
@@ -42,7 +43,7 @@ export default function Contact() {
         const { data, error } = await supabase
           .from("reviews")
           .select(
-            "id, name, rating, text, photo_url, status, created_at"
+            "id, name, rating, text, photo_url, status, company_reply, created_at"
           )
           .eq("status", "approved")
           .order("created_at", {
@@ -279,6 +280,19 @@ export default function Contact() {
                           <p className="mt-2 text-sm leading-6 text-gray-300 sm:text-base">
                             {review.text}
                           </p>
+                          {review.company_reply && (
+                            <div className="mt-3 overflow-hidden rounded-xl border border-blue-400/25 bg-gradient-to-br from-blue-500/10 via-[#111827] to-purple-500/10 p-3.5 shadow-[0_8px_24px_rgba(59,130,246,0.08)]">
+                              <div className="flex items-center gap-2">
+                                <span className="h-2 w-2 rounded-full bg-lime-400 shadow-[0_0_10px_rgba(183,255,0,0.7)]" />
+                                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-blue-300">
+                                  Odpověď VGTS Mobility
+                                </p>
+                              </div>
+                              <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-gray-200">
+                                {review.company_reply}
+                              </p>
+                            </div>
+                          )}
                           {review.photo_url && (
                             <button type="button" onClick={() => setExpandedPhoto(review.photo_url)} className="mt-3 block w-full max-w-[280px] overflow-hidden rounded-xl border border-white/10 transition hover:border-lime-400/60" aria-label="View customer photo">
                               <img src={review.photo_url} alt="Customer's car" className="h-40 w-full rounded-xl object-cover sm:h-44" />

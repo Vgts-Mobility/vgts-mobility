@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { supabaseAdmin } from "@/lib/supabase-admin";
+import { requireAdminSession } from "@/lib/auth/require-admin";
 import { uploadImages } from "@/lib/storage/upload";
 
 export async function uploadImagesAction(
@@ -10,6 +11,7 @@ export async function uploadImagesAction(
   folder: string,
   formData: FormData
 ) {
+  await requireAdminSession();
   const files = formData.getAll("images") as File[];
 
   const validFiles = files.filter((file) => file.size > 0);

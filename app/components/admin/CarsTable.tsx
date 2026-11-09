@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Pencil, Trash2, Images, Calendar, Gauge } from "lucide-react";
+import { Pencil, Trash2, Calendar, Gauge } from "lucide-react";
 
 import { deleteCar } from "@/app/actions/delete-car";
 import { getPublicImage } from "@/lib/storage/get-public-image";
@@ -93,11 +93,11 @@ export default function CarsTable({
             key={car.id}
             className="group overflow-hidden rounded-3xl border border-white/10 bg-surface transition-all duration-300 hover:border-primary hover:shadow-2xl"
           >
-            <div className="grid gap-6 p-5 lg:grid-cols-[220px_1fr_auto]">
+            <div className="grid min-w-0 gap-4 p-4 sm:gap-6 sm:p-5 lg:grid-cols-[220px_minmax(0,1fr)_auto]">
 
               {/* FOTO */}
 
-              <div className="relative h-40 overflow-hidden rounded-2xl">
+              <div className="relative h-44 overflow-hidden rounded-2xl sm:h-52 lg:h-40">
 
                 <Image
                   src={image}
@@ -116,7 +116,7 @@ export default function CarsTable({
 
                   <div className="flex flex-wrap items-center gap-3">
 
-                    <h2 className="text-2xl font-bold text-white">
+                    <h2 className="break-words text-xl font-bold text-white sm:text-2xl">
                       {car.brand} {car.model}
                     </h2>
 
@@ -180,22 +180,14 @@ export default function CarsTable({
 
                 </div>
 
-                <div className="mt-6 flex flex-col gap-3">
+                <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-6 sm:flex sm:flex-col sm:gap-3">
 
                   <Link
                     href={`/admin/cars/${car.id}`}
-                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-blue-500/30 bg-blue-500/10 px-5 py-3 font-medium text-blue-300 transition hover:border-blue-400 hover:bg-blue-500/20"
+                    className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border border-blue-500/30 bg-blue-500/10 px-2 py-3 text-xs font-medium text-blue-300 transition hover:border-blue-400 hover:bg-blue-500/20 sm:gap-2 sm:px-5 sm:text-sm"
                   >
                     <Pencil size={18} />
                     Upravit
-                  </Link>
-
-                  <Link
-                    href={`/admin/cars/${car.id}/photos`}
-                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-lime-400/30 bg-lime-400/10 px-5 py-3 font-medium text-lime-300 transition hover:border-lime-400 hover:bg-lime-400/20"
-                  >
-                    <Images size={18} />
-                    Fotografie
                   </Link>
 
                   <form
@@ -206,7 +198,7 @@ export default function CarsTable({
                   >
                     <button
                       type="submit"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-red-500/30 bg-red-500/10 px-5 py-3 font-medium text-red-300 transition hover:border-red-400 hover:bg-red-500/20"
+                      className="inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-xl border border-red-500/30 bg-red-500/10 px-2 py-3 text-xs font-medium text-red-300 transition hover:border-red-400 hover:bg-red-500/20 sm:gap-2 sm:px-5 sm:text-sm"
                     >
                       <Trash2 size={18} />
                       Smazat

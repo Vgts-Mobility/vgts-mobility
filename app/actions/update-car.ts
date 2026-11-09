@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { updateCar as updateCarModel } from "@/lib/models/cars";
+import { requireAdminSession } from "@/lib/auth/require-admin";
 
 function slugify(text: string) {
   return text
@@ -20,6 +21,7 @@ export async function updateCar(
   id: string,
   formData: FormData
 ) {
+  await requireAdminSession();
   const brand = String(formData.get("brand") || "");
   const model = String(formData.get("model") || "");
 
