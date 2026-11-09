@@ -12,11 +12,15 @@ import {
 import { logout } from "@/app/actions/auth";
 import { getPendingReviewsCount } from "@/app/actions/reviews-count";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function AdminHeader() {
+  const pathname = usePathname();
   const [pendingReviews, setPendingReviews] = useState(0);
 
   useEffect(() => {
+    if (pathname === "/admin/login") return;
+
     async function loadPendingReviews() {
       const count = await getPendingReviewsCount();
       setPendingReviews(count);
@@ -25,7 +29,9 @@ export default function AdminHeader() {
     loadPendingReviews();
     const interval = setInterval(loadPendingReviews, 30000);
     return () => clearInterval(interval);
-  }, []);
+  }, [pathname]);
+
+  if (pathname === "/admin/login") return null;
 
   const links = [
     { href: "/admin", label: "Dashboard", shortLabel: "Головна", Icon: LayoutDashboard },
