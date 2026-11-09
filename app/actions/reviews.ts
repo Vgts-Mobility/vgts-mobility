@@ -50,3 +50,35 @@ export async function deleteReview(id: string) {
   revalidatePath("/admin/reviews");
   revalidatePath("/");
 }
+
+export async function saveReviewReply(id: string, formData: FormData) {
+  const { createClient } = await import("@/lib/supabase/server");
+  const supabase = await createClient();
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    throw new Error("Unauthorized");
+  }
+
+  const reply = String(formData.get("company_reply") || "").trim();
+  if (!reply) {
+    throw new Error("Odpověď nesmí být prázdná.");
+  }
+
+  const { error } = await supabaseAdmin
+    .from("reviews")
+    .update({
+      company_reply: reply,
+      company_replied_at: new Date().toISOString(),
+    })
+    .eq("id", id)
+    .eq("status", "approved");
+
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/admin/reviews");
+  revalidatePath("/");
+  revalidatePath("/cs");
+  revalidatePath("/uk");
+  revalidatePath("/en");
+}
