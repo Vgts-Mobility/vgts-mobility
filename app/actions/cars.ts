@@ -9,6 +9,7 @@ import {
 } from "@/lib/models/cars";
 
 import { uploadImages } from "@/lib/storage/upload";
+import { requireAdminSession } from "@/lib/auth/require-admin";
 
 function slugify(text: string) {
   return text
@@ -22,6 +23,7 @@ function slugify(text: string) {
 }
 
 export async function createCarAction(formData: FormData) {
+  await requireAdminSession();
   const brand = String(formData.get("brand") || "");
   const model = String(formData.get("model") || "");
 
