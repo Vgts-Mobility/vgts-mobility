@@ -2,11 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { supabase } from "@/lib/supabase";
+import { requireAdminSession } from "@/lib/auth/require-admin";
 
 export async function updateRequestStatus(
   id: string,
   status: string
 ) {
+  await requireAdminSession();
   const { error } = await supabase
     .from("requests")
     .update({ status })
