@@ -4,6 +4,7 @@ import {
   approveReview,
   hideReview,
   deleteReview,
+  saveReviewReply,
 } from "@/app/actions/reviews";
 
 export default async function ReviewsPage() {
