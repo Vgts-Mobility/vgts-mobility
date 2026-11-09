@@ -2,8 +2,10 @@
 
 import { revalidatePath } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase-admin";
+import { requireAdminSession } from "@/lib/auth/require-admin";
 
 export async function approveReview(id: string) {
+  await requireAdminSession();
   const { error } = await supabaseAdmin
     .from("reviews")
     .update({
@@ -21,6 +23,7 @@ export async function approveReview(id: string) {
 }
 
 export async function hideReview(id: string) {
+  await requireAdminSession();
   const { error } = await supabaseAdmin
     .from("reviews")
     .update({
@@ -38,6 +41,7 @@ export async function hideReview(id: string) {
 }
 
 export async function deleteReview(id: string) {
+  await requireAdminSession();
   const { error } = await supabaseAdmin
     .from("reviews")
     .delete()
@@ -52,13 +56,7 @@ export async function deleteReview(id: string) {
 }
 
 export async function saveReviewReply(id: string, formData: FormData) {
-  const { createClient } = await import("@/lib/supabase/server");
-  const supabase = await createClient();
-  const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-  if (authError || !user) {
-    throw new Error("Unauthorized");
-  }
+  await requireAdminSession();
 
   const reply = String(formData.get("company_reply") || "").trim();
   if (!reply) {
