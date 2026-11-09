@@ -42,7 +42,7 @@ export default function Contact() {
         const { data, error } = await supabase
           .from("reviews")
           .select(
-            "id, name, rating, text, photo_url, status, created_at"
+            "id, name, rating, text, photo_url, status, company_reply, created_at"
           )
           .eq("status", "approved")
           .order("created_at", {
@@ -279,6 +279,16 @@ export default function Contact() {
                           <p className="mt-2 text-sm leading-6 text-gray-300 sm:text-base">
                             {review.text}
                           </p>
+                          {review.company_reply && (
+                            <div className="mt-3 rounded-lg border border-lime-400/20 bg-lime-400/5 p-3">
+                              <p className="text-[10px] font-bold uppercase tracking-wide text-lime-400">
+                                VGTS Mobility
+                              </p>
+                              <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-gray-300">
+                                {review.company_reply}
+                              </p>
+                            </div>
+                          )}
                           {review.photo_url && (
                             <button type="button" onClick={() => setExpandedPhoto(review.photo_url)} className="mt-3 block w-full max-w-[280px] overflow-hidden rounded-xl border border-white/10 transition hover:border-lime-400/60" aria-label="View customer photo">
                               <img src={review.photo_url} alt="Customer's car" className="h-40 w-full rounded-xl object-cover sm:h-44" />
