@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Pencil, Trash2, Images, Calendar, Gauge } from "lucide-react";
+import { Pencil, Trash2, Calendar, Gauge } from "lucide-react";
 
 import { deleteCar } from "@/app/actions/delete-car";
 import { getPublicImage } from "@/lib/storage/get-public-image";
@@ -188,14 +188,6 @@ export default function CarsTable({
                   >
                     <Pencil size={18} />
                     Upravit
-                  </Link>
-
-                  <Link
-                    href={`/admin/cars/${car.id}/photos`}
-                    className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border border-lime-400/30 bg-lime-400/10 px-2 py-3 text-xs font-medium text-lime-300 transition hover:border-lime-400 hover:bg-lime-400/20 sm:gap-2 sm:px-5 sm:text-sm"
-                  >
-                    <Images size={18} />
-                    Fotografie
                   </Link>
 
                   <form
