@@ -212,6 +212,36 @@ export default async function ReviewsPage() {
                       </div>
                     )}
 
+                    {/* COMPANY REPLY */}
+                    {isApproved && (
+                      <div className="max-w-4xl space-y-3 rounded-xl border border-lime-400/20 bg-lime-400/5 p-4">
+                        <p className="text-sm font-semibold text-lime-400">
+                          Odpověď VGTS Mobility
+                        </p>
+                        {review.company_reply && (
+                          <p className="whitespace-pre-wrap text-sm leading-6 text-gray-300">
+                            {review.company_reply}
+                          </p>
+                        )}
+                        <form action={saveReviewReply.bind(null, review.id)} className="space-y-2">
+                          <textarea
+                            name="company_reply"
+                            required
+                            rows={3}
+                            defaultValue={review.company_reply ?? ""}
+                            placeholder="Napište odpověď zákazníkovi..."
+                            className="w-full rounded-lg border border-white/10 bg-[#05070d] px-3 py-2 text-sm text-white outline-none transition placeholder:text-gray-600 focus:border-lime-400"
+                          />
+                          <button
+                            type="submit"
+                            className="rounded-lg bg-lime-400 px-5 py-2.5 font-semibold text-black transition hover:bg-lime-300"
+                          >
+                            Uložit odpověď
+                          </button>
+                        </form>
+                      </div>
+                    )}
+
                     {/* PHOTO */}
 
                     {review.photo_url && (
