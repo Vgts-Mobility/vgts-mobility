@@ -19,6 +19,7 @@ type Review = {
   text: string;
   photo_url: string | null;
   status: string;
+  company_reply: string | null;
   created_at: string;
 };
 
