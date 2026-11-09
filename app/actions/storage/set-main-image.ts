@@ -3,11 +3,13 @@
 import { revalidatePath } from "next/cache";
 
 import { supabaseAdmin } from "@/lib/supabase-admin";
+import { requireAdminSession } from "@/lib/auth/require-admin";
 
 export async function setMainImageAction(
   carId: string,
   index: number
 ) {
+  await requireAdminSession();
   const { data: car, error } = await supabaseAdmin
     .from("cars")
     .select("images")
