@@ -4,26 +4,17 @@ import CarsSection from "../components/sections/CarsSection";
 import Services from "../components/sections/Services";
 import RequestForm from "../components/RequestForm";
 import Contact from "../components/Contact";
-import WhatsAppButton from "../components/WhatsAppButton";
 import Footer from "../components/Footer";
 
 export default function Home() {
   return (
     <>
       <Header />
-
       <Hero />
-
       <CarsSection />
-
       <Services />
-
       <RequestForm />
-
       <Contact />
-
-      <WhatsAppButton />
-
       <Footer />
     </>
   );
