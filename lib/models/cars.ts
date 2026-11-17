@@ -4,6 +4,7 @@ type CreateCarData = {
   brand: string;
   model: string;
   slug: string;
+  imageFolder: string;
 
   year: number;
   price: number;
@@ -33,7 +34,7 @@ type CreateCarData = {
   features: string[];
 };
 
-type UpdateCarData = CreateCarData & {
+type UpdateCarData = Omit<CreateCarData, "slug" | "imageFolder"> & {
   status: string;
 };
 
@@ -67,14 +68,14 @@ export async function getCarById(id: string) {
 }
 
 export async function createCar(data: CreateCarData) {
+  const { imageFolder, ...carData } = data;
+
   const { data: car, error } = await supabaseAdmin
     .from("cars")
     .insert({
-      ...data,
-
+      ...carData,
       status: "В наявності",
-
-      image_folder: data.slug,
+      image_folder: imageFolder,
       images: [],
     })
     .select()
