@@ -37,7 +37,7 @@ export default function RequestModal({ open, onClose }: Props) {
   }, [state, onClose, t]);
 
   function sendRequestToWhatsApp() {
-    if (!formRef.current) return;
+    if (!formRef.current || !formRef.current.reportValidity()) return;
 
     const data = new FormData(formRef.current);
     const labels: Record<string, string> = locale === "uk"
