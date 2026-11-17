@@ -8,13 +8,11 @@ import { deleteImageAction } from "@/app/actions/storage/delete-image";
 
 type Props = {
   carId: string;
-  folder: string;
   image: string;
 };
 
 export default function DeletePhotoButton({
   carId,
-  folder,
   image,
 }: Props) {
   const router = useRouter();
@@ -26,7 +24,7 @@ export default function DeletePhotoButton({
     if (!ok) return;
 
     startTransition(async () => {
-      await deleteImageAction(carId, folder, image);
+      await deleteImageAction(carId, image);
       router.refresh();
     });
   }

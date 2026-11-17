@@ -81,7 +81,6 @@ export default function PhotoCard({
 
           <DeletePhotoButton
             carId={car.id}
-            folder={car.image_folder}
             image={image}
           />
         </div>

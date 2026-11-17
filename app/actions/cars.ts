@@ -26,8 +26,12 @@ export async function createCarAction(formData: FormData) {
   await requireAdminSession();
   const brand = String(formData.get("brand") || "");
   const model = String(formData.get("model") || "");
+  const year = Number(formData.get("year"));
 
-  const slug = slugify(`${brand}-${model}`);
+  // Кожен автомобіль отримує власний URL, навіть якщо марка/модель повторюються.
+  const slug = `${slugify(`${brand}-${model}-${year}`)}-${crypto.randomUUID().slice(0, 8)}`;
+  // Папка для завантажень не залежить від назви чи slug.
+  const imageFolder = `car-${crypto.randomUUID()}`;
 
   const features = formData
     .getAll("features")
@@ -39,8 +43,9 @@ export async function createCarAction(formData: FormData) {
     brand,
     model,
     slug,
+    imageFolder,
 
-    year: Number(formData.get("year")),
+    year,
     price: Number(formData.get("price")),
     mileage: Number(formData.get("mileage")),
 
@@ -97,7 +102,7 @@ export async function createCarAction(formData: FormData) {
 
   if (files.length > 0) {
     const uploaded = await uploadImages(
-      slug,
+      car.image_folder,
       files
     );
 
