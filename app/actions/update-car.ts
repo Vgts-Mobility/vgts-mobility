@@ -6,17 +6,6 @@ import { redirect } from "next/navigation";
 import { updateCar as updateCarModel } from "@/lib/models/cars";
 import { requireAdminSession } from "@/lib/auth/require-admin";
 
-function slugify(text: string) {
-  return text
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
-}
-
 export async function updateCar(
   id: string,
   formData: FormData
@@ -24,8 +13,6 @@ export async function updateCar(
   await requireAdminSession();
   const brand = String(formData.get("brand") || "");
   const model = String(formData.get("model") || "");
-
-  const slug = slugify(`${brand}-${model}`);
 
   const features = formData.getAll("features").map(String);
 
@@ -36,10 +23,11 @@ export async function updateCar(
       ? Number(sohValue)
       : null;
 
+  // Slug та image_folder навмисно не змінюємо під час редагування:
+  // це зберігає старі URL і шляхи до вже завантажених фото.
   await updateCarModel(id, {
     brand,
     model,
-    slug,
 
     year: Number(formData.get("year")),
     price: Number(formData.get("price")),
