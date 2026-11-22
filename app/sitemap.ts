@@ -14,9 +14,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 1,
   }));
 
+  // Only request the known required column: some deployments may not have
+  // updated_at/created_at, which would otherwise make the entire query fail.
   const { data: cars, error } = await supabaseAdmin
     .from("cars")
-    .select("slug, updated_at, created_at")
+    .select("slug")
     .not("slug", "is", null);
 
   if (error) {
@@ -24,14 +26,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return staticPages;
   }
 
-  const carPages: MetadataRoute.Sitemap = (cars ?? []).flatMap((car) =>
-    locales.map((locale) => ({
-      url: `${baseUrl}/${locale}/cars/${encodeURIComponent(car.slug)}`,
-      lastModified: car.updated_at ?? car.created_at ?? now,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    }))
-  );
+  const carPages: MetadataRoute.Sitemap = (cars ?? [])
+    .filter((car) => typeof car.slug === "string" && car.slug.length > 0)
+    .flatMap((car) =>
+      locales.map((locale) => ({
+        url: `${baseUrl}/${locale}/cars/${encodeURIComponent(car.slug)}`,
+        lastModified: now,
+        changeFrequency: "weekly" as const,
+        priority: 0.8,
+      }))
+    );
 
   return [...staticPages, ...carPages];
 }
