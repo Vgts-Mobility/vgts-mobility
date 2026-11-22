@@ -39,4 +39,7 @@ export interface Car {
   images: string[] | null;
 
   image_folder: string;
+
+  battery_certificate_path: string | null;
+  carvertical_report_path: string | null;
 }
