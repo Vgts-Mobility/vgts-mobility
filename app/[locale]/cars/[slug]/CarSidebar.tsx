@@ -7,9 +7,14 @@ import {
   Zap,
   Phone,
   MessageCircle,
+  BatteryCharging,
+  CarFront,
+  FileText,
 } from "lucide-react";
 
 import { Car } from "@/types/car";
+import { getPublicImage } from "@/lib/storage/get-public-image";
+import { useTranslations } from "next-intl";
 
 const statusMap: Record<string, string> = {
   "В наявності": "Skladem",
@@ -38,6 +43,7 @@ export default function CarSidebar({
   car: Car;
 }) {
   const currentStatus = car.status ?? "";
+  const t = useTranslations("carDetails.documents");
 
   return (
     <aside className="rounded-3xl border border-lime-400/20 bg-[#10141d] p-6 lg:p-7">
@@ -77,6 +83,34 @@ export default function CarSidebar({
           <span className="ml-2 text-sm font-semibold text-gray-500">bez DPH</span>
         </div>
       </div>
+
+      {/* VEHICLE DOCUMENTS — show only uploaded files */}
+      {(car.battery_certificate_path || car.carvertical_report_path) && (
+        <div className="mt-7 grid gap-3">
+          {car.battery_certificate_path && (
+            <a
+              href={getPublicImage(car.battery_certificate_path)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex min-h-16 items-center justify-between gap-3 rounded-2xl border border-lime-300/60 bg-gradient-to-r from-lime-300 to-lime-400 px-4 py-4 font-black text-[#10140a] shadow-lg shadow-lime-400/15 transition hover:-translate-y-0.5 hover:shadow-lime-400/25"
+            >
+              <span className="flex items-center gap-3"><BatteryCharging size={23} /><span>{t("batteryCertificate")}</span></span>
+              <FileText size={21} />
+            </a>
+          )}
+          {car.carvertical_report_path && (
+            <a
+              href={getPublicImage(car.carvertical_report_path)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex min-h-16 items-center justify-between gap-3 rounded-2xl border border-violet-400/70 bg-gradient-to-r from-violet-600 to-purple-600 px-4 py-4 font-black text-white shadow-lg shadow-violet-500/20 transition hover:-translate-y-0.5 hover:shadow-violet-500/30"
+            >
+              <span className="flex items-center gap-3"><CarFront size={23} /><span>{t("carVerticalReport")}</span></span>
+              <FileText size={21} />
+            </a>
+          )}
+        </div>
+      )}
 
       {/* CONTACT */}
 

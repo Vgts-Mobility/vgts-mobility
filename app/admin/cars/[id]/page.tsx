@@ -6,6 +6,7 @@ import { updateCar } from "@/app/actions/update-car";
 
 import CarForm from "@/app/components/admin/CarForm";
 import PhotoManager from "@/app/components/admin/photo-manager/PhotoManager";
+import CarDocumentsManager from "@/app/components/admin/CarDocumentsManager";
 
 type Props = {
   params: Promise<{
@@ -56,6 +57,8 @@ export default async function EditCarPage({
       />
 
       <PhotoManager car={car} />
+
+      <CarDocumentsManager car={car} />
     </div>
   );
 }
