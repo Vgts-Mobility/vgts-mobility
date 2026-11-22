@@ -23,8 +23,6 @@ type CarSeoData = {
 };
 
 const siteUrl = "https://vgts-mobility.cz";
-const locales = ["cs", "uk", "en"] as const;
-
 async function getCar(slug: string) {
   const { data, error } = await supabase
     .from("cars")
