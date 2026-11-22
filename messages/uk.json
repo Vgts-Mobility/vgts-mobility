@@ -368,6 +368,10 @@
       "vadym": "Вадим",
       "phone": "Телефон",
       "whatsapp": "WhatsApp"
+    },
+    "documents": {
+      "batteryCertificate": "Сертифікат батареї",
+      "carVerticalReport": "Звіт CarVertical"
     }
   }
 }
