@@ -416,6 +416,28 @@ export default function CarForm({
 
       {!car && <ImageUpload />}
 
+      {/* ДОКУМЕНТИ АВТОМОБІЛЯ */}
+      {!car && (
+        <section className="space-y-5 rounded-2xl border border-white/10 bg-[#0b0e15] p-5">
+          <div>
+            <h2 className="text-xl font-bold text-white">Документи автомобіля</h2>
+            <p className="mt-1 text-sm text-text-muted">Необов’язково. Можна додати PDF або фото зараз чи пізніше в редагуванні автомобіля.</p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            <label className="block rounded-xl border border-lime-400/30 bg-lime-400/5 p-4">
+              <span className="mb-2 block font-semibold text-lime-300">Сертифікат батареї</span>
+              <input name="battery_certificate" type="file" accept="application/pdf,image/jpeg,image/png,image/webp" className="block w-full text-sm text-gray-300 file:mr-3 file:rounded-lg file:border-0 file:bg-lime-400 file:px-3 file:py-2 file:font-semibold file:text-black" />
+              <span className="mt-2 block text-xs text-text-muted">PDF, JPG, PNG або WEBP · до 20 МБ</span>
+            </label>
+            <label className="block rounded-xl border border-violet-400/30 bg-violet-400/5 p-4">
+              <span className="mb-2 block font-semibold text-violet-300">Звіт CarVertical</span>
+              <input name="carvertical_report" type="file" accept="application/pdf,image/jpeg,image/png,image/webp" className="block w-full text-sm text-gray-300 file:mr-3 file:rounded-lg file:border-0 file:bg-violet-500 file:px-3 file:py-2 file:font-semibold file:text-white" />
+              <span className="mt-2 block text-xs text-text-muted">PDF, JPG, PNG або WEBP · до 20 МБ</span>
+            </label>
+          </div>
+        </section>
+      )}
+
       {/* ОПИС */}
 
       <div>
