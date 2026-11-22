@@ -10,6 +10,7 @@ import {
 
 import { uploadImages } from "@/lib/storage/upload";
 import { requireAdminSession } from "@/lib/auth/require-admin";
+import { saveCarDocument } from "@/lib/storage/car-documents";
 
 function slugify(text: string) {
   return text
@@ -110,6 +111,16 @@ export async function createCarAction(formData: FormData) {
       car.id,
       uploaded
     );
+  }
+
+  const batteryCertificate = formData.get("battery_certificate");
+  if (batteryCertificate instanceof File && batteryCertificate.size > 0) {
+    await saveCarDocument(car.id, "battery_certificate", batteryCertificate);
+  }
+
+  const carVerticalReport = formData.get("carvertical_report");
+  if (carVerticalReport instanceof File && carVerticalReport.size > 0) {
+    await saveCarDocument(car.id, "carvertical_report", carVerticalReport);
   }
 
   revalidatePath("/");
