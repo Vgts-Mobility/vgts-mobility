@@ -205,7 +205,7 @@ export default function FullscreenGallery({
             className="flex items-center justify-center"
           >
             <div
-              className="flex h-full w-full items-center justify-center overflow-hidden px-4 py-24 sm:px-20 sm:py-16 lg:px-24"
+              className="flex h-full w-full items-center justify-center overflow-hidden px-4 py-20 sm:px-20 sm:py-14 lg:px-24 landscape:px-16 landscape:py-8"
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
