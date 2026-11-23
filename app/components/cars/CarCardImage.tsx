@@ -36,6 +36,7 @@ export default function CarCardImage({
       alt={`${car.brand} ${car.model}`}
       fill
       priority
+      unoptimized={image.startsWith("optimized/")}
       sizes="
         (max-width: 640px) 100vw,
         (max-width: 1024px) 50vw,
