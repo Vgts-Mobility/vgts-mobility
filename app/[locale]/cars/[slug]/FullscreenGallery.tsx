@@ -205,7 +205,7 @@ export default function FullscreenGallery({
             className="flex items-center justify-center"
           >
             <div
-              className="flex h-full w-full items-center justify-center overflow-hidden px-16 py-16 sm:px-20 lg:px-24"
+              className="flex h-full w-full items-center justify-center overflow-hidden px-4 py-24 sm:px-20 sm:py-16 lg:px-24"
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
@@ -220,7 +220,7 @@ export default function FullscreenGallery({
                 height={1200}
                 priority={index === initialSlide}
                 draggable={false}
-                className="max-h-full max-w-full rounded-2xl object-contain select-none"
+                className="h-full w-full max-h-full max-w-full rounded-2xl object-contain select-none"
                 style={{
                   transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
                   transformOrigin: "center center",
