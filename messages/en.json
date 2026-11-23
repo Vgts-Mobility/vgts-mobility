@@ -216,10 +216,11 @@
       "documents": "Documents"
     },
     "contacts": {
-      "title": "Official company contact",
-      "eyebrow": "One contact for everything",
-      "description": "Car sales, consultations and new inquiries. We are here to help.",
-      "whatsapp": "Chat on WhatsApp Business"
+      "title": "Contact us by phone",
+      "description": "Give us a call or send us a message on WhatsApp.",
+      "call": "Call us",
+      "whatsapp": "WhatsApp",
+      "socials": "Follow us"
     },
     "copyright": "© 2026 VGTS Mobility s.r.o. All rights reserved."
   },
