@@ -92,6 +92,7 @@ export default function CarGallery({
                 <Image
                   src={image}
                   alt={`${title} - foto ${index + 1}`}
+                  unoptimized={image.includes("/optimized/")}
                   width={1600}
                   height={1000}
                   priority={index === 0}
@@ -155,7 +156,7 @@ export default function CarGallery({
               height={150}
               draggable={false}
               sizes="120px"
-              unoptimized={(title.toLowerCase().includes("bmw") && title.toLowerCase().includes("ix3")) || title.toLowerCase().includes("enyaq")}
+              unoptimized={image.includes("/optimized/")}
               className="
                 aspect-video
                 w-full
