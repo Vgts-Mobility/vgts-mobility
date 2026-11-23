@@ -236,7 +236,7 @@ export default function FullscreenGallery({
               <Image
                 src={image}
                 alt={`${title} - Photo ${index + 1}`}
-                unoptimized={title.toLowerCase().includes("ford")}
+                unoptimized={image.includes("/optimized/")}
                 width={1800}
                 height={1200}
                 priority={index === initialSlide}
