@@ -155,7 +155,7 @@ export default function CarGallery({
               height={150}
               draggable={false}
               sizes="120px"
-              unoptimized={title.toLowerCase().includes("bmw") && title.toLowerCase().includes("ix3")}
+              unoptimized={\n                (title.toLowerCase().includes("bmw") && title.toLowerCase().includes("ix3")) ||\n                title.toLowerCase().includes("enyaq")\n              }
               className="
                 aspect-video
                 w-full
