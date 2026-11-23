@@ -69,13 +69,19 @@ export default function Footer() {
                   </a>
                 </div>
 
-                <div className="mt-5 flex items-center gap-3 border-t border-white/10 pt-4">
+                <div className="mt-5 flex items-center gap-4 border-t border-white/10 pt-4">
                   <span className="mr-1 text-xs font-semibold text-gray-400">{t("contacts.socials")}</span>
-                  <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="VGTS Mobility Instagram" title="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:border-pink-400/60 hover:text-pink-400">
-                    <span className="text-xl font-bold leading-none">◎</span>
+                  <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="VGTS Mobility Instagram" title="Instagram" className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#feda75] via-[#d62976] to-[#4f5bd5] text-white shadow-lg transition hover:scale-110">
+                    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" aria-hidden="true">
+                      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="2.2" />
+                      <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="2.2" />
+                      <circle cx="17.6" cy="6.6" r="1.25" fill="currentColor" />
+                    </svg>
                   </a>
-                  <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" aria-label="VGTS Mobility Facebook" title="Facebook" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:border-blue-400/60 hover:text-blue-400">
-                    <span className="text-xl font-black leading-none">f</span>
+                  <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" aria-label="VGTS Mobility Facebook" title="Facebook" className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1877F2] text-white shadow-lg transition hover:scale-110">
+                    <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true">
+                      <path d="M13.5 21v-8h2.8l.42-3.1H13.5V7.92c0-.9.25-1.52 1.56-1.52h1.75V3.62A23 23 0 0 0 14.26 3c-2.53 0-4.26 1.54-4.26 4.38V9.9H7.15V13h2.85v8h3.5Z" />
+                    </svg>
                   </a>
                 </div>
               </div>
