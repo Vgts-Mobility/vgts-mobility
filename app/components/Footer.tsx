@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { Phone, MessageCircle, Mail, ArrowUpRight, ShieldCheck } from "lucide-react";
+import { Phone, MessageCircle, Mail, ArrowUpRight, Instagram, Facebook } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const BUSINESS_PHONE = "+420 732 827 533";
 const BUSINESS_TEL = "+420732827533";
 const BUSINESS_WA = "https://wa.me/420732827533";
+const INSTAGRAM_URL = "https://www.instagram.com/vgts_mobility?cnvx=MWhyMXdmNG1wcnRkOA==";
+const FACEBOOK_URL = "https://www.facebook.com/share/19nKQasTEq/?mibextid=wwXIfr";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -47,23 +49,35 @@ export default function Footer() {
             <div className="relative overflow-hidden rounded-2xl border border-lime-400/30 bg-gradient-to-br from-lime-400/[0.12] via-[#101720] to-[#0b1117] p-5 shadow-[0_12px_40px_rgba(183,255,0,0.06)] sm:p-6">
               <div className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full bg-lime-400/10 blur-3xl" />
               <div className="relative">
-                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[2.5px] text-lime-400">
-                  <ShieldCheck size={15} />
-                  {t("contacts.eyebrow")}
-                </div>
-                <h4 className="mt-2 text-xl font-black text-white sm:text-2xl">VGTS Mobility</h4>
-                <p className="mt-1 text-sm leading-5 text-gray-400">{t("contacts.description")}</p>
+                <h4 className="text-xl font-black text-white sm:text-2xl">VGTS Mobility</h4>
+                <p className="mt-2 text-sm leading-5 text-gray-400">{t("contacts.description")}</p>
+
                 <a href={`tel:${BUSINESS_TEL}`} className="mt-5 flex items-center gap-3 text-xl font-bold text-white transition hover:text-lime-300 sm:text-2xl">
                   <Phone size={21} className="shrink-0 text-lime-400" />
                   <span>{BUSINESS_PHONE}</span>
                 </a>
-                <a href={BUSINESS_WA} target="_blank" rel="noopener noreferrer" className="mt-5 flex w-full items-center justify-between gap-3 rounded-xl bg-[#25D366] px-4 py-3.5 font-bold text-[#062b17] transition hover:bg-[#40e47b]">
-                  <span className="flex items-center gap-2">
-                    <MessageCircle size={21} />
+
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  <a href={`tel:${BUSINESS_TEL}`} className="flex items-center justify-center gap-2 rounded-xl border border-lime-400/40 bg-lime-400/10 px-4 py-3 font-semibold text-lime-300 transition hover:bg-lime-400/20">
+                    <Phone size={19} />
+                    {t("contacts.call")}
+                  </a>
+                  <a href={BUSINESS_WA} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3 font-bold text-[#062b17] transition hover:bg-[#40e47b]">
+                    <MessageCircle size={20} />
                     {t("contacts.whatsapp")}
-                  </span>
-                  <ArrowUpRight size={19} />
-                </a>
+                    <ArrowUpRight size={16} />
+                  </a>
+                </div>
+
+                <div className="mt-5 flex items-center gap-3 border-t border-white/10 pt-4">
+                  <span className="mr-1 text-xs font-semibold text-gray-400">{t("contacts.socials")}</span>
+                  <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="VGTS Mobility Instagram" title="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:border-pink-400/60 hover:text-pink-400">
+                    <Instagram size={19} />
+                  </a>
+                  <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" aria-label="VGTS Mobility Facebook" title="Facebook" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:border-blue-400/60 hover:text-blue-400">
+                    <Facebook size={19} />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
