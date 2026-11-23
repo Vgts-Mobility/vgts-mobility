@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Keyboard } from "swiper/modules";
@@ -233,7 +233,7 @@ export default function FullscreenGallery({
         ))}
       </Swiper>
 
-      <div className="absolute bottom-16 left-1/2 z-[10001] flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-black/70 p-2 backdrop-blur landscape:bottom-2">
+      <div className="absolute bottom-16 left-1/2 z-[10001] flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/15 bg-black/35 p-2 backdrop-blur-md landscape:bottom-2">
         <button
           type="button"
           aria-label="Zoom out"
@@ -254,14 +254,6 @@ export default function FullscreenGallery({
           className="flex h-10 w-10 items-center justify-center rounded-full text-white transition hover:bg-white/15 disabled:opacity-35"
         >
           <ZoomIn size={21} />
-        </button>
-        <button
-          type="button"
-          aria-label="Reset zoom"
-          onClick={resetZoom}
-          className="flex h-10 w-10 items-center justify-center rounded-full text-white transition hover:bg-white/15"
-        >
-          <RotateCcw size={18} />
         </button>
       </div>
 
