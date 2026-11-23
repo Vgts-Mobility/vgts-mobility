@@ -197,7 +197,7 @@ export default function FullscreenGallery({
         slidesPerView={1}
         initialSlide={initialSlide}
         allowTouchMove={scale === 1}
-        className="h-full w-full"
+        className="fullscreen-gallery-swiper h-full w-full"
       >
         {images.map((image, index) => (
           <SwiperSlide
