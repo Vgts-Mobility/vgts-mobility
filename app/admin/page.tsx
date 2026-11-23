@@ -48,13 +48,21 @@ export default async function AdminPage() {
             Керуйте автопарком VGTS Mobility.
           </p>
         </div>
-        <Link
-          href="/admin/cars/new"
-          className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90 sm:w-auto md:text-base"
-        >
-          <Plus size={20} />
-          Додати автомобіль
-        </Link>
+        <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+          <Link
+            href="/admin/tools/images"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-primary hover:text-primary md:text-base"
+          >
+            Оптимізація фото
+          </Link>
+          <Link
+            href="/admin/cars/new"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90 md:text-base"
+          >
+            <Plus size={20} />
+            Додати автомобіль
+          </Link>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-5">
