@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { Phone, MessageCircle, Mail, ArrowUpRight, Instagram, Facebook } from "lucide-react";
+import { Phone, MessageCircle, Mail, ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const BUSINESS_PHONE = "+420 732 827 533";
@@ -72,10 +72,10 @@ export default function Footer() {
                 <div className="mt-5 flex items-center gap-3 border-t border-white/10 pt-4">
                   <span className="mr-1 text-xs font-semibold text-gray-400">{t("contacts.socials")}</span>
                   <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="VGTS Mobility Instagram" title="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:border-pink-400/60 hover:text-pink-400">
-                    <Instagram size={19} />
+                    <span className="text-xl font-bold leading-none">◎</span>
                   </a>
                   <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" aria-label="VGTS Mobility Facebook" title="Facebook" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:border-blue-400/60 hover:text-blue-400">
-                    <Facebook size={19} />
+                    <span className="text-xl font-black leading-none">f</span>
                   </a>
                 </div>
               </div>
