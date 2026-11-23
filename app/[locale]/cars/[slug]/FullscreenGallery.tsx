@@ -285,7 +285,7 @@ function GalleryCounter({
     const update = () => setActiveIndex(swiper.realIndex);
     update();
     swiper.on("slideChange", update);
-    return () => swiper.off("slideChange", update);
+    return () => { swiper.off("slideChange", update); };
   }, [swiper]);
 
   return <>{activeIndex + 1} / {total}</>;
