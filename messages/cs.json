@@ -216,10 +216,11 @@
       "documents": "Dokumenty"
     },
     "contacts": {
-      "title": "Oficiální kontakt",
-      "eyebrow": "Jeden kontakt pro vše",
-      "description": "Prodej vozů, konzultace a nové poptávky. Jsme tu pro vás.",
-      "whatsapp": "Napsat přes WhatsApp Business"
+      "title": "Kontaktujte nás telefonicky",
+      "description": "Zavolejte nám nebo nám napište přes WhatsApp.",
+      "call": "Zavolat",
+      "whatsapp": "WhatsApp",
+      "socials": "Sledujte nás"
     },
     "copyright": "© 2026 VGTS Mobility s.r.o. Všechna práva vyhrazena."
   },
