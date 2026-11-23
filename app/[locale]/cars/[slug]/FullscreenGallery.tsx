@@ -128,7 +128,7 @@ export default function FullscreenGallery({
 
   useEffect(() => {
     if (!open || !swiper || swiper.destroyed) return;
-    swiper.slideTo(initialSlide, 0);
+    swiper.slideToLoop(initialSlide, 0);
   }, [open, initialSlide, swiper]);
 
   useEffect(() => {
@@ -195,6 +195,7 @@ export default function FullscreenGallery({
         onSlideChange={resetZoom}
         keyboard={{ enabled: true }}
         slidesPerView={1}
+        loop={images.length > 1}
         initialSlide={initialSlide}
         allowTouchMove={scale === 1}
         className="fullscreen-gallery-swiper h-full w-full"
@@ -232,7 +233,7 @@ export default function FullscreenGallery({
         ))}
       </Swiper>
 
-      <div className="absolute bottom-16 left-1/2 z-[10001] flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-black/70 p-2 backdrop-blur">
+      <div className="absolute bottom-16 left-1/2 z-[10001] flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-black/70 p-2 backdrop-blur landscape:bottom-2">
         <button
           type="button"
           aria-label="Zoom out"
@@ -264,7 +265,7 @@ export default function FullscreenGallery({
         </button>
       </div>
 
-      <div className="pointer-events-none absolute bottom-5 left-1/2 z-[10001] -translate-x-1/2 rounded-full bg-black/60 px-4 py-2 text-sm font-medium text-white backdrop-blur">
+      <div className="pointer-events-none absolute bottom-5 left-1/2 z-[10001] -translate-x-1/2 rounded-full bg-black/60 px-4 py-2 text-sm font-medium text-white backdrop-blur landscape:bottom-auto landscape:top-3">
         <GalleryCounter swiper={swiper} total={images.length} />
       </div>
     </div>
