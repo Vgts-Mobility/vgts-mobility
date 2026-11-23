@@ -51,3 +51,10 @@ img {
 .swiper-wrapper {
   align-items: stretch;
 }
+
+/* Keep fullscreen gallery slides at viewport height. */
+.fullscreen-gallery-swiper,
+.fullscreen-gallery-swiper .swiper-wrapper,
+.fullscreen-gallery-swiper .swiper-slide {
+  height: 100%;
+}
