@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { Phone, MessageCircle, Mail } from "lucide-react";
+import { Phone, MessageCircle, Mail, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const BUSINESS_PHONE = "+420 732 827 533";
+const BUSINESS_TEL = "+420732827533";
 const BUSINESS_WA = "https://wa.me/420732827533";
 
 export default function Footer() {
@@ -43,39 +44,26 @@ export default function Footer() {
 
           <div id="contact">
             <h3 className="mb-4 text-base font-bold text-white">{t("contacts.title")}</h3>
-
-            <a href={BUSINESS_WA} target="_blank" rel="noopener noreferrer" className="mb-3 flex items-center justify-between gap-3 rounded-xl border border-[#25D366]/40 bg-[#25D366]/10 p-4 transition hover:bg-[#25D366]/15">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[2px] text-[#25D366]">WhatsApp Business · VGTS Mobility</p>
-                <p className="mt-1 text-lg font-bold text-white">{BUSINESS_PHONE}</p>
-                <p className="mt-1 text-xs text-gray-400">Hlavní kontakt a nové poptávky</p>
-              </div>
-              <MessageCircle size={30} className="shrink-0 text-[#25D366]" />
-            </a>
-
-            <div className="grid gap-3 sm:grid-cols-2">
-              <div className="rounded-xl border border-white/10 bg-white/5 p-3.5 backdrop-blur">
-                <h4 className="text-sm font-bold text-white">Taras Savenko</h4>
-                <div className="mt-2.5 space-y-2">
-                  <a href="tel:+420739974155" className="flex items-center gap-2 text-xs text-gray-400 transition hover:text-lime-400">
-                    <Phone size={14} /> +420 739 974 155
-                  </a>
-                  <a href="https://wa.me/420739974155" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs text-gray-400 transition hover:text-green-400">
-                    <MessageCircle size={14} /> WhatsApp
-                  </a>
+            <div className="relative overflow-hidden rounded-2xl border border-lime-400/30 bg-gradient-to-br from-lime-400/[0.12] via-[#101720] to-[#0b1117] p-5 shadow-[0_12px_40px_rgba(183,255,0,0.06)] sm:p-6">
+              <div className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full bg-lime-400/10 blur-3xl" />
+              <div className="relative">
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[2.5px] text-lime-400">
+                  <ShieldCheck size={15} />
+                  {t("contacts.eyebrow")}
                 </div>
-              </div>
-
-              <div className="rounded-xl border border-white/10 bg-white/5 p-3.5 backdrop-blur">
-                <h4 className="text-sm font-bold text-white">Vadym Horbach</h4>
-                <div className="mt-2.5 space-y-2">
-                  <a href="tel:+420703695936" className="flex items-center gap-2 text-xs text-gray-400 transition hover:text-lime-400">
-                    <Phone size={14} /> +420 703 695 936
-                  </a>
-                  <a href="https://wa.me/420703695936" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs text-gray-400 transition hover:text-green-400">
-                    <MessageCircle size={14} /> WhatsApp
-                  </a>
-                </div>
+                <h4 className="mt-2 text-xl font-black text-white sm:text-2xl">VGTS Mobility</h4>
+                <p className="mt-1 text-sm leading-5 text-gray-400">{t("contacts.description")}</p>
+                <a href={`tel:${BUSINESS_TEL}`} className="mt-5 flex items-center gap-3 text-xl font-bold text-white transition hover:text-lime-300 sm:text-2xl">
+                  <Phone size={21} className="shrink-0 text-lime-400" />
+                  <span>{BUSINESS_PHONE}</span>
+                </a>
+                <a href={BUSINESS_WA} target="_blank" rel="noopener noreferrer" className="mt-5 flex w-full items-center justify-between gap-3 rounded-xl bg-[#25D366] px-4 py-3.5 font-bold text-[#062b17] transition hover:bg-[#40e47b]">
+                  <span className="flex items-center gap-2">
+                    <MessageCircle size={21} />
+                    {t("contacts.whatsapp")}
+                  </span>
+                  <ArrowUpRight size={19} />
+                </a>
               </div>
             </div>
           </div>
