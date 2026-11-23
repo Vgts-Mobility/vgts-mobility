@@ -124,6 +124,7 @@ export default function CarDetails({
         open={fullscreenOpen}
         images={images}
         initialSlide={initialSlide}
+        title={`${car.brand} ${car.model}`}
         onClose={() =>
           setFullscreenOpen(false)
         }
