@@ -16,6 +16,7 @@ type Props = {
   open: boolean;
   images: string[];
   initialSlide: number;
+  title: string;
   onClose: () => void;
 };
 
@@ -23,6 +24,7 @@ export default function FullscreenGallery({
   open,
   images,
   initialSlide,
+  title,
   onClose,
 }: Props) {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
@@ -233,7 +235,8 @@ export default function FullscreenGallery({
 
               <Image
                 src={image}
-                alt={`Photo ${index + 1}`}
+                alt={`${title} - Photo ${index + 1}`}
+                unoptimized={title.toLowerCase().includes("ford")}
                 width={1800}
                 height={1200}
                 priority={index === initialSlide}
