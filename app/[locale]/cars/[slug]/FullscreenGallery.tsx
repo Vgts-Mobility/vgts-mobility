@@ -41,7 +41,6 @@ export default function FullscreenGallery({
     offsetY: number;
   } | null>(null);
   const lastTap = useRef(0);
-  const imageFrame = useRef<HTMLDivElement | null>(null);
 
   const resetZoom = () => {
     setScale(1);
@@ -95,7 +94,7 @@ export default function FullscreenGallery({
 
     if (event.touches.length === 1 && start.scale > 1) {
       event.preventDefault();
-      const frame = imageFrame.current?.getBoundingClientRect();
+      const frame = event.currentTarget.getBoundingClientRect();
       const maxX = frame ? (frame.width * (scale - 1)) / 2 : 500;
       const maxY = frame ? (frame.height * (scale - 1)) / 2 : 500;
       const x = start.offsetX + event.touches[0].clientX - start.x;
@@ -206,7 +205,6 @@ export default function FullscreenGallery({
             className="flex items-center justify-center"
           >
             <div
-              ref={imageFrame}
               className="flex h-full w-full items-center justify-center overflow-hidden px-16 py-16 sm:px-20 lg:px-24"
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
