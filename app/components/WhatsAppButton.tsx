@@ -2,7 +2,7 @@
 
 import { MessageCircle } from "lucide-react";
 
-const BUSINESS_WHATSAPP = "https://wa.me/420732827533?text=Dobr%C3%BD%20den%2C%20m%C3%A1m%20z%C3%A1jem%20o%20slu%C5%BEby%20VGTS%20Mobility.";
+const BUSINESS_WHATSAPP = "https://wa.me/420703695936?text=Dobr%C3%BD%20den%2C%20m%C3%A1m%20z%C3%A1jem%20o%20slu%C5%BEby%20VGTS%20Mobility.";
 
 export default function WhatsAppButton() {
   return (
