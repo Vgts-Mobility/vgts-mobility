@@ -14,7 +14,7 @@ const initialState = {
   success: false,
 };
 
-const BUSINESS_WHATSAPP = "420703695936";
+const BUSINESS_WHATSAPP = "420732827533";
 
 export default function RequestModal({ open, onClose }: Props) {
   const t = useTranslations("requestModal");
