@@ -45,7 +45,7 @@ export default function CarCardImage({
       "
       className="
         select-none
-        object-contain
+        object-cover
         transition-transform
         duration-500
         group-hover:scale-[1.03]
