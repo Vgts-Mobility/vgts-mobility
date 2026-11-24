@@ -277,7 +277,7 @@ export default async function AboutPage() {
                   </div>
 
                   <a
-                    href="tel:+420739974155"
+                    href="tel:+420732827533"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-lime-400 px-5 py-2 text-xs font-bold text-black transition hover:scale-105"
                   >
                     <Phone size={13} />
