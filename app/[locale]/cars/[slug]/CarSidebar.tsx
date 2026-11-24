@@ -16,6 +16,10 @@ import { Car } from "@/types/car";
 import { getPublicImage } from "@/lib/storage/get-public-image";
 import { useTranslations } from "next-intl";
 
+const BUSINESS_PHONE = "+420 732 827 533";
+const BUSINESS_TEL = "+420732827533";
+const BUSINESS_WA = "https://wa.me/420732827533";
+
 const statusMap: Record<string, string> = {
   "В наявності": "Skladem",
   "Продано": "Prodáno",
@@ -117,7 +121,7 @@ export default function CarSidebar({
       <div className="mt-7 space-y-3">
 
         <a
-          href="https://wa.me/420703695936"
+          href={BUSINESS_WA}
           target="_blank"
           rel="noopener noreferrer"
           className="
@@ -140,7 +144,7 @@ export default function CarSidebar({
         </a>
 
         <a
-          href="tel:+420703695936"
+          href={`tel:${BUSINESS_TEL}`}
           className="
             flex
             items-center
@@ -157,11 +161,11 @@ export default function CarSidebar({
           "
         >
           <Phone size={18} />
-          +420 703 695 936
+          {BUSINESS_PHONE}
         </a>
 
         <a
-          href="tel:+420739974155"
+          href={`tel:${BUSINESS_TEL}`}
           className="
             flex
             items-center
@@ -178,7 +182,7 @@ export default function CarSidebar({
           "
         >
           <Phone size={18} />
-          +420 739 974 155
+          {BUSINESS_PHONE}
         </a>
 
       </div>
