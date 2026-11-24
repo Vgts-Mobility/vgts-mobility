@@ -149,6 +149,8 @@ export default async function CarsPage({
                 <CarCard
                   key={car.id}
                   car={car}
+                  imageFit="contain"
+                  catalogLayout
                 />
               ))}
             </div>

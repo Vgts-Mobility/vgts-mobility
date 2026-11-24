@@ -257,29 +257,6 @@ export default function FullscreenGallery({
         </button>
       </div>
 
-      <div className="pointer-events-none absolute bottom-5 left-1/2 z-[10001] -translate-x-1/2 rounded-full bg-black/60 px-4 py-2 text-sm font-medium text-white backdrop-blur landscape:bottom-auto landscape:top-3">
-        <GalleryCounter swiper={swiper} total={images.length} />
-      </div>
     </div>
   );
-}
-
-function GalleryCounter({
-  swiper,
-  total,
-}: {
-  swiper: SwiperType | null;
-  total: number;
-}) {
-  const [activeIndex, setActiveIndex] = useState(swiper?.realIndex ?? 0);
-
-  useEffect(() => {
-    if (!swiper || swiper.destroyed) return;
-    const update = () => setActiveIndex(swiper.realIndex);
-    update();
-    swiper.on("slideChange", update);
-    return () => { swiper.off("slideChange", update); };
-  }, [swiper]);
-
-  return <>{activeIndex + 1} / {total}</>;
 }

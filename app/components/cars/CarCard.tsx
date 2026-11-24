@@ -52,8 +52,12 @@ const statusStyles: Record<string, string> = {
 
 export default function CarCard({
   car,
+  imageFit = "cover",
+  catalogLayout = false,
 }: {
   car: Car;
+  imageFit?: "cover" | "contain";
+  catalogLayout?: boolean;
 }) {
   const locale = useLocale();
 
@@ -88,26 +92,26 @@ export default function CarCard({
 
       {/* PHOTO */}
 
-      <div className="relative h-[145px] overflow-hidden bg-[#0c1018] sm:h-[150px] lg:h-[145px] 2xl:h-[155px]">
+      <div className={`relative overflow-hidden bg-[#0c1018] ${catalogLayout ? "aspect-[16/9] w-full" : "h-[118px] sm:h-[150px] lg:h-[145px] 2xl:h-[155px]"}`}>
 
-        <CarCardImage car={car} />
+        <CarCardImage car={car} fit={imageFit} />
 
 
       </div>
 
       {/* MAIN INFO */}
 
-      <div className="px-3 py-3">
+      <div className="px-2 py-2 sm:px-3 sm:py-3">
 
         <div className="flex items-start justify-between gap-3">
 
           <div className="min-w-0">
 
-            <h2 className="text-base font-black leading-tight text-white">
+            <h2 className="text-sm font-black leading-tight text-white sm:text-base">
               {car.brand}
             </h2>
 
-            <p className="mt-0.5 truncate text-[11px] text-gray-400">
+            <p className="mt-0.5 truncate text-[9px] text-gray-400 sm:text-[11px]">
               {car.model}
             </p>
 
@@ -120,9 +124,12 @@ export default function CarCard({
               shrink-0
               rounded-full
               border
-              px-3
-              py-1.5
-              text-xs
+              px-1.5
+              py-1
+              text-[9px]
+              sm:px-3
+              sm:py-1.5
+              sm:text-xs
               font-black
               ${statusStyle}
             `}
@@ -134,7 +141,7 @@ export default function CarCard({
 
         {/* SPECS */}
 
-        <div className="mt-3 grid grid-cols-2 gap-x-2 gap-y-2">
+        <div className="mt-2 grid grid-cols-2 gap-x-1 gap-y-1.5 sm:mt-3 sm:gap-x-2 sm:gap-y-2">
 
           <Info
             icon={<Calendar size={15} />}
@@ -195,8 +202,10 @@ export default function CarCard({
           border-t
           border-white/10
           bg-[#151922]
-          px-4
-          py-3
+          px-2
+          py-2
+          sm:px-4
+          sm:py-3
         "
       >
 
@@ -209,8 +218,8 @@ export default function CarCard({
         </div>
 
         <div className="mt-1 flex flex-col items-start gap-1">
-          <span className="whitespace-nowrap text-lg font-black leading-tight text-lime-400">{car.price.toLocaleString("cs-CZ")} Kč</span>
-          <span className="whitespace-nowrap text-lg font-black leading-tight text-[#7898c4]">{Math.round(car.price / 1.21).toLocaleString("cs-CZ")} Kč <span className="text-[9px] font-semibold text-gray-500">{locale === "cs" ? "bez DPH" : locale === "uk" ? "без ПДВ" : "excl. VAT"}</span></span>
+          <span className="whitespace-nowrap text-sm font-black leading-tight text-lime-400 sm:text-lg">{car.price.toLocaleString("cs-CZ")} Kč</span>
+          <span className="whitespace-nowrap text-sm font-black leading-tight text-[#7898c4] sm:text-lg">{Math.round(car.price / 1.21).toLocaleString("cs-CZ")} Kč <span className="text-[9px] font-semibold text-gray-500">{locale === "cs" ? "bez DPH" : locale === "uk" ? "без ПДВ" : "excl. VAT"}</span></span>
         </div>
 
       </div>
@@ -234,8 +243,10 @@ function Info({
       <div
         className="
           flex
-          h-8
-          w-8
+          h-6
+          w-6
+          sm:h-8
+          sm:w-8
           shrink-0
           items-center
           justify-center
@@ -249,11 +260,11 @@ function Info({
 
       <div className="min-w-0">
 
-        <div className="text-[7px] uppercase tracking-[1px] text-gray-500">
+        <div className="text-[6px] uppercase tracking-[0.5px] text-gray-500 sm:text-[7px] sm:tracking-[1px]">
           {label}
         </div>
 
-        <div className="truncate text-[11px] font-bold text-white">
+        <div className="truncate text-[9px] font-bold text-white sm:text-[11px]">
           {value || "-"}
         </div>
 
