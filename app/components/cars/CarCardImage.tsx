@@ -6,6 +6,7 @@ import { Car } from "@/types/car";
 
 type Props = {
   car: Car;
+  fit?: "cover" | "contain";
 };
 
 const SUPABASE_STORAGE =
@@ -13,6 +14,7 @@ const SUPABASE_STORAGE =
 
 export default function CarCardImage({
   car,
+  fit = "cover",
 }: Props) {
   const image = car.images?.[0] ?? null;
 
@@ -45,7 +47,7 @@ export default function CarCardImage({
       "
       className="
         select-none
-        object-cover
+        ${fit === "contain" ? "object-contain" : "object-cover"}
         transition-transform
         duration-500
         group-hover:scale-[1.03]
