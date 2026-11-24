@@ -5,9 +5,9 @@ import { Link } from "@/i18n/navigation";
 import { Phone, MessageCircle, Mail, ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-const BUSINESS_PHONE = "+420 703 695 936";
-const BUSINESS_TEL = "+420703695936";
-const BUSINESS_WA = "https://wa.me/420703695936";
+const BUSINESS_PHONE = "+420 732 827 533";
+const BUSINESS_TEL = "+420732827533";
+const BUSINESS_WA = "https://wa.me/420732827533";
 const INSTAGRAM_URL = "https://www.instagram.com/vgts_mobility?cnvx=MWhyMXdmNG1wcnRkOA==";
 const FACEBOOK_URL = "https://www.facebook.com/share/19nKQasTEq/?mibextid=wwXIfr";
 
