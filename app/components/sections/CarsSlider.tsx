@@ -157,10 +157,10 @@ export default function CarsSlider({
               prevEl: ".cars-prev",
               nextEl: ".cars-next",
             }}
-            spaceBetween={12}
+            spaceBetween={10}
             breakpoints={{
               0: {
-                slidesPerView: 1,
+                slidesPerView: 2,
               },
               640: {
                 slidesPerView: 1.15,
