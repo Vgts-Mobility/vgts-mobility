@@ -164,26 +164,7 @@ export default function CarSidebar({
           {BUSINESS_PHONE}
         </a>
 
-        <a
-          href={`tel:${BUSINESS_TEL}`}
-          className="
-            flex
-            items-center
-            justify-center
-            gap-3
-            rounded-2xl
-            border
-            border-white/10
-            px-5
-            py-3.5
-            text-sm
-            transition
-            hover:border-lime-400
-          "
-        >
-          <Phone size={18} />
-          {BUSINESS_PHONE}
-        </a>
+
 
       </div>
 
