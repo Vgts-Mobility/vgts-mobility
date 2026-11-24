@@ -16,9 +16,9 @@ import { Car } from "@/types/car";
 import { getPublicImage } from "@/lib/storage/get-public-image";
 import { useTranslations } from "next-intl";
 
-const BUSINESS_PHONE = "+420 703 695 936";
-const BUSINESS_TEL = "+420703695936";
-const BUSINESS_WA = "https://wa.me/420703695936";
+const BUSINESS_PHONE = "+420 732 827 533";
+const BUSINESS_TEL = "+420732827533";
+const BUSINESS_WA = "https://wa.me/420732827533";
 
 const statusMap: Record<string, string> = {
   "В наявності": "Skladem",
