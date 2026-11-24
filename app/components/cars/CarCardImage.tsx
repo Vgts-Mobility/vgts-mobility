@@ -45,13 +45,7 @@ export default function CarCardImage({
         (max-width: 1280px) 33vw,
         25vw
       "
-      className="
-        select-none
-        ${fit === "contain" ? "object-contain" : "object-cover"}
-        transition-transform
-        duration-500
-        group-hover:scale-[1.03]
-      "
+      className={`select-none ${fit === "contain" ? "object-contain" : "object-cover transition-transform duration-500 group-hover:scale-[1.03]"}`}
     />
   );
 }
