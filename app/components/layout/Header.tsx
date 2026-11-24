@@ -90,29 +90,9 @@ export default function Header() {
     });
   }
 
-  function goToCars(
-    e: React.MouseEvent<HTMLAnchorElement>
-  ) {
+  function goToCars(e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
-
-    if (pathname === "/") {
-      document
-        .getElementById("cars")
-        ?.scrollIntoView({
-          behavior: "smooth",
-        });
-    } else {
-      router.push("/");
-
-      setTimeout(() => {
-        document
-          .getElementById("cars")
-          ?.scrollIntoView({
-            behavior: "smooth",
-          });
-      }, 100);
-    }
-
+    router.push("/cars");
     setMobileOpen(false);
   }
 
@@ -323,35 +303,6 @@ export default function Header() {
               "
             >
               {t("cars")}
-            </a>
-
-            {/* IMPORT / SERVICES */}
-
-            <a
-              href="#services"
-              onClick={() =>
-                setMobileOpen(false)
-              }
-              className="
-                relative
-                text-[17px]
-                font-semibold
-                tracking-wide
-                text-white
-                transition-all
-                duration-300
-                hover:text-lime-400
-                after:absolute
-                after:-bottom-1
-                after:left-0
-                after:h-[2px]
-                after:w-0
-                after:bg-lime-400
-                after:transition-all
-                hover:after:w-full
-              "
-            >
-              {t("import")}
             </a>
 
             {/* PRICES */}
@@ -649,27 +600,6 @@ export default function Header() {
             "
           >
             {t("cars")}
-          </a>
-
-          {/* IMPORT */}
-
-          <a
-            href="#services"
-            onClick={() =>
-              setMobileOpen(false)
-            }
-            className="
-              border-b
-              border-white/10
-              py-4
-              text-2xl
-              font-semibold
-              text-white
-              transition
-              hover:text-lime-400
-            "
-          >
-            {t("import")}
           </a>
 
           {/* PRICES */}
