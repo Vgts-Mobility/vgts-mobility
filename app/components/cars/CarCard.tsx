@@ -52,8 +52,12 @@ const statusStyles: Record<string, string> = {
 
 export default function CarCard({
   car,
+  imageFit = "cover",
+  catalogLayout = false,
 }: {
   car: Car;
+  imageFit?: "cover" | "contain";
+  catalogLayout?: boolean;
 }) {
   const locale = useLocale();
 
@@ -88,9 +92,9 @@ export default function CarCard({
 
       {/* PHOTO */}
 
-      <div className="relative h-[118px] overflow-hidden bg-[#0c1018] sm:h-[150px] lg:h-[145px] 2xl:h-[155px]">
+      <div className={`relative overflow-hidden bg-[#0c1018] ${catalogLayout ? "aspect-[16/9] w-full" : "h-[118px] sm:h-[150px] lg:h-[145px] 2xl:h-[155px]"}`}>
 
-        <CarCardImage car={car} />
+        <CarCardImage car={car} fit={imageFit} />
 
 
       </div>
