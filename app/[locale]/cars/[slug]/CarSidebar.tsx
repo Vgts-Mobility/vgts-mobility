@@ -47,6 +47,7 @@ export default function CarSidebar({
   car: Car;
 }) {
   const currentStatus = car.status ?? "";
+  const isSold = currentStatus === "Продано" || currentStatus.toLowerCase() === "sold";
   const t = useTranslations("carDetails.documents");
 
   return (
@@ -78,14 +79,23 @@ export default function CarSidebar({
 
       {/* PRICE */}
 
-      <div className="mt-7 space-y-2">
-        <div className="whitespace-nowrap text-3xl font-black leading-tight text-lime-400 sm:text-4xl">
-          {car.price.toLocaleString("cs-CZ")} Kč
+      <div className={`relative mt-7 space-y-2 ${isSold ? "overflow-hidden rounded-xl" : ""}`}>
+        <div className={isSold ? "select-none blur-md" : ""} aria-hidden={isSold}>
+          <div className="whitespace-nowrap text-3xl font-black leading-tight text-lime-400 sm:text-4xl">
+            {car.price.toLocaleString("cs-CZ")} Kč
+          </div>
+          <div className="text-3xl font-black leading-tight text-gray-300 sm:text-4xl">
+            <span className="whitespace-nowrap">{Math.round(car.price / 1.21).toLocaleString("cs-CZ")} Kč</span>
+            <span className="ml-2 text-sm font-semibold text-gray-500">bez DPH</span>
+          </div>
         </div>
-        <div className="text-3xl font-black leading-tight text-gray-300 sm:text-4xl">
-          <span className="whitespace-nowrap">{Math.round(car.price / 1.21).toLocaleString("cs-CZ")} Kč</span>
-          <span className="ml-2 text-sm font-semibold text-gray-500">bez DPH</span>
-        </div>
+        {isSold && (
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[#10141d]/25">
+            <span className="rounded-full border border-red-500/40 bg-red-500/15 px-4 py-2 text-sm font-black tracking-wide text-red-400">
+              Prodáno
+            </span>
+          </div>
+        )}
       </div>
 
       {/* VEHICLE DOCUMENTS — show only uploaded files */}
