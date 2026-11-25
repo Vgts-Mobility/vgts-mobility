@@ -35,26 +35,39 @@ async function getCar(slug: string) {
 }
 
 function getSeoText(car: CarSeoData, locale: string) {
+  const isSold = car.status === "Продано" || car.status?.toLowerCase() === "sold";
   const price = `${car.price.toLocaleString(locale === "en" ? "en-GB" : locale === "uk" ? "uk-UA" : "cs-CZ")} Kč`;
   const mileage = `${car.mileage.toLocaleString(locale === "en" ? "en-GB" : locale === "uk" ? "uk-UA" : "cs-CZ")} km`;
 
   if (locale === "uk") {
     return {
-      title: `${car.brand} ${car.model} ${car.year} — ціна ${price} | VGTS Mobility`,
-      description: `${car.brand} ${car.model}, ${car.year} року. Пробіг ${mileage}, паливо: ${car.fuel}, потужність: ${car.power}. Ціна ${price}. VGTS Mobility, Чехія.`,
+      title: isSold
+        ? `${car.brand} ${car.model} ${car.year} — Prodáno | VGTS Mobility`
+        : `${car.brand} ${car.model} ${car.year} — ціна ${price} | VGTS Mobility`,
+      description: isSold
+        ? `${car.brand} ${car.model}, ${car.year} року. Пробіг ${mileage}, паливо: ${car.fuel}, потужність: ${car.power}. Автомобіль продано. VGTS Mobility, Чехія.`
+        : `${car.brand} ${car.model}, ${car.year} року. Пробіг ${mileage}, паливо: ${car.fuel}, потужність: ${car.power}. Ціна ${price}. VGTS Mobility, Чехія.`,
     };
   }
 
   if (locale === "en") {
     return {
-      title: `${car.brand} ${car.model} ${car.year} for sale — ${price} | VGTS Mobility`,
-      description: `${car.brand} ${car.model}, year ${car.year}. Mileage ${mileage}, fuel: ${car.fuel}, power: ${car.power}. Price: ${price}. VGTS Mobility, Czechia.`,
+      title: isSold
+        ? `${car.brand} ${car.model} ${car.year} — Sold | VGTS Mobility`
+        : `${car.brand} ${car.model} ${car.year} for sale — ${price} | VGTS Mobility`,
+      description: isSold
+        ? `${car.brand} ${car.model}, year ${car.year}. Mileage ${mileage}, fuel: ${car.fuel}, power: ${car.power}. Vehicle sold. VGTS Mobility, Czechia.`
+        : `${car.brand} ${car.model}, year ${car.year}. Mileage ${mileage}, fuel: ${car.fuel}, power: ${car.power}. Price: ${price}. VGTS Mobility, Czechia.`,
     };
   }
 
   return {
-    title: `${car.brand} ${car.model} ${car.year} — cena ${price} | VGTS Mobility`,
-    description: `${car.brand} ${car.model}, rok ${car.year}. Nájezd ${mileage}, palivo: ${car.fuel}, výkon: ${car.power}. Cena ${price}. VGTS Mobility, Česká republika.`,
+    title: isSold
+      ? `${car.brand} ${car.model} ${car.year} — Prodáno | VGTS Mobility`
+      : `${car.brand} ${car.model} ${car.year} — cena ${price} | VGTS Mobility`,
+    description: isSold
+      ? `${car.brand} ${car.model}, rok ${car.year}. Nájezd ${mileage}, palivo: ${car.fuel}, výkon: ${car.power}. Vůz je prodaný. VGTS Mobility, Česká republika.`
+      : `${car.brand} ${car.model}, rok ${car.year}. Nájezd ${mileage}, palivo: ${car.fuel}, výkon: ${car.power}. Cena ${price}. VGTS Mobility, Česká republika.`,
   };
 }
 
