@@ -196,7 +196,6 @@ export default function CarCard({
       </div>
 
       {car.status !== "Продано" && (
-        {/* PRICE */}
   
         <div
           className="
