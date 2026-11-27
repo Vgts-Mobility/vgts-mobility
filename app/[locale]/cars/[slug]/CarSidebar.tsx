@@ -73,7 +73,7 @@ export default function CarSidebar({
 
       {/* PRICE */}
 
-      <div className="mt-7 space-y-2">
+      <div className={`mt-7 space-y-2 ${car.status === "Продано" ? "blur-[5px] select-none" : ""}`}>
         <div className="whitespace-nowrap text-3xl font-black leading-tight text-lime-400 sm:text-4xl">
           {car.price.toLocaleString("cs-CZ")} Kč
         </div>
