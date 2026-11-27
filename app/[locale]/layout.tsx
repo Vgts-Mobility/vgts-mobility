@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { routing } from "@/i18n/routing";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
+import CookieConsent from "@/app/components/CookieConsent";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({
@@ -32,6 +33,7 @@ export default async function LocaleLayout({
     <NextIntlClientProvider messages={messages}>
       {children}
       <WhatsAppButton />
+      <CookieConsent locale={locale as "cs" | "uk" | "en"} />
     </NextIntlClientProvider>
   );
 }

@@ -175,7 +175,7 @@ export default function FullscreenGallery({
         type="button"
         aria-label="Previous photo"
         onClick={() => swiper?.slidePrev()}
-        className="absolute left-3 top-1/2 z-[10001] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/50 text-white backdrop-blur transition hover:border-lime-400 hover:bg-lime-400 hover:text-black sm:left-6 sm:h-12 sm:w-12"
+        className="gallery-arrow absolute left-3 top-1/2 z-[10001] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full sm:left-6 sm:h-12 sm:w-12"
       >
         <ChevronLeft size={26} />
       </button>
@@ -184,7 +184,7 @@ export default function FullscreenGallery({
         type="button"
         aria-label="Next photo"
         onClick={() => swiper?.slideNext()}
-        className="absolute right-3 top-1/2 z-[10001] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/50 text-white backdrop-blur transition hover:border-lime-400 hover:bg-lime-400 hover:text-black sm:right-6 sm:h-12 sm:w-12"
+        className="gallery-arrow absolute right-3 top-1/2 z-[10001] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full sm:right-6 sm:h-12 sm:w-12"
       >
         <ChevronRight size={26} />
       </button>

@@ -8,6 +8,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Car } from "@/types/car";
 
 import CarGallery from "./CarGallery";
+import CarDocuments from "./CarDocuments";
 import CarSidebar from "./CarSidebar";
 import CarSpecs from "./CarSpecs";
 import CarEquipment from "./CarEquipment";
@@ -95,6 +96,8 @@ export default function CarDetails({
               title={`${car.brand} ${car.model}`}
               onOpen={openFullscreen}
             />
+
+            <CarDocuments car={car} />
 
             <CarSpecs car={car} />
 
