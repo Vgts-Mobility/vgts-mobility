@@ -20,6 +20,8 @@ const copy = {
     analyticsInfo: "Pomáhají nám porozumět návštěvnosti a zlepšovat web.",
     privacy: "Zásady ochrany osobních údajů",
     manage: "Nastavení cookies",
+    alwaysActive: "Vždy aktivní",
+    close: "Zavřít nastavení cookies",
   },
   uk: {
     title: "Ваша конфіденційність",
@@ -34,6 +36,8 @@ const copy = {
     analyticsInfo: "Допомагають зрозуміти відвідуваність і покращувати сайт.",
     privacy: "Політика конфіденційності",
     manage: "Налаштування cookies",
+    alwaysActive: "Завжди активні",
+    close: "Закрити налаштування cookies",
   },
   en: {
     title: "Your privacy",
@@ -48,6 +52,8 @@ const copy = {
     analyticsInfo: "Help us understand website traffic and improve the website.",
     privacy: "Privacy policy",
     manage: "Cookie settings",
+    alwaysActive: "Always active",
+    close: "Close cookie settings",
   },
 } satisfies Record<Locale, Record<string, string>>;
 
@@ -74,7 +80,7 @@ export default function CookieConsent({ locale }: { locale: Locale }) {
         }
       }
     } catch {
-      window.localStorage.removeItem(STORAGE_KEY);
+      // Continue without persisted preferences when browser storage is unavailable.
     }
     setReady(true);
   }, []);
@@ -110,7 +116,7 @@ export default function CookieConsent({ locale }: { locale: Locale }) {
           <div className="flex items-start justify-between gap-4">
             <h2 className="text-lg font-bold">{settingsOpen ? t.settings : t.title}</h2>
             {settingsOpen && consent && (
-              <button type="button" onClick={() => setSettingsOpen(false)} aria-label="Close cookie settings" className="rounded-lg px-2 text-xl leading-none text-gray-400 hover:text-white">×</button>
+              <button type="button" onClick={() => setSettingsOpen(false)} aria-label={t.close} className="rounded-lg px-2 text-xl leading-none text-gray-400 hover:text-white">×</button>
             )}
           </div>
           {!settingsOpen && <p className="mt-2 text-sm leading-relaxed text-gray-300">{t.body}</p>}
@@ -120,7 +126,7 @@ export default function CookieConsent({ locale }: { locale: Locale }) {
               <div className="rounded-xl border border-white/10 bg-white/[.03] p-3">
                 <div className="font-semibold">{t.necessary}</div>
                 <p className="mt-1 text-xs text-gray-400">{t.necessaryInfo}</p>
-                <span className="mt-2 inline-flex rounded-full bg-lime-400/10 px-2 py-1 text-xs font-semibold text-lime-300">Always active</span>
+                <span className="mt-2 inline-flex rounded-full bg-lime-400/10 px-2 py-1 text-xs font-semibold text-lime-300">{t.alwaysActive}</span>
               </div>
               <label className="flex cursor-pointer items-start justify-between gap-4 rounded-xl border border-white/10 bg-white/[.03] p-3">
                 <span>
