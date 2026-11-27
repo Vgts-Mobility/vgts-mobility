@@ -17,7 +17,7 @@ export default function CarSpecs({
         {t("title")}
       </h2>
 
-      <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
 
         <SpecCard
           title={t("transmission")}
@@ -90,18 +90,19 @@ function SpecCard({
         border
         border-white/10
         bg-[#10141d]
-        px-4
+        min-w-0
+        px-3
         py-3
         transition
         hover:border-lime-400/40
       "
     >
 
-      <div className="text-[10px] uppercase tracking-[2px] text-gray-500">
+      <div className="break-words text-[9px] uppercase tracking-[1.3px] text-gray-500 sm:text-[10px] sm:tracking-[2px]">
         {title}
       </div>
 
-      <div className="mt-1 text-sm font-bold text-white sm:text-base">
+      <div className="mt-1 min-w-0 break-words text-sm font-bold text-white sm:text-base">
         {value !== null &&
         value !== undefined &&
         value !== ""
