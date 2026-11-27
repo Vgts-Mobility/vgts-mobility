@@ -58,3 +58,42 @@ img {
 .fullscreen-gallery-swiper .swiper-slide {
   height: 100%;
 }
+
+
+/* Consistent translucent blue gallery navigation on every gallery view. */
+.car-gallery .swiper-button-prev,
+.car-gallery .swiper-button-next,
+.gallery-arrow {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  border-radius: 9999px;
+  background: rgba(37, 99, 235, 0.24);
+  color: rgba(96, 165, 250, 0.82);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.car-gallery .swiper-button-prev::after,
+.car-gallery .swiper-button-next::after {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.car-gallery .swiper-button-prev:hover,
+.car-gallery .swiper-button-next:hover,
+.gallery-arrow:hover {
+  border-color: rgba(96, 165, 250, 0.55);
+  background: rgba(37, 99, 235, 0.42);
+  color: rgba(147, 197, 253, 0.98);
+}
+
+@media (max-width: 640px) {
+  .car-gallery .swiper-button-prev,
+  .car-gallery .swiper-button-next,
+  .gallery-arrow {
+    width: 36px;
+    height: 36px;
+  }
+}
