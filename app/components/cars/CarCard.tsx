@@ -195,34 +195,36 @@ export default function CarCard({
 
       </div>
 
-      {/* PRICE */}
-
-      <div
-        className="
-          border-t
-          border-white/10
-          bg-[#151922]
-          px-2
-          py-2
-          sm:px-4
-          sm:py-3
-        "
-      >
-
-        <div className="text-[9px] uppercase tracking-[2px] text-gray-500">
-          {locale === "cs"
-            ? "Cena"
-            : locale === "uk"
-              ? "Ціна"
-              : "Price"}
+      {car.status !== "Продано" && (
+        {/* PRICE */}
+  
+        <div
+          className="
+            border-t
+            border-white/10
+            bg-[#151922]
+            px-2
+            py-2
+            sm:px-4
+            sm:py-3
+          "
+        >
+  
+          <div className="text-[9px] uppercase tracking-[2px] text-gray-500">
+            {locale === "cs"
+              ? "Cena"
+              : locale === "uk"
+                ? "Ціна"
+                : "Price"}
+          </div>
+  
+          <div className="mt-1 flex flex-col items-start gap-1">
+            <span className="whitespace-nowrap text-sm font-black leading-tight text-lime-400 sm:text-lg">{car.price.toLocaleString("cs-CZ")} Kč</span>
+            <span className="whitespace-nowrap text-sm font-black leading-tight text-[#7898c4] sm:text-lg">{Math.round(car.price / 1.21).toLocaleString("cs-CZ")} Kč <span className="text-[9px] font-semibold text-gray-500">{locale === "cs" ? "bez DPH" : locale === "uk" ? "без ПДВ" : "excl. VAT"}</span></span>
+          </div>
+  
         </div>
-
-        <div className="mt-1 flex flex-col items-start gap-1">
-          <span className="whitespace-nowrap text-sm font-black leading-tight text-lime-400 sm:text-lg">{car.price.toLocaleString("cs-CZ")} Kč</span>
-          <span className="whitespace-nowrap text-sm font-black leading-tight text-[#7898c4] sm:text-lg">{Math.round(car.price / 1.21).toLocaleString("cs-CZ")} Kč <span className="text-[9px] font-semibold text-gray-500">{locale === "cs" ? "bez DPH" : locale === "uk" ? "без ПДВ" : "excl. VAT"}</span></span>
-        </div>
-
-      </div>
+      )}
 
     </Link>
   );
